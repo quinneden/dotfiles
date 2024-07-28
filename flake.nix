@@ -1,5 +1,5 @@
 {
-  description = "Configurations of Aylur";
+  description = "Configurations of Giddeon";
 
   outputs = inputs @ {
     self,
@@ -30,7 +30,7 @@
           lix-module.nixosModules.default
           nixos-apple-silicon.nixosModules.default
           home-manager.nixosModules.home-manager
-          {networking.hostName = "nixos";}
+          {networking.hostName = "nixos-macmini";}
         ];
       };
     };

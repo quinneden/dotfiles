@@ -1,0 +1,11 @@
+jobs:
+  build:
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v4
+      - name: Run the Magic Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@v2
+      - name: Build nixos config
+        run: |
+          nix build .#nixosConfigurations.nixos.config.system.build.topLevel --impure

@@ -9,22 +9,20 @@
   packages = with pkgs; {
     linux = [
       (mpv.override {scripts = [mpvScripts.mpris];})
-      # spotify
-      gnome-secrets
+      cachix
       fragments
-      # yabridge
-      # yabridgectl
-      # wine-staging
+      gnome-secrets
       nodejs
+      vesktop
     ];
     cli = [
       bat
       eza
       fd
-      ripgrep
       fzf
       lazydocker
       lazygit
+      ripgrep
     ];
   };
 }

@@ -12,8 +12,8 @@
     sessionVariable = true;
 
     settings = {
-      command-as-login-shell = true;
-      custom-shell-command = "${pkgs.tmux}/bin/tmux";
+      command-as-login-shell = false;
+      custom-shell-command = "${pkgs.zsh}/bin/zsh";
       use-custom-command = true;
       font = "CaskaydiaCove Nerd Font 12";
       fill-tabs = true;

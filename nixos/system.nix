@@ -1,4 +1,8 @@
-{pkgs, inputs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   # nix
   documentation.nixos.enable = false; # .desktop
   nix.settings = {
@@ -7,12 +11,12 @@
     substituters = [
       "https://nixos-apple-silicon.cachix.org"
       "https://hyprland.cachix.org"
-      "https://omnix.cachix.org"
+      "https://quinneden.cachix.org"
     ];
     trusted-public-keys = [
       "nixos-apple-silicon.cachix.org-1:xkpmN/hWmtMvApu5lYaNPy4sUXc/6Qfd+iTjdLX8HZ0="
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-      "omnix.cachix.org-1:ENvT0y7TExLwTzGUmJsKD3NxWQeZXCmQGjHX+xaohdE="
+      "quinneden.cachix.org-1:1iSAVU2R8SYzxTv3Qq8j6ssSPf0Hz+26gfgXkvlcbuA="
     ];
   };
 

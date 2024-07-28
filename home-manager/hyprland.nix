@@ -26,7 +26,7 @@ in {
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = hyprland;
+    package = pkgs.hyprland;
     systemd.enable = true;
     xwayland.enable = true;
     plugins = [
@@ -45,8 +45,8 @@ in {
 
       monitor = [
         # "eDP-1, 1920x1080, 0x0, 1"
-        # "HDMI-A-1, 2560x1440, 1920x0, 1"
-        ",preferred,auto,1"
+        "HDMI-A-1,2560x1440@144,auto,auto"
+        # ",preferred,auto,1"
       ];
 
       general = {
@@ -119,16 +119,10 @@ in {
           "SUPER, R,       ${e} -t launcher"
           "SUPER, Tab,     ${e} -t overview"
           ",XF86PowerOff,  ${e} -r 'powermenu.shutdown()'"
-          ",XF86Launch4,   ${e} -r 'recorder.start()'"
-          ",Print,         ${e} -r 'recorder.screenshot()'"
-          "SHIFT,Print,    ${e} -r 'recorder.screenshot(true)'"
           "SUPER, Return, exec, xterm" # xterm is a symlink, not actually xterm
           "SUPER, W, exec, firefox"
           # "SUPER, E, exec, wezterm -e lf"
           "SUPER, E, exec, wezterm"
-
-          # youtube
-          # ", XF86Launch1,  exec, ${yt}"
 
           "ALT, Tab, focuscurrentorlast"
           "CTRL ALT, Delete, exit"
@@ -138,10 +132,14 @@ in {
           "SUPER, O, fakefullscreen"
           "SUPER, P, togglesplit"
 
-          (mvfocus "k" "u")
-          (mvfocus "j" "d")
-          (mvfocus "l" "r")
-          (mvfocus "h" "l")
+          # (mvfocus "k" "u")
+          # (mvfocus "j" "d")
+          # (mvfocus "l" "r")
+          # (mvfocus "h" "l")
+          (mvfocus "up" "u")
+          (mvfocus "down" "d")
+          (mvfocus "right" "r")
+          (mvfocus "left" "l")
           (ws "left" "e-1")
           (ws "right" "e+1")
           (mvtows "left" "e-1")
@@ -150,10 +148,14 @@ in {
           (resizeactive "j" "0 20")
           (resizeactive "l" "20 0")
           (resizeactive "h" "-20 0")
-          (mvactive "k" "0 -20")
-          (mvactive "j" "0 20")
-          (mvactive "l" "20 0")
-          (mvactive "h" "-20 0")
+          # (mvactive "k" "0 -20")
+          # (mvactive "j" "0 20")
+          # (mvactive "l" "20 0")
+          # (mvactive "h" "-20 0")
+          (mvactive "up" "0 -20")
+          (mvactive "down" "0 20")
+          (mvactive "right" "20 0")
+          (mvactive "left" "-20 0")
         ]
         ++ (map (i: ws (toString i) (toString i)) arr)
         ++ (map (i: mvtows (toString i) (toString i)) arr);

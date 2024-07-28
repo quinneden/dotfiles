@@ -16,7 +16,6 @@
     "flake-update" = "sudo nix flake update ~/.dotfiles";
     "nix-clean" = "sudo nix-collect-garbage -d && sudo rm /nix/var/nix/gcroots/auto/* && nix-collect-garbage -d";
 
-
     "gs" = "git status";
     "gb" = "git branch";
     "gch" = "git checkout";
@@ -27,10 +26,11 @@
     "del" = "gio trash";
   };
 in {
-  options.shellAliases = with lib; mkOption {
-    type = types.attrsOf types.str;
-    default = {};
-  };
+  options.shellAliases = with lib;
+    mkOption {
+      type = types.attrsOf types.str;
+      default = {};
+    };
 
   config.programs = {
     zsh = {
@@ -46,9 +46,10 @@ in {
       initExtra = ''
         SHELL=${pkgs.zsh}/bin/zsh
         zstyle ':completion:*' menu select
-        # bindkey "^[[1;5C" forward-word
-        # bindkey "^[[1;5D" backward-word
+        bindkey "^[[1;5C" forward-word
+        bindkey "^[[1;5D" backward-word
         unsetopt BEEP
+        for f (${config.home.homeDirectory}/.config/zsh/**/*(N.)); do source $f; done
       '';
     };
 

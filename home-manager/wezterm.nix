@@ -88,7 +88,7 @@
     };
 
     settings = {
-      enable_wayland = false;
+      enable_wayland = true;
       color_schemes = {
         "Gnome Light" = gnome-light;
         "Charmful Dark" = charmful-dark;
@@ -117,7 +117,7 @@
 
       audible_bell = "Disabled";
 
-      default_prog = ["${pkgs.tmux}/bin/tmux"];
+      default_prog = ["${pkgs.zsh}/bin/zsh"];
     };
 
     extraLua = ''
