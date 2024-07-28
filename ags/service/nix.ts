@@ -3,7 +3,7 @@ import { bash, dependencies } from "lib/utils"
 import options from "options"
 
 const CACHE = `${Utils.CACHE_DIR}/nixpkgs`
-const PREFIX = "legacyPackages.x86_64-linux."
+const PREFIX = "legacyPackages.aarch64-linux."
 const MAX = options.launcher.nix.max
 const nixpkgs = options.launcher.nix.pkgs
 

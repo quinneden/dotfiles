@@ -3,17 +3,18 @@
   lib,
   ...
 }: let
-  username = "demeter";
+  username = "quinn";
 in {
   imports = [
-    /etc/nixos/hardware-configuration.nix
-    ./system.nix
     ./audio.nix
+    ./fonts.nix
+    ./gnome.nix
+    ./hyprland.nix
+    ./laptop.nix
     ./locale.nix
     ./nautilus.nix
-    ./laptop.nix
-    ./hyprland.nix
-    ./gnome.nix
+    ./system.nix
+    /etc/nixos/hardware-configuration.nix
   ];
 
   hyprland.enable = true;
@@ -57,6 +58,7 @@ in {
         ../home-manager/theme.nix
         ../home-manager/tmux.nix
         ../home-manager/wezterm.nix
+        ../home-manager/vscodium.nix
         ./home.nix
       ];
     };

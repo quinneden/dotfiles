@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   news.display = "show";
 
   nix.settings = {
@@ -39,11 +43,11 @@
 
   services = {
     kdeconnect = {
-      enable = true;
+      enable = false;
       indicator = true;
     };
   };
 
   programs.home-manager.enable = true;
-  home.stateVersion = "21.11";
+  home.stateVersion = "24.11";
 }

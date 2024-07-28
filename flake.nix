@@ -4,22 +4,31 @@
   outputs = inputs @ {
     self,
     home-manager,
+    lix-module,
+    nixos-apple-silicon,
     nixpkgs,
     ...
-  }: {
-    packages.x86_64-linux.default =
-      nixpkgs.legacyPackages.x86_64-linux.callPackage ./ags {inherit inputs;};
+  }: let
+    pkgs = import nixpkgs {
+      config.allowUnfree = true;
+      overlays = ["inputs.nixos-apple-silicon.overlays.default"];
+    };
+  in {
+    packages.aarch64-linux.default =
+      nixpkgs.legacyPackages.aarch64-linux.callPackage ./ags {inherit inputs;};
 
     # nixos config
     nixosConfigurations = {
       "nixos" = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+        system = "aarch64-linux";
         specialArgs = {
           inherit inputs;
-          asztal = self.packages.x86_64-linux.default;
+          asztal = self.packages.aarch64-linux.default;
         };
         modules = [
           ./nixos/nixos.nix
+          lix-module.nixosModules.default
+          nixos-apple-silicon.nixosModules.default
           home-manager.nixosModules.home-manager
           {networking.hostName = "nixos";}
         ];
@@ -28,14 +37,14 @@
 
     # macos hm config
     homeConfigurations = {
-      "demeter" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-darwin;
+      "quinn" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.aarch64-darwin;
         extraSpecialArgs = {inherit inputs;};
         modules = [
           ({pkgs, ...}: {
             nix.package = pkgs.nix;
-            home.username = "demeter";
-            home.homeDirectory = "/Users/demeter";
+            home.username = "quinn";
+            home.homeDirectory = "/Users/quinn";
             imports = [./macos/home.nix];
           })
         ];
@@ -45,6 +54,16 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    lix-module = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.90.0.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixos-apple-silicon = {
+      url = "github:tpwrules/nixos-apple-silicon";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager";

@@ -6,16 +6,16 @@
 }: let
   aliases = {
     "db" = "distrobox";
-    "tree" = "eza --tree";
-    "nv" = "nvim";
+    "mi" = "micro";
+    "code" = "codium";
+    "py" = "python";
+    "fuck" = "sudo rm -rf";
+    "rf" = "rm -rf";
+    "tree" = "eza --icons --tree --group-directories-first -I '.git*'";
+    "nix-switch" = "sudo nixos-rebuild switch --flake ~/.dotfiles#nixos --impure";
+    "flake-update" = "sudo nix flake update ~/.dotfiles";
+    "nix-clean" = "sudo nix-collect-garbage -d && sudo rm /nix/var/nix/gcroots/auto/* && nix-collect-garbage -d";
 
-    "ll" = "ls";
-    "éé" = "ls";
-    "és" = "ls";
-    "l" = "ls";
-
-    ":q" = "exit";
-    "q" = "exit";
 
     "gs" = "git status";
     "gb" = "git branch";
@@ -39,11 +39,15 @@ in {
       enableCompletion = true;
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
+      oh-my-zsh = {
+        enable = true;
+        plugins = ["fzf" "eza" "zsh-navigation-tools"];
+      };
       initExtra = ''
         SHELL=${pkgs.zsh}/bin/zsh
         zstyle ':completion:*' menu select
-        bindkey "^[[1;5C" forward-word
-        bindkey "^[[1;5D" backward-word
+        # bindkey "^[[1;5C" forward-word
+        # bindkey "^[[1;5D" backward-word
         unsetopt BEEP
       '';
     };
@@ -56,7 +60,7 @@ in {
 
     nushell = {
       shellAliases = aliases // config.shellAliases;
-      enable = true;
+      enable = false;
       environmentVariables = {
         PROMPT_INDICATOR_VI_INSERT = "\"  \"";
         PROMPT_INDICATOR_VI_NORMAL = "\"∙ \"";
@@ -71,7 +75,7 @@ in {
       extraConfig = let
         conf = builtins.toJSON {
           show_banner = false;
-          edit_mode = "vi";
+          edit_mode = "emacs";
 
           ls.clickable_links = true;
           rm.always_trash = true;

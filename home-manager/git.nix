@@ -1,16 +1,14 @@
-let
-  name = "Aylur";
-in {
+{
   programs.git = {
     enable = true;
     extraConfig = {
       color.ui = true;
-      core.editor = "nvim";
+      core.editor = "micro";
       credential.helper = "store";
-      github.user = name;
+      github.user = "quinneden";
       push.autoSetupRemote = true;
     };
-    userEmail = "k.demeter@protonmail.com";
-    userName = name;
+    userEmail = "quinnyxboy@gmail.com";
+    userName = "Quinn Edenfield";
   };
 }

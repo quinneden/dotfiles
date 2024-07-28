@@ -40,7 +40,7 @@ in {
       exec-once = [
         "ags -b hypr"
         "hyprctl setcursor Qogir 24"
-        "fragments"
+        # "fragments"
       ];
 
       monitor = [
@@ -60,11 +60,11 @@ in {
       };
 
       input = {
-        kb_layout = "hu";
+        kb_layout = "us";
         follow_mouse = 1;
         touchpad = {
           natural_scroll = "yes";
-          disable_while_typing = true;
+          disable_while_typing = false;
           drag_lock = true;
         };
         sensitivity = 0;
@@ -101,7 +101,7 @@ in {
         (f "xdg-desktop-portal-gnome")
         (f "de.haeckerfelix.Fragments")
         (f "com.github.Aylur.ags")
-        "workspace 7, title:Spotify"
+        # "workspace 7, title:Spotify"
       ];
 
       bind = let
@@ -124,16 +124,17 @@ in {
           "SHIFT,Print,    ${e} -r 'recorder.screenshot(true)'"
           "SUPER, Return, exec, xterm" # xterm is a symlink, not actually xterm
           "SUPER, W, exec, firefox"
-          "SUPER, E, exec, wezterm -e lf"
+          # "SUPER, E, exec, wezterm -e lf"
+          "SUPER, E, exec, wezterm"
 
           # youtube
-          ", XF86Launch1,  exec, ${yt}"
+          # ", XF86Launch1,  exec, ${yt}"
 
           "ALT, Tab, focuscurrentorlast"
           "CTRL ALT, Delete, exit"
-          "ALT, Q, killactive"
-          "SUPER, F, togglefloating"
-          "SUPER, G, fullscreen"
+          "SUPER, Q, killactive"
+          "SUPER, G, togglefloating"
+          "SUPER, F, fullscreen"
           "SUPER, O, fakefullscreen"
           "SUPER, P, togglesplit"
 
@@ -158,10 +159,10 @@ in {
         ++ (map (i: mvtows (toString i) (toString i)) arr);
 
       bindle = [
-        ",XF86MonBrightnessUp,   exec, ${brightnessctl} set +5%"
-        ",XF86MonBrightnessDown, exec, ${brightnessctl} set  5%-"
-        ",XF86KbdBrightnessUp,   exec, ${brightnessctl} -d asus::kbd_backlight set +1"
-        ",XF86KbdBrightnessDown, exec, ${brightnessctl} -d asus::kbd_backlight set  1-"
+        # ",XF86MonBrightnessUp,   exec, ${brightnessctl} set +5%"
+        # ",XF86MonBrightnessDown, exec, ${brightnessctl} set  5%-"
+        # ",XF86KbdBrightnessUp,   exec, ${brightnessctl} -d asus::kbd_backlight set +1"
+        # ",XF86KbdBrightnessDown, exec, ${brightnessctl} -d asus::kbd_backlight set  1-"
         ",XF86AudioRaiseVolume,  exec, ${pactl} set-sink-volume @DEFAULT_SINK@ +5%"
         ",XF86AudioLowerVolume,  exec, ${pactl} set-sink-volume @DEFAULT_SINK@ -5%"
       ];

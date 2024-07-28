@@ -9,7 +9,7 @@
   packages = with pkgs; {
     linux = [
       (mpv.override {scripts = [mpvScripts.mpris];})
-      spotify
+      # spotify
       gnome-secrets
       fragments
       # yabridge

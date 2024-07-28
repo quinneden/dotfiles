@@ -114,15 +114,15 @@ in {
     prefix = "C-Space";
     baseIndex = 1;
     escapeTime = 0;
-    keyMode = "vi";
+    keyMode = "emacs";
     mouse = true;
-    shell = "${pkgs.nushell}/bin/nu";
+    shell = "${pkgs.zsh}/bin/zsh";
     extraConfig = ''
-      set-option -sa terminal-overrides ",xterm*:Tc"
-      bind v copy-mode
-      bind-key -T copy-mode-vi v send-keys -X begin-selection
-      bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
-      bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
+      # set-option -sa terminal-overrides ",xterm*:Tc"
+      # bind v copy-mode
+      # bind-key -T copy-mode-vi v send-keys -X begin-selection
+      # bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
+      # bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
       bind-key b set-option status
       bind '"' split-window -v -c "#{pane_current_path}"
       bind % split-window -h -c "#{pane_current_path}"

@@ -1,14 +1,23 @@
-{pkgs, ...}: {
+{pkgs, inputs, ...}: {
   # nix
   documentation.nixos.enable = false; # .desktop
-  nixpkgs.config.allowUnfree = true;
   nix.settings = {
     experimental-features = "nix-command flakes";
     auto-optimise-store = true;
+    substituters = [
+      "https://nixos-apple-silicon.cachix.org"
+      "https://hyprland.cachix.org"
+      "https://omnix.cachix.org"
+    ];
+    trusted-public-keys = [
+      "nixos-apple-silicon.cachix.org-1:xkpmN/hWmtMvApu5lYaNPy4sUXc/6Qfd+iTjdLX8HZ0="
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      "omnix.cachix.org-1:ENvT0y7TExLwTzGUmJsKD3NxWQeZXCmQGjHX+xaohdE="
+    ];
   };
 
   # camera
-  programs.droidcam.enable = true;
+  # programs.droidcam.enable = true;
 
   # virtualisation
   programs.virt-manager.enable = true;
@@ -23,11 +32,18 @@
 
   # packages
   environment.systemPackages = with pkgs; [
+    alejandra
+    asahi-bless
+    btrfs-progs
     home-manager
+    micro
+    ripgrep
     neovim
     git
     wget
   ];
+
+  security.sudo.wheelNeedsPassword = false;
 
   # services
   services = {
@@ -35,7 +51,7 @@
       enable = true;
       excludePackages = [pkgs.xterm];
     };
-    printing.enable = true;
+    # printing.enable = true;
     flatpak.enable = true;
   };
 
@@ -58,7 +74,27 @@
   };
 
   # network
-  networking.networkmanager.enable = true;
+  networking = {
+    networkmanager = {
+      enable = true;
+      wifi.backend = "iwd";
+    };
+    wireless.iwd = {
+      enable = true;
+      settings.General.EnableNetworkConfiguration = true;
+    };
+  };
+
+  hardware.asahi = {
+    setupAsahiSound = true;
+    useExperimentalGPUDriver = true;
+    experimentalGPUInstallMode = "replace";
+    #  extractPeripheralFirmware = false;
+  };
+
+  hardware.opengl = {
+    enable = true;
+  };
 
   # bluetooth
   hardware.bluetooth = {
@@ -70,13 +106,18 @@
   # bootloader
   boot = {
     tmp.cleanOnBoot = true;
-    supportedFilesystems = ["ntfs"];
+    # supportedFilesystems = ["ntfs"];
     loader = {
-      timeout = 2;
+      # timeout = 2;
       systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
+      efi.canTouchEfiVariables = false;
     };
   };
 
-  system.stateVersion = "23.05";
+  zramSwap = {
+    enable = true;
+    memoryPercent = 100;
+  };
+
+  system.stateVersion = "24.11";
 }
