@@ -14,7 +14,7 @@ in {
     ./locale.nix
     ./nautilus.nix
     ./system.nix
-    /etc/nixos/hardware-configuration.nix
+    ./hardware-configuration.nix
   ];
 
   hyprland.enable = true;
