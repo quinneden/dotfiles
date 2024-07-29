@@ -5,14 +5,13 @@
 }: {
   news.display = "show";
 
-  nix.settings = {
-    experimental-features = ["nix-command" "flakes"];
-    warn-dirty = false;
-  };
+  # nix.settings = {
+  #   experimental-features = ["nix-command" "flakes"];
+  #   warn-dirty = false;
+  # };
 
   home = {
     sessionVariables = {
-      QT_XCB_GL_INTEGRATION = "none"; # kde-connect
       NIXPKGS_ALLOW_UNFREE = "1";
       NIXPKGS_ALLOW_INSECURE = "1";
       BAT_THEME = "base16";
@@ -40,13 +39,6 @@
     "file://${home}/School"
     "file://${home}/.config Config"
   ];
-
-  services = {
-    kdeconnect = {
-      enable = false;
-      indicator = true;
-    };
-  };
 
   programs.home-manager.enable = true;
   home.stateVersion = "24.11";

@@ -9,16 +9,14 @@ in {
     ./audio.nix
     ./fonts.nix
     ./gnome.nix
+    ./hardware-configuration.nix
     ./hyprland.nix
-    ./laptop.nix
     ./locale.nix
     ./nautilus.nix
     ./system.nix
-    ./hardware-configuration.nix
   ];
 
   hyprland.enable = true;
-  asusLaptop.enable = false;
 
   users.users.${username} = {
     isNormalUser = true;

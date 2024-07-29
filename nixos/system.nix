@@ -1,6 +1,8 @@
 {
   pkgs,
   inputs,
+  config,
+  lib,
   ...
 }: {
   # nix
@@ -19,9 +21,6 @@
       "quinneden.cachix.org-1:1iSAVU2R8SYzxTv3Qq8j6ssSPf0Hz+26gfgXkvlcbuA="
     ];
   };
-
-  # camera
-  # programs.droidcam.enable = true;
 
   # virtualisation
   programs.virt-manager.enable = true;
@@ -55,7 +54,6 @@
       enable = true;
       excludePackages = [pkgs.xterm];
     };
-    # printing.enable = true;
     flatpak.enable = true;
   };
 
@@ -93,11 +91,15 @@
     setupAsahiSound = true;
     useExperimentalGPUDriver = true;
     experimentalGPUInstallMode = "replace";
-    #  extractPeripheralFirmware = false;
+    peripheralFirmwareDirectory = builtins.fetchTarball {
+      url = "https://pub-c54a7919db1f4471a55c23fa3d8566f2.r2.dev/firmware.tar.gz";
+      sha256 = "0wz4fsczs7lr9hia0nyjfi0hqdrdca2i9b9fjl4b47n5fzl5cqml";
+    };
   };
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
+    package = lib.mkDefault config.hardware.asahi.pkgs.mesa-asahi-edge.drivers;
   };
 
   # bluetooth
@@ -110,7 +112,6 @@
   # bootloader
   boot = {
     tmp.cleanOnBoot = true;
-    # supportedFilesystems = ["ntfs"];
     loader = {
       # timeout = 2;
       systemd-boot.enable = true;

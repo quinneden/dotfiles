@@ -2,16 +2,20 @@
   description = "Configurations of Giddeon";
 
   outputs = inputs @ {
-    self,
     home-manager,
     lix-module,
+    lix,
     nixos-apple-silicon,
     nixpkgs,
+    self,
     ...
   }: let
-    pkgs = import nixpkgs {
+    pkgs = import inputs.nixpkgs {
       config.allowUnfree = true;
-      overlays = ["inputs.nixos-apple-silicon.overlays.default"];
+      overlays = [
+        nixos-apple-silicon.overlays.default
+        lix-module.overlays.default
+      ];
     };
   in {
     packages.aarch64-linux.default =
@@ -22,7 +26,7 @@
       "nixos" = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         specialArgs = {
-          inherit inputs;
+          inherit inputs pkgs;
           asztal = self.packages.aarch64-linux.default;
         };
         modules = [
@@ -30,6 +34,13 @@
           lix-module.nixosModules.default
           nixos-apple-silicon.nixosModules.default
           home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = {inherit inputs pkgs;};
+            };
+          }
           {networking.hostName = "nixos-macmini";}
         ];
       };
@@ -55,13 +66,18 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    lix = {
+      url = "git+https://git.lix.systems/lix-project/lix";
+      flake = false;
+    };
+
     lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.90.0.tar.gz";
+      url = "git+https://git.lix.systems/lix-project/nixos-module";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixos-apple-silicon = {
-      url = "github:tpwrules/nixos-apple-silicon";
+      url = "github:quinneden/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -70,7 +86,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    hyprland = {
+      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
@@ -82,9 +101,9 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    matugen.url = "github:InioX/matugen?ref=v2.2.0";
+    matugen.url = "github:InioX/matugen";
     ags.url = "github:Aylur/ags";
-    astal.url = "github:Aylur/astal";
+    astal.url = "github:astal-sh/libastal";
 
     lf-icons = {
       url = "github:gokcehan/lf";

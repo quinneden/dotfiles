@@ -22,7 +22,7 @@
 
     programs.hyprland = {
       enable = true;
-      package = pkgs.hyprland;
+      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
       xwayland.enable = true;
     };
 
@@ -38,30 +38,33 @@
       pam.services.ags = {};
     };
 
-    environment.systemPackages = with pkgs;
-    with gnome; [
-      morewaita-icon-theme
-      adwaita-icon-theme
-      qogir-icon-theme
-      loupe
-      nautilus
-      baobab
-      gnome-text-editor
-      gnome-calendar
-      gnome-boxes
-      gnome-system-monitor
-      gnome-control-center
-      gnome-weather
-      gnome-calculator
-      gnome-clocks
-      gnome-software # for flatpak
-      wl-gammactl
-      wl-clipboard
-      wayshot
-      pavucontrol
-      brightnessctl
-      swww
-    ];
+    environment.systemPackages =
+      (with pkgs; [
+        adwaita-icon-theme
+        nautilus
+        baobab
+        gnome-calendar
+        gnome-system-monitor
+        gnome-calculator
+      ])
+      ++ (with pkgs;
+        with gnome; [
+          morewaita-icon-theme
+          qogir-icon-theme
+          loupe
+          gnome-text-editor
+          gnome-boxes
+          gnome-control-center
+          gnome-weather
+          gnome-clocks
+          gnome-software # for flatpak
+          wl-gammactl
+          wl-clipboard
+          wayshot
+          pavucontrol
+          brightnessctl
+          swww
+        ]);
 
     systemd = {
       user.services.polkit-gnome-authentication-agent-1 = {
@@ -90,9 +93,9 @@
         evolution-data-server.enable = true;
         glib-networking.enable = true;
         gnome-keyring.enable = true;
-        gnome-online-accounts.enable = true;
-        tracker-miners.enable = true;
-        tracker.enable = true;
+        # gnome-online-accounts.enable = true;
+        # tracker-miners.enable = true;
+        # tracker.enable = true;
       };
     };
 

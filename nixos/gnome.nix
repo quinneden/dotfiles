@@ -11,40 +11,40 @@
   config = lib.mkIf config.gnome.enable {
     environment = {
       systemPackages = with pkgs; [
+        gnome-extension-manager
         morewaita-icon-theme
         qogir-icon-theme
-        gnome-extension-manager
         wl-clipboard
       ];
 
       gnome.excludePackages =
         (with pkgs; [
-          # gnome-text-editor
+          gedit
+          gnome-connections
           gnome-console
           gnome-photos
+          gnome-text-editor
           gnome-tour
-          gnome-connections
           snapshot
-          gedit
+          cheese # webcam tool
+          epiphany # web browser
+          evince # document viewer
+          geary # email reader
+          gnome-font-viewer
+          totem # video player
+          yelp # Help view
         ])
         ++ (with pkgs.gnome; [
-          cheese # webcam tool
-          gnome-music
-          epiphany # web browser
-          geary # email reader
-          evince # document viewer
-          gnome-characters
-          totem # video player
-          tali # poker game
-          iagno # go game
-          hitori # sudoku game
           atomix # puzzle game
-          yelp # Help view
+          gnome-characters
           gnome-contacts
           gnome-initial-setup
-          gnome-shell-extensions
           gnome-maps
-          gnome-font-viewer
+          gnome-shell-extensions
+          gnome-music
+          hitori # sudoku game
+          iagno # go game
+          tali # poker game
         ]);
     };
 
