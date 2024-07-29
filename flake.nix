@@ -1,5 +1,5 @@
 {
-  description = "Configurations of Giddeon";
+  description = "NixOS & Nix-darwin configurations.";
 
   outputs = inputs @ {
     home-manager,
@@ -67,13 +67,16 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     lix = {
-      url = "git+https://git.lix.systems/lix-project/lix";
+      url = "https://git.lix.systems/lix-project/lix/archive/main.tar.gz";
       flake = false;
     };
 
     lix-module = {
-      url = "git+https://git.lix.systems/lix-project/nixos-module";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/main.tar.gz";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        lix.follows = "lix";
+      };
     };
 
     nixos-apple-silicon = {
@@ -102,7 +105,9 @@
     };
 
     matugen.url = "github:InioX/matugen";
+
     ags.url = "github:Aylur/ags";
+
     astal.url = "github:astal-sh/libastal";
 
     lf-icons = {

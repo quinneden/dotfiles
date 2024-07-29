@@ -9,7 +9,7 @@ in {
     ./audio.nix
     ./fonts.nix
     ./gnome.nix
-    ./hardware-configuration.nix
+    ./hardware.nix
     ./hyprland.nix
     ./locale.nix
     ./nautilus.nix
