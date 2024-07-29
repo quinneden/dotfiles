@@ -7,17 +7,27 @@
   ];
 
   packages = with pkgs; {
+    darwin = [
+      alejandra
+      aria2
+      devenv
+      gawk
+      gnutar
+      xz
+      zip
+      zstd
+    ];
     linux = [
       (mpv.override {scripts = [mpvScripts.mpris];})
-      cachix
       fragments
       gnome-secrets
+      hdrop
       nodejs
       vesktop
-      hdrop
     ];
     cli = [
       bat
+      cachix
       eza
       fd
       fzf

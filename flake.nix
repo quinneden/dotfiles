@@ -5,6 +5,7 @@
     home-manager,
     lix-module,
     lix,
+    nix-darwin,
     nixos-apple-silicon,
     nixpkgs,
     self,
@@ -46,18 +47,14 @@
       };
     };
 
-    # macos hm config
-    homeConfigurations = {
-      "quinn" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-        extraSpecialArgs = {inherit inputs;};
+    darwinConfigurations = {
+      "macos" = nix-darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        specialArgs = {inherit inputs;};
         modules = [
-          ({pkgs, ...}: {
-            nix.package = pkgs.nix;
-            home.username = "quinn";
-            home.homeDirectory = "/Users/quinn";
-            imports = [./macos/home.nix];
-          })
+          ./darwin/configuration.nix
+          home-manager.darwinModules.default
+          {networking.hostName = "macos-macmini";}
         ];
       };
     };
@@ -65,6 +62,11 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     lix = {
       url = "https://git.lix.systems/lix-project/lix/archive/main.tar.gz";
@@ -109,6 +111,8 @@
     ags.url = "github:Aylur/ags";
 
     astal.url = "github:astal-sh/libastal";
+
+    # nur.url = "github:nix-community/NUR";
 
     lf-icons = {
       url = "github:gokcehan/lf";
