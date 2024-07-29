@@ -13,7 +13,7 @@
     fd
     brightnessctl
     swww
-    # inputs.matugen.packages.${pkgs.system}.default
+    inputs.matugen.packages.${system}.default
     slurp
     wf-recorder
     wl-clipboard

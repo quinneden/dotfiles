@@ -14,6 +14,7 @@
       gnome-secrets
       nodejs
       vesktop
+      hdrop
     ];
     cli = [
       bat

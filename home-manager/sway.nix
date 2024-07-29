@@ -7,8 +7,8 @@ in {
     config = {
       input = {
         "*" = {
-          xkb_layout = "hu";
-          natural_scroll = "disabled";
+          xkb_layout = "us";
+          natural_scroll = "enabled";
         };
       };
       bars = [];

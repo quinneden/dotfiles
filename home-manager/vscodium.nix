@@ -4,6 +4,7 @@
     package = pkgs.vscodium;
     extensions = with pkgs.vscode-extensions; [
       bbenoist.nix
+      jeff-hykin.better-nix-syntax
       arrterian.nix-env-selector
       catppuccin.catppuccin-vsc
       catppuccin.catppuccin-vsc-icons
@@ -13,7 +14,7 @@
       "catppuccin.accentColor" = "lavender";
       "editor.fontFamily" = "'OperatorMono Nerd Font Mono', 'SymbolsNerdFont'";
       "editor.fontLigatures" = true;
-      "editor.fontSize" = 15;
+      "editor.fontSize" = 16;
       "editor.formatOnPaste" = true;
       "editor.formatOnSave" = true;
       "editor.formatOnType" = false;
@@ -27,7 +28,7 @@
       "explorer.confirmDragAndDrop" = false;
       "explorer.openEditors.visible" = 0;
       "extensions.autoUpdate" = false;
-      "files.autoSave" = "onWindowChange";
+      "files.autoSave" = "off";
       "terminal.integrated.fontFamily" = "'CaskaydiaCove Nerd Font'; 'SymbolsNerdFont'";
       "update.mode" = "none";
       "window.titleBarStyle" = "custom";

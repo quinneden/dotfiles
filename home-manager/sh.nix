@@ -49,7 +49,7 @@ in {
         bindkey "^[[1;5C" forward-word
         bindkey "^[[1;5D" backward-word
         unsetopt BEEP
-        for f (${config.home.homeDirectory}/.config/zsh/**/*(N.)); do source $f; done
+        for f (${config.xdg.configHome}/zsh/**/*(N.)); do source $f; done
       '';
     };
 

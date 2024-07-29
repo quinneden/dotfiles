@@ -6,13 +6,7 @@
   hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
   # plugins = inputs.hyprland-plugins.packages.${pkgs.system};
 
-  yt = pkgs.writeShellScript "yt" ''
-    notify-send "Opening video" "$(wl-paste)"
-    mpv "$(wl-paste)"
-  '';
-
   playerctl = "${pkgs.playerctl}/bin/playerctl";
-  brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
   pactl = "${pkgs.pulseaudio}/bin/pactl";
 in {
   xdg.desktopEntries."org.gnome.Settings" = {
@@ -26,7 +20,7 @@ in {
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = pkgs.hyprland;
+    package = hyprland;
     systemd.enable = true;
     xwayland.enable = true;
     plugins = [
@@ -40,7 +34,6 @@ in {
       exec-once = [
         "ags -b hypr"
         "hyprctl setcursor Qogir 24"
-        # "fragments"
       ];
 
       monitor = [
@@ -88,21 +81,25 @@ in {
 
       windowrule = let
         f = regex: "float, ^(${regex})$";
-      in [
-        (f "org.gnome.Calculator")
-        (f "org.gnome.Nautilus")
-        (f "pavucontrol")
-        (f "nm-connection-editor")
-        (f "blueberry.py")
-        (f "org.gnome.Settings")
-        (f "org.gnome.design.Palette")
-        (f "Color Picker")
-        (f "xdg-desktop-portal")
-        (f "xdg-desktop-portal-gnome")
-        (f "de.haeckerfelix.Fragments")
-        (f "com.github.Aylur.ags")
-        # "workspace 7, title:Spotify"
-      ];
+      in
+        [
+          (f "org.gnome.Calculator")
+          (f "org.gnome.Nautilus")
+          (f "pavucontrol")
+          (f "nm-connection-editor")
+          (f "blueberry.py")
+          (f "org.gnome.Settings")
+          (f "org.gnome.design.Palette")
+          (f "Color Picker")
+          (f "xdg-desktop-portal")
+          (f "xdg-desktop-portal-gnome")
+          (f "de.haeckerfelix.Fragments")
+          (f "com.github.Aylur.ags")
+        ]
+        ++ [
+          "fullscreen,class:^(codium_ws)$"
+          "workspace 3,class:^(codium_ws)$"
+        ];
 
       bind = let
         binding = mod: cmd: key: arg: "${mod}, ${key}, ${cmd}, ${arg}";
@@ -119,10 +116,9 @@ in {
           "SUPER, R,       ${e} -t launcher"
           "SUPER, Tab,     ${e} -t overview"
           ",XF86PowerOff,  ${e} -r 'powermenu.shutdown()'"
-          "SUPER, Return, exec, xterm" # xterm is a symlink, not actually xterm
+          "SUPER, Return, exec, xterm"
           "SUPER, W, exec, firefox"
           # "SUPER, E, exec, wezterm -e lf"
-          "SUPER, E, exec, wezterm"
 
           "ALT, Tab, focuscurrentorlast"
           "CTRL ALT, Delete, exit"
@@ -140,14 +136,21 @@ in {
           (mvfocus "down" "d")
           (mvfocus "right" "r")
           (mvfocus "left" "l")
-          (ws "left" "e-1")
-          (ws "right" "e+1")
-          (mvtows "left" "e-1")
-          (mvtows "right" "e+1")
-          (resizeactive "k" "0 -20")
-          (resizeactive "j" "0 20")
-          (resizeactive "l" "20 0")
-          (resizeactive "h" "-20 0")
+
+          # (ws "left" "e-1")
+          # (ws "right" "e+1")
+          # (mvtows "left" "e-1")
+          # (mvtows "right" "e+1")
+
+          # (resizeactive "k" "0 -20")
+          # (resizeactive "j" "0 20")
+          # (resizeactive "l" "20 0")
+          # (resizeactive "h" "-20 0")
+          (resizeactive "up" "0 -20")
+          (resizeactive "down" "0 20")
+          (resizeactive "right" "20 0")
+          (resizeactive "left" "-20 0")
+
           # (mvactive "k" "0 -20")
           # (mvactive "j" "0 20")
           # (mvactive "l" "20 0")
@@ -161,10 +164,6 @@ in {
         ++ (map (i: mvtows (toString i) (toString i)) arr);
 
       bindle = [
-        # ",XF86MonBrightnessUp,   exec, ${brightnessctl} set +5%"
-        # ",XF86MonBrightnessDown, exec, ${brightnessctl} set  5%-"
-        # ",XF86KbdBrightnessUp,   exec, ${brightnessctl} -d asus::kbd_backlight set +1"
-        # ",XF86KbdBrightnessDown, exec, ${brightnessctl} -d asus::kbd_backlight set  1-"
         ",XF86AudioRaiseVolume,  exec, ${pactl} set-sink-volume @DEFAULT_SINK@ +5%"
         ",XF86AudioLowerVolume,  exec, ${pactl} set-sink-volume @DEFAULT_SINK@ -5%"
       ];
