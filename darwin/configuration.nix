@@ -1,6 +1,7 @@
 {
   config,
   inputs,
+  dotdir,
   lib,
   pkgs,
   ...
@@ -24,8 +25,10 @@
   nix = {
     package = pkgs.lix;
     settings = {
+      builders-use-substitutes = true;
       experimental-features = ["nix-command" "flakes"];
       substituters = ["https://cache.lix.systems"];
+      trusted-substituters = config.nix.settings.substituters;
       trusted-public-keys = ["cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="];
       warn-dirty = false;
       trusted-users = ["quinn" "root"];
@@ -33,20 +36,20 @@
 
     linux-builder = {
       enable = false;
-      # ephemeral = true;
-      # maxJobs = 6;
-      # config = {pkgs, ...}: {
-      #   virtualisation = {
-      #     cores = 6;
-      #     darwin-builder = {
-      #       diskSize = 100 * 1024;
-      #       memorySize = 6 * 1024;
-      #     };
-      #   };
-      #   environment.systemPackages = with pkgs; [
-      #     btrfs-progs
-      #   ];
-      # };
+      ephemeral = true;
+      maxJobs = 6;
+      config = {pkgs, ...}: {
+        virtualisation = {
+          cores = 6;
+          darwin-builder = {
+            diskSize = 100 * 1024;
+            memorySize = 6 * 1024;
+          };
+        };
+        # environment.systemPackages = with pkgs; [
+        #   btrfs-progs
+        # ];
+      };
     };
   };
 
@@ -70,7 +73,10 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = {inherit inputs;};
+    extraSpecialArgs = {
+      inherit inputs;
+      dotdir = "${config.users.users.quinn.home}/.dotfiles";
+    };
     users.quinn = import ./home.nix;
   };
 }

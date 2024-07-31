@@ -14,12 +14,9 @@
       "eloston-chromium"
       "eqmac"
       "gdisk"
-      "inkscape"
       "iterm2"
-      "itermai"
       "kitty"
       "macfuse"
-      "podman-desktop"
       "utm"
       "vagrant"
       "vscodium"
@@ -48,7 +45,6 @@
       "cython"
       "docker"
       "dtc"
-      "emacs"
       "eza"
       "fd"
       "flex"
@@ -196,5 +192,8 @@
       "zoxide"
       "zstd"
     ];
+    # masApps = {
+    #   Xcode = 497799835;
+    # };
   };
 }
