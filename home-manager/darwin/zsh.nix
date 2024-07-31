@@ -1,5 +1,6 @@
 {
   inputs,
+  dotdir,
   lib,
   pkgs,
   ...
@@ -23,15 +24,15 @@
       "alx.dev" = "curl -sL https://alx.sh/dev | EXPERT=1 sh";
       "alx.sh" = "curl -sL https://alx.sh | EXPERT=1 sh";
       bs = "stat -f%z";
-      cdflake = "cd $DARWIN";
-      cdfl = "cd $DARWIN";
+      cdflake = "cd ${dotdir}";
+      cdfl = "cd ${dotdir}";
       cddl = "cd ~/Downloads";
       code = "codium";
-      code-flake = "cd ~/Darwin && codium .";
-      darwin-switch = "darwin-rebuild switch --flake $(readlink ~/Darwin)#macmini";
+      code-flake = "cd ${dotdir} && codium .";
+      darwin-switch = "darwin-rebuild switch --flake ${dotdir}#macos";
       df = "df -h";
       du = "du -h";
-      flake-tree = "eza -aT ~/Darwin -I '.git*|.vscode*|*.DS_Store|Icon?'";
+      flake-tree = "eza -aT ${dotdir} -I '.git*|.vscode*|*.DS_Store|Icon?'";
       fuck = "sudo rm -rf";
       gst = "git status";
       gsur = "git submodule update --init --recursive";
@@ -52,7 +53,7 @@
     };
     sessionVariables = {
       BAT_THEME = "Dracula";
-      DARWIN = "/Users/quinn/Darwin";
+      dotdir = "${dotdir}";
       EDITOR = "micro";
       EZA_ICON_SPACING = "2";
       HOMEBREW_CELLAR = "/opt/homebrew/Cellar";
@@ -74,10 +75,6 @@
       test -e /Users/quinn/.iterm2_shell_integration.zsh && source /Users/quinn/.iterm2_shell_integration.zsh || true
 
       [ -e /opt/homebrew/bin/zoxide ] && alias cd="z" || true
-
-      compdef '_files -W ~/Darwin' cfg
-      zstyle ':completion:*:*:cfg:*' file-patterns '[^Icon*,README*]*/*'
-      zstyle ':completion:*:*:cfg:*' file-sort name
     '';
   };
 }
