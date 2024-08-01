@@ -13,6 +13,7 @@
       devenv
       gawk
       gnutar
+      vesktop
       xz
       zip
       zstd

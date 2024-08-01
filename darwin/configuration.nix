@@ -35,7 +35,7 @@
     };
 
     linux-builder = {
-      enable = false;
+      enable = true;
       ephemeral = true;
       maxJobs = 6;
       config = {pkgs, ...}: {
@@ -46,9 +46,9 @@
             memorySize = 6 * 1024;
           };
         };
-        # environment.systemPackages = with pkgs; [
-        #   btrfs-progs
-        # ];
+        environment.systemPackages = with pkgs; [
+          btrfs-progs
+        ];
       };
     };
   };

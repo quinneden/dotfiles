@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  inputs,
+  ...
+}: let
   operator-mono = pkgs.callPackage ./packages/operator-mono.nix {inherit pkgs;};
 in {
   fonts = {
