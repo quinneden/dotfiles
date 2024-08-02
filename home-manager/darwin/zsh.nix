@@ -59,7 +59,7 @@
       INFOPATH = "/opt/homebrew/share/info:\${INFOPATH:-}";
       LANG = "en_US.UTF-8";
       MICRO_TRUECOLOR = "1";
-      PATH = "/opt/homebrew/bin:/opt/homebrew/sbin:/run/current-system/sw/bin:/etc/profiles/per-user/quinn/bin\${PATH+:\$PATH}";
+      PATH = "/opt/homebrew/bin:/opt/homebrew/sbin:/run/current-system/sw/bin:/etc/profiles/per-user/quinn/bin:/usr/local/bin\${PATH+:\$PATH}";
       workdir = "$HOME/workdir";
       compdir = "$HOME/.scripts/zsh-custom/completions";
     };
