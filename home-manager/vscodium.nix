@@ -3,49 +3,51 @@
     enable = true;
     package = pkgs.vscodium;
     extensions = with pkgs.vscode-extensions; [
-      bbenoist.nix
-      jeff-hykin.better-nix-syntax
       arrterian.nix-env-selector
+      bbenoist.nix
       catppuccin.catppuccin-vsc
       catppuccin.catppuccin-vsc-icons
+      jeff-hykin.better-nix-syntax
+      kamadorueda.alejandra
     ];
-    userSettings = {
-      "breadcrumbs.enabled" = true;
-      "catppuccin.accentColor" = "lavender";
-      "editor.fontFamily" = "'OperatorMono Nerd Font Mono', 'SymbolsNerdFont'";
-      "editor.fontLigatures" = true;
-      "editor.fontSize" = 16;
-      "editor.formatOnPaste" = true;
-      "editor.formatOnSave" = true;
-      "editor.formatOnType" = false;
-      "editor.minimap.enabled" = false;
-      "editor.mouseWheelZoom" = false;
-      "editor.renderControlCharacters" = false;
-      "editor.scrollbar.horizontal" = "hidden";
-      "editor.scrollbar.horizontalScrollbarSize" = 2;
-      "editor.scrollbar.vertical" = "hidden";
-      "editor.scrollbar.verticalScrollbarSize" = 2;
-      "explorer.confirmDragAndDrop" = false;
-      "explorer.openEditors.visible" = 0;
-      "extensions.autoUpdate" = false;
-      "files.autoSave" = "off";
-      "terminal.integrated.fontFamily" = "'CaskaydiaCove Nerd Font'; 'SymbolsNerdFont'";
-      "update.mode" = "none";
-      "window.titleBarStyle" = "custom";
-      "workbench.colorTheme" = "Catppuccin Mocha";
-      "workbench.editor.limit.enabled" = true;
-      "workbench.editor.limit.perEditorGroup" = true;
-      "workbench.editor.limit.value" = 10;
-      "workbench.iconTheme" = "catppuccin-mocha";
-      "workbench.layoutControl.enabled" = false;
-      "workbench.layoutControl.type" = "menu";
-      "workbench.startupEditor" = "none";
-      "workbench.statusBar.visible" = true;
-      "window.customTitleBarVisibility" = "auto";
-      "editor.tabSize" = 2;
-      "terminal.integrated.fontWeight" = "400";
-      "terminal.integrated.fontWeightBold" = "700";
-    };
+    # userSettings = {
+    #   "alejandra.program" = "/etc/profiles/per-user/quinn/bin/alejandra";
+    #   "breadcrumbs.enabled" = true;
+    #   "catppuccin.accentColor" = "lavender";
+    #   "editor.fontFamily" = "'OperatorMono Nerd Font Mono', 'SymbolsNerdFont'";
+    #   "editor.fontLigatures" = true;
+    #   "editor.fontSize" = 16;
+    #   "editor.formatOnPaste" = true;
+    #   "editor.formatOnSave" = true;
+    #   "editor.formatOnType" = false;
+    #   "editor.minimap.enabled" = false;
+    #   "editor.mouseWheelZoom" = false;
+    #   "editor.renderControlCharacters" = false;
+    #   "editor.scrollbar.horizontal" = "hidden";
+    #   "editor.scrollbar.horizontalScrollbarSize" = 2;
+    #   "editor.scrollbar.vertical" = "hidden";
+    #   "editor.scrollbar.verticalScrollbarSize" = 2;
+    #   "explorer.confirmDragAndDrop" = false;
+    #   "explorer.openEditors.visible" = 0;
+    #   "extensions.autoUpdate" = false;
+    #   "files.autoSave" = "off";
+    #   "terminal.integrated.fontFamily" = "'CaskaydiaCove Nerd Font'; 'SymbolsNerdFont'";
+    #   "update.mode" = "none";
+    #   "window.titleBarStyle" = "custom";
+    #   "workbench.colorTheme" = "Catppuccin Mocha";
+    #   "workbench.editor.limit.enabled" = true;
+    #   "workbench.editor.limit.perEditorGroup" = true;
+    #   "workbench.editor.limit.value" = 10;
+    #   "workbench.iconTheme" = "catppuccin-mocha";
+    #   "workbench.layoutControl.enabled" = false;
+    #   "workbench.layoutControl.type" = "menu";
+    #   "workbench.startupEditor" = "none";
+    #   "workbench.statusBar.visible" = true;
+    #   "window.customTitleBarVisibility" = "auto";
+    #   "editor.tabSize" = 2;
+    #   "terminal.integrated.fontWeight" = "400";
+    #   "terminal.integrated.fontWeightBold" = "700";
+    # };
     keybindings = [
       {
         key = "ctrl+/";

@@ -1,6 +1,7 @@
 {
-  imports =
-    [(import ./starship.nix)]
-    ++ [(import ./zsh.nix)]
-    ++ [(import ./scripts)];
+  imports = [
+    ./starship.nix
+    ./zsh.nix
+    ./scripts
+  ];
 }

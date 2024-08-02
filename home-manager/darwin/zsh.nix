@@ -13,11 +13,7 @@
     oh-my-zsh = {
       enable = true;
       custom = "/Users/quinn/.scripts/zsh";
-      plugins = ["zsh-navigation-tools" "nix-zsh-completions" "iterm2" "direnv"];
-      extraConfig = ''
-        zstyle ':omz:update' mode auto
-        zstyle ':omz:update' frequency 13
-      '';
+      plugins = ["zsh-navigation-tools" "nix-zsh-completions" "direnv" "iterm2"];
     };
     shellAliases = {
       "alx.builds" = "curl -sL https://fedora-asahi-remix.org/builds | EXPERT=1 sh";
@@ -40,6 +36,7 @@
       ll = "eza -glAh --octal-permissions --group-directories-first";
       ls = "eza -A";
       lsblk = "diskutil list";
+      mi = "micro";
       push = "git push";
       py = "python";
       reboot = "sudo reboot";
@@ -56,25 +53,24 @@
       dotdir = "${dotdir}";
       EDITOR = "micro";
       EZA_ICON_SPACING = "2";
-      HOMEBREW_CELLAR = "/opt/homebrew/Cellar";
       HOMEBREW_PREFIX = "/opt/homebrew";
-      HOMEBREW_REPOSITORY = "/opt/homebrew/Library/.homebrew-is-managed-by-nix";
-      INFOPATH = "/opt/homebrew/share/info:${INFOPATH:-}";
+      HOMEBREW_CELLAR = "/opt/homebrew/Cellar";
+      HOMEBREW_REPOSITORY = "/opt/homebrew";
+      INFOPATH = "/opt/homebrew/share/info:\${INFOPATH:-}";
       LANG = "en_US.UTF-8";
-      MANPATH = "/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
       MICRO_TRUECOLOR = "1";
-      PATH = "/Library/Frameworks/Python.framework/Versions/Current/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/Users/quinn/.local/bin:/run/current-system/sw/bin:/opt/podman/bin:/run/current-system/etc/profiles/per-user/quinn/bin:$PATH";
-      SD = "/Users/quinn/.scripts/zsh/";
-      ZSH = "/Users/quinn/.oh-my-zsh";
+      PATH = "/opt/homebrew/bin:/opt/homebrew/sbin:/run/current-system/sw/bin:/etc/profiles/per-user/quinn/bin\${PATH+:\$PATH}";
       workdir = "$HOME/workdir";
       compdir = "$HOME/.scripts/zsh-custom/completions";
     };
     initExtra = ''
       for f (~/.scripts/zsh/[^plugins]**/*(.)); do source $f; done
 
-      test -e /Users/quinn/.iterm2_shell_integration.zsh && source /Users/quinn/.iterm2_shell_integration.zsh || true
+      [ -e /opt/homebrew/bin/zoxide ] && alias cd="z"
 
-      [ -e /opt/homebrew/bin/zoxide ] && alias cd="z" || true
+      iterm2_print_user_vars() {
+        iterm2_set_user_var gitBranch $((git branch 2> /dev/null) | grep \* | cut -c3-)
+      }
     '';
   };
 }

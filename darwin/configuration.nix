@@ -35,7 +35,7 @@
     };
 
     linux-builder = {
-      enable = true;
+      enable = false;
       ephemeral = true;
       maxJobs = 6;
       config = {pkgs, ...}: {

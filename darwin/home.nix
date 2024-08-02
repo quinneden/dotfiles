@@ -6,11 +6,12 @@
   ...
 }: {
   imports = [
+    ../home-manager/darwin
     ../home-manager/git.nix
     ../home-manager/lf.nix
     ../home-manager/nvim.nix
     ../home-manager/packages.nix
-    ../home-manager/darwin
+    ../home-manager/tmux.nix
   ];
 
   news.display = "show";
@@ -42,6 +43,10 @@
       enable = true;
       enableZshIntegration = true;
     };
+  };
+
+  home.sessionVariables = {
+    LC_ALL = "en_US.UTF-8";
   };
 
   programs.home-manager.enable = true;
