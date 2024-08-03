@@ -8,10 +8,10 @@
     format = "[$symbol ](${color})";
   };
   os = icon: fg: "[${icon} ](fg:${fg})";
-  pad = {
-    left = "";
-    right = "";
-  };
+  # pad = {
+  #   left = "";
+  #   right = "";
+  # };
   settings = {
     add_newline = true;
     format = builtins.concatStringsSep "" [
@@ -56,24 +56,24 @@
     };
     nix_shell = {
       disabled = false;
-      format = "[${pad.left}](fg:white)[ ](bg:white fg:black)[${pad.right}](fg:white) ";
+      format = "(fg:white)[ ](bg:white fg:black)(fg:white) ";
     };
     container = {
       symbol = " 󰏖";
       format = "[$symbol ](yellow dimmed)";
     };
-    directory = {
-      format = builtins.concatStringsSep "" [
-        " [${pad.left}](fg:bright-black)"
-        "[$path](bg:bright-black fg:white)"
-        "[${pad.right}](fg:bright-black)"
-        " [$read_only](fg:yellow)"
-      ];
-      read_only = " ";
-      truncate_to_repo = true;
-      truncation_length = 4;
-      truncation_symbol = "";
-    };
+    # directory = {
+    #   format = builtins.concatStringsSep "" [
+    #     " [${pad.left}](fg:bright-black)"
+    #     "[$path](bg:bright-black fg:white)"
+    #     "[${pad.right}](fg:bright-black)"
+    #     " [$read_only](fg:yellow)"
+    #   ];
+    #   read_only = " ";
+    #   truncate_to_repo = true;
+    #   truncation_length = 4;
+    #   truncation_symbol = "";
+    # };
     git_branch = {
       symbol = "";
       style = "";

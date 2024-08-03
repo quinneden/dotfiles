@@ -20,7 +20,7 @@ in {
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = hyprland;
+    package = pkgs.hyprland;
     systemd.enable = true;
     xwayland.enable = true;
     plugins = [
@@ -54,6 +54,8 @@ in {
 
       input = {
         kb_layout = "us";
+        repeat_delay = 250;
+        repeat_rate = 40;
         follow_mouse = 1;
         touchpad = {
           natural_scroll = "yes";
@@ -116,16 +118,15 @@ in {
           "SUPER, R,       ${e} -t launcher"
           "SUPER, Tab,     ${e} -t overview"
           ",XF86PowerOff,  ${e} -r 'powermenu.shutdown()'"
-          "SUPER, Return, exec, xterm"
+          "SUPER, Return, exec, alacritty"
           "SUPER, W, exec, firefox"
-          # "SUPER, E, exec, wezterm -e lf"
+          "SUPER, E, exec, nautilus"
 
           "ALT, Tab, focuscurrentorlast"
           "CTRL ALT, Delete, exit"
           "SUPER, Q, killactive"
-          "SUPER, G, togglefloating"
+          "SUPER, V, togglefloating"
           "SUPER, F, fullscreen"
-          "SUPER, O, fakefullscreen"
           "SUPER, P, togglesplit"
 
           # (mvfocus "k" "u")

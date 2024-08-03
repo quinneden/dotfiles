@@ -10,6 +10,7 @@
   nix.settings = {
     experimental-features = "nix-command flakes";
     auto-optimise-store = true;
+    trusted-users = ["quinn" "root"];
     substituters = [
       "https://nixos-apple-silicon.cachix.org"
       "https://hyprland.cachix.org"

@@ -117,7 +117,7 @@
 
       audible_bell = "Disabled";
 
-      default_prog = ["${pkgs.zsh}/bin/zsh"];
+      default_prog = ["${pkgs.tmux}/bin/tmux"];
     };
 
     extraLua = ''

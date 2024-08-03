@@ -1,14 +1,33 @@
 {
   config,
+  inputs,
+  lib,
   pkgs,
   ...
 }: {
-  news.display = "show";
+  imports = [
+    ../home-manager/nvim.nix
+    ../home-manager/ags.nix
+    ../home-manager/blackbox.nix
+    ../home-manager/browser.nix
+    ../home-manager/dconf.nix
+    ../home-manager/distrobox.nix
+    ../home-manager/git.nix
+    ../home-manager/hyprland.nix
+    ../home-manager/lf.nix
+    # ../home-manager/micro.nix
+    ../home-manager/packages.nix
+    ../home-manager/sh.nix
+    ../home-manager/starship.nix
+    ../home-manager/theme.nix
+    ../home-manager/tmux.nix
+    ../home-manager/wezterm.nix
+    ../home-manager/alacritty.nix
+    ../home-manager/vscodium.nix
+    # ../home-manager/packages
+  ];
 
-  # nix.settings = {
-  #   experimental-features = ["nix-command" "flakes"];
-  #   warn-dirty = false;
-  # };
+  news.display = "show";
 
   home = {
     sessionVariables = {
@@ -28,16 +47,11 @@
     home = config.home.homeDirectory;
   in [
     "file://${home}/Documents"
-    "file://${home}/Music"
     "file://${home}/Pictures"
-    "file://${home}/Videos"
     "file://${home}/Downloads"
     "file://${home}/Desktop"
-    "file://${home}/Work"
-    "file://${home}/Projects"
-    "file://${home}/Vault"
-    "file://${home}/School"
-    "file://${home}/.config Config"
+    "file://${home}/workdir Workdir"
+    "file://${home}/.dotfiles Dotfiles"
   ];
 
   programs.home-manager.enable = true;

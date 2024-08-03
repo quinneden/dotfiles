@@ -51,6 +51,12 @@ in {
         unsetopt BEEP
         for f (${config.xdg.configHome}/zsh/**/*(N.)); do source $f; done
       '';
+      sessionVariables = {
+        SHELL = "${pkgs.zsh}/bin/zsh";
+        LC_ALL = "en_US.UTF-8";
+        dotdir = "/home/quinn/.dotfiles";
+        EDITOR = "micro";
+      };
     };
 
     bash = {

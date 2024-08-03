@@ -20,11 +20,16 @@
     ];
     linux = [
       (mpv.override {scripts = [mpvScripts.mpris];})
-      fragments
-      gnome-secrets
       hdrop
       nodejs
       vesktop
+      rustup
+      rustc
+      gcc
+      gnumake
+      cmake
+      openssl
+      pkg-config
     ];
     cli = [
       bat
@@ -32,6 +37,7 @@
       eza
       fd
       fzf
+      gh
       lazydocker
       lazygit
       ripgrep
