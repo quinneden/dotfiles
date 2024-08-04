@@ -23,6 +23,8 @@
     ];
   };
 
+  boot.m1n1CustomLogo = ../assets/bootlogo-m1n1.png;
+
   # virtualisation
   programs.virt-manager.enable = true;
   virtualisation = {

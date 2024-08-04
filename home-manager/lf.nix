@@ -111,7 +111,7 @@
       scrolloff = 4;
       preview = true;
       drawbox = true;
-      icons = true;
+      icons = false;
       cursorpreviewfmt = "";
     };
   };

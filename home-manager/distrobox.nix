@@ -9,11 +9,10 @@
     enable = true;
 
     boxes = let
-      exec = "${pkgs.nushell}/bin/nu";
+      exec = "${pkgs.zsh}/bin/zsh";
       symlinks = [
         ".bashrc"
         ".zshrc"
-        ".config/nushell"
         ".config/nvim"
         ".config/nix"
         ".config/starship.toml"
@@ -24,6 +23,7 @@
           config.programs.neovim.finalPackage
           pkgs.nix
           pkgs.git
+          pkgs.zsh
         ];
     in {
       Alpine = {
