@@ -17,7 +17,6 @@
   };
 
   home.sessionVariables = lib.mkIf pkgs.stdenv.isLinux {
-    EDITOR = "nvim";
     VISUAL = "nvim";
   };
 

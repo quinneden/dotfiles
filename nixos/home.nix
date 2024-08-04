@@ -23,8 +23,9 @@
     ../home-manager/tmux.nix
     ../home-manager/wezterm.nix
     ../home-manager/alacritty.nix
+    ../home-manager/kitty.nix
     ../home-manager/vscodium.nix
-    # ../home-manager/packages
+    ../home-manager/packages
   ];
 
   news.display = "show";

@@ -1,9 +1,9 @@
 {pkgs}:
 pkgs.stdenv.mkDerivation {
-  pname = "operator-mono";
+  pname = "operator-mono-nf";
   version = "1.0";
 
-  src = ../../assets/operator-mono.zip;
+  src = ../../assets/OperatorMonoNF.zip;
 
   unpackPhase = ''
     runHook preUnpack

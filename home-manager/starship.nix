@@ -16,7 +16,7 @@
     add_newline = true;
     format = builtins.concatStringsSep "" [
       "$nix_shell"
-      "$os"
+      "$os "
       "$directory"
       "$container"
       "$git_branch $git_status"
@@ -30,7 +30,7 @@
       "$cmd_duration"
       "$status"
       "$line_break"
-      "[❯](bold purple)"
+      "[❯](fg:211)"
       ''''${custom.space}''
     ];
     custom.space = {
@@ -62,18 +62,16 @@
       symbol = " 󰏖";
       format = "[$symbol ](yellow dimmed)";
     };
-    # directory = {
-    #   format = builtins.concatStringsSep "" [
-    #     " [${pad.left}](fg:bright-black)"
-    #     "[$path](bg:bright-black fg:white)"
-    #     "[${pad.right}](fg:bright-black)"
-    #     " [$read_only](fg:yellow)"
-    #   ];
-    #   read_only = " ";
-    #   truncate_to_repo = true;
-    #   truncation_length = 4;
-    #   truncation_symbol = "";
-    # };
+    directory = {
+      format = builtins.concatStringsSep "" [
+        "[$path](fg:white)"
+        " [$read_only](fg:yellow)"
+      ];
+      read_only = "[ro]";
+      truncate_to_repo = true;
+      truncation_length = 4;
+      truncation_symbol = "";
+    };
     git_branch = {
       symbol = "";
       style = "";
@@ -121,14 +119,4 @@ in {
   programs.zsh.initExtra = ''
     eval "$(${starshipCmd} init zsh)"
   '';
-
-  programs.nushell = {
-    extraEnv = ''
-      mkdir ${config.xdg.cacheHome}/starship
-      ${starshipCmd} init nu | save -f ${config.xdg.cacheHome}/starship/init.nu
-    '';
-    extraConfig = ''
-      use ${config.xdg.cacheHome}/starship/init.nu
-    '';
-  };
 }

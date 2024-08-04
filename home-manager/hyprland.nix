@@ -118,7 +118,7 @@ in {
           "SUPER, R,       ${e} -t launcher"
           "SUPER, Tab,     ${e} -t overview"
           ",XF86PowerOff,  ${e} -r 'powermenu.shutdown()'"
-          "SUPER, Return, exec, alacritty"
+          "SUPER, Return, exec, kitty"
           "SUPER, W, exec, firefox"
           "SUPER, E, exec, nautilus"
 

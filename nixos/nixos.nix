@@ -1,5 +1,6 @@
 {
   inputs,
+  pkgs,
   lib,
   ...
 }: let
@@ -21,6 +22,7 @@ in {
   users.users.${username} = {
     isNormalUser = true;
     initialPassword = username;
+    shell = "${pkgs.zsh}/bin/zsh";
     extraGroups = [
       "nixosvmtest"
       "networkmanager"

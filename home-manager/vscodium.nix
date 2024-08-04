@@ -14,7 +14,7 @@
       "alejandra.program" = "alejandra";
       "breadcrumbs.enabled" = true;
       "catppuccin.accentColor" = "lavender";
-      "editor.fontFamily" = "'OperatorMono Nerd Font Mono', 'SymbolsNerdFont'";
+      "editor.fontFamily" = "'Operator Mono Lig Book', 'SymbolsNerdFont'";
       "editor.fontLigatures" = true;
       "editor.fontSize" = 16;
       "editor.formatOnPaste" = true;

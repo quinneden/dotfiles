@@ -1,7 +1,14 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  aura-theme = pkgs.fetchurl {
+    url = "https://raw.githubusercontent.com/daltonmenezes/aura-theme/main/packages/alacritty/aura-theme.toml";
+    hash = "sha256-CXu5F7B1baj4a4OXDDQEz0+DRKHrT689Si9W+iU077E=";
+  };
+in {
   programs.alacritty = {
     enable = true;
     settings = {
+      import = [aura-theme];
+
       shell = "${pkgs.tmux}/bin/tmux";
       # shell = "${pkgs.zsh}/bin/zsh";
       window = {
@@ -27,23 +34,16 @@
 
       font = {
         normal = {
-          family = "OperatorMono Nerd Font Mono";
-          style = "Regular";
+          family = "Operator Mono Lig Book";
+          style = "Book";
         };
-        bold.style = "Bold";
         italic.style = "Italic";
+        bold.style = "OperatorMono Nerd Font Mono Bold";
         size = 13;
       };
 
       colors.draw_bold_text_with_bright_colors = true;
       window.opacity = 0.9;
-
-      # imports = [
-      #   (pkgs.fetchurl {
-      #     url = "https://raw.githubusercontent.com/catppuccin/alacritty/3c808cbb4f9c87be43ba5241bc57373c793d2f17/catppuccin-mocha.yml";
-      #     hash = "sha256-28Tvtf8A/rx40J9PKXH6NL3h/OKfn3TQT1K9G8iWCkM=";
-      #   })
-      # ];
     };
   };
 }

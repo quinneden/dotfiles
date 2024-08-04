@@ -6,22 +6,20 @@ pkgs.stdenv.mkDerivation rec {
   pname = "micro-autofmt-nix";
   version = "2.0.0";
 
-  src = pkgs.fetchFromGitHub {
+  src = fetchFromGitHub {
     owner = "quinneden";
     repo = "micro-autofmt";
-    rev = "e075a9c2fea3ee2291e372a8d4b0c2f118ef9ade";
-    sha256 = "sha256-/tTDAmGfU06WdMw3Z9IVevx4I47JSALY7JQiNqkbNUY=";
+    rev = "2c786b599da35e2c3897627a14e272d185587d28";
+    hash = "sha256-ke3NjIjtwPTbSUjAWE7LmGh44LdT7TrIOGqxagDb0zI=";
   };
 
   configurePhase = ''
-    mkdir -p $out/micro-autofmt/help
-    mkdir -p $out/syntax
+    mkdir -p $out/help
   '';
 
   installPhase = ''
-    cp $src/autofmt.lua $out/micro-autofmt/autofmt.lua
-    cp $src/repo.json $out/micro-autofmt/repo.json
-    cp $src/help/autofmt.md $out/micro-autofmt/help/autofmt.md
-    cp $src/syntax/nix.yaml $out/syntax/nix.yaml
+    cp $src/autofmt.lua $out/autofmt.lua
+    cp $src/repo.json $out/repo.json
+    cp $src/help/autofmt.md $out/help/autofmt.md
   '';
 }

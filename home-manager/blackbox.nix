@@ -15,7 +15,7 @@
       command-as-login-shell = true;
       custom-shell-command = "${pkgs.tmux}/bin/tmux";
       use-custom-command = true;
-      font = "CaskaydiaCove Nerd Font 12";
+      font = "Operator Mono Lig Book 12";
       fill-tabs = true;
       show-headerbar = false;
       pretty = true;

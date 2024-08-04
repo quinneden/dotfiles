@@ -7,6 +7,7 @@
   aliases = {
     "db" = "distrobox";
     "mi" = "micro";
+    "cddf" = "cd $dotdir";
     "code" = "codium";
     "py" = "python";
     "fuck" = "sudo rm -rf";
