@@ -24,6 +24,7 @@ in {
       copy_on_select = "clipboard";
 
       window_padding_width = "6";
+      confirm_os_window_close = "2";
 
       # colors
       background_opacity = "0.9";

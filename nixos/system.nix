@@ -23,8 +23,6 @@
     ];
   };
 
-  boot.m1n1CustomLogo = ../assets/bootlogo-m1n1.png;
-
   # virtualisation
   programs.virt-manager.enable = true;
   virtualisation = {
@@ -58,6 +56,7 @@
       excludePackages = [pkgs.xterm];
     };
     flatpak.enable = true;
+    openssh.enable = true;
   };
 
   # logind
@@ -95,8 +94,8 @@
     useExperimentalGPUDriver = true;
     experimentalGPUInstallMode = "replace";
     peripheralFirmwareDirectory = builtins.fetchTarball {
-      url = "https://pub-c54a7919db1f4471a55c23fa3d8566f2.r2.dev/firmware.tar.gz";
-      sha256 = "0wz4fsczs7lr9hia0nyjfi0hqdrdca2i9b9fjl4b47n5fzl5cqml";
+      url = "https://objectstorage.us-phoenix-1.oraclecloud.com/n/ax6cmlt4v0it/b/bucket-20240716-1828/o/firmware.tar.gz";
+      sha256 = "sha256:1lhl7xs83dfq2pn8n5ay1x51dq9gva1l6ql7ivcixxwlyr1yqkj2";
     };
   };
 
@@ -112,9 +111,9 @@
     settings.General.Experimental = true; # for gnome-bluetooth percentage
   };
 
-  # bootloader
   boot = {
     tmp.cleanOnBoot = true;
+    m1n1CustomLogo = ../assets/bootlogo-m1n1.png;
     loader = {
       # timeout = 2;
       systemd-boot.enable = true;
