@@ -6,14 +6,12 @@
 }: let
   aliases = {
     "db" = "distrobox";
-    "mi" = "micro";
     "cddf" = "cd $dotdir";
     "code" = "codium";
     "py" = "python";
     "fuck" = "sudo rm -rf";
     "rf" = "rm -rf";
     "tree" = "eza --icons --tree --group-directories-first -I '.git*'";
-    "nix-switch" = "sudo nixos-rebuild switch --flake ~/.dotfiles#nixos --impure";
     "flake-update" = "sudo nix flake update ~/.dotfiles";
     "nix-clean" = "sudo nix-collect-garbage -d && sudo rm /nix/var/nix/gcroots/auto/* && nix-collect-garbage -d";
 
@@ -35,35 +33,41 @@ in {
 
   config.programs = {
     zsh = {
-      shellAliases = aliases // config.shellAliases;
       enable = true;
+      dotDir = ".config/zsh";
+      shellAliases = aliases // config.shellAliases;
       enableCompletion = true;
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
       oh-my-zsh = {
         enable = true;
-        plugins = ["fzf" "eza" "zsh-navigation-tools"];
+        plugins = ["fzf" "eza" "zoxide"];
       };
       initExtra = ''
-        SHELL=${pkgs.zsh}/bin/zsh
         zstyle ':completion:*' menu select
         bindkey "^[[1;5C" forward-word
         bindkey "^[[1;5D" backward-word
         unsetopt BEEP
-        for f (${config.xdg.configHome}/zsh/**/*(N.)); do source $f; done
+
+        for f (${config.xdg.configHome}/zsh/[^completions]**/*(N.)); do source $f; done
+
+        [[ $(type -w z) =~ 'function' ]] && alias cd='z' || true
+      '';
+      initExtraBeforeCompInit = ''
+        fpath+=(${config.xdg.configHome}/zsh/completions)
       '';
       sessionVariables = {
         SHELL = "${pkgs.zsh}/bin/zsh";
         LC_ALL = "en_US.UTF-8";
         dotdir = "/home/quinn/.dotfiles";
-        EDITOR = "micro";
+        EDITOR = "${pkgs.micro}/bin/micro";
       };
     };
 
     bash = {
       shellAliases = aliases // config.shellAliases;
       enable = true;
-      initExtra = "SHELL=${pkgs.bash}";
+      initExtra = "SHELL=${pkgs.bash}/bin/bash";
     };
   };
 }

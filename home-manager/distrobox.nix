@@ -15,15 +15,17 @@
         ".zshrc"
         ".config/nvim"
         ".config/nix"
+        ".config/zsh"
         ".config/starship.toml"
       ];
       packages =
         config.packages.cli
         ++ [
-          config.programs.neovim.finalPackage
           pkgs.nix
           pkgs.git
           pkgs.zsh
+          pkgs.micro
+          pkgs.eza
         ];
     in {
       Alpine = {

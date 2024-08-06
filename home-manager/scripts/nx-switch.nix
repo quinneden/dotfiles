@@ -9,25 +9,25 @@
       rm -rf "$HOME/.config/nvim"
       rm -rf "$HOME/.config/ags"
 
-      ln -s "$HOME/Projects/dotfiles/nvim" "$HOME/.config/nvim"
-      ln -s "$HOME/Projects/dotfiles/ags" "$HOME/.config/ags"
+      ln -s "$HOME/.dotfiles/nvim" "$HOME/.config/nvim"
+      ln -s "$HOME/.dotfiles/ags" "$HOME/.config/ags"
     fi
   '';
-  nx-switch = pkgs.writeShellScriptBin "nx-switch" ''
+  nix-switch = pkgs.writeShellScriptBin "nix-switch" ''
     ${symlink} -r
-    sudo nixos-rebuild switch --flake . --impure $@
+    sudo nixos-rebuild switch --flake $HOME/.dotfiles#nixos --impure $@
     ${symlink} -a
   '';
-  nx-boot = pkgs.writeShellScriptBin "nx-boot" ''
+  nix-boot = pkgs.writeShellScriptBin "nix-boot" ''
     ${symlink} -r
-    sudo nixos-rebuild boot --flake . --impure $@
+    sudo nixos-rebuild boot --flake $HOME/.dotfiles#nixos --impure $@
     ${symlink} -a
   '';
-  nx-test = pkgs.writeShellScriptBin "nx-test" ''
+  nix-test = pkgs.writeShellScriptBin "nix-test" ''
     ${symlink} -r
-    sudo nixos-rebuild test --flake . --impure $@
+    sudo nixos-rebuild test --flake $HOME/.dotfiles#nixos --impure $@
     ${symlink} -a
   '';
 in {
-  home.packages = [nx-switch nx-boot nx-test];
+  home.packages = [nix-switch nix-boot nix-test];
 }

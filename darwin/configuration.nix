@@ -1,7 +1,7 @@
 {
   config,
   inputs,
-  dotdir,
+  dotDir,
   lib,
   pkgs,
   ...
@@ -71,8 +71,7 @@
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = {
-      inherit inputs;
-      dotdir = "${config.users.users.quinn.home}/.dotfiles";
+      inherit inputs dotDir;
     };
     users.quinn = import ./home.nix;
   };

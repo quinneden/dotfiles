@@ -1,9 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./modules/packages.nix
-    ./scripts/blocks.nix
-    ./scripts/nx-switch.nix
-    ./scripts/vault.nix
+    ./scripts
   ];
 
   packages = with pkgs; {
@@ -30,6 +28,7 @@
       cmake
       openssl
       pkg-config
+      zoxide
     ];
     cli = [
       bat
@@ -41,6 +40,8 @@
       lazydocker
       lazygit
       ripgrep
+      jq
+      htmltree
     ];
   };
 }

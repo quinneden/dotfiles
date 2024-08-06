@@ -31,6 +31,18 @@
     libvirtd.enable = true;
   };
 
+  # direnv
+  programs.direnv = {
+    package = pkgs.direnv;
+    silent = false;
+    enableZshIntegration = true;
+    loadInNixShell = true;
+    nix-direnv = {
+      enable = true;
+      package = pkgs.nix-direnv;
+    };
+  };
+
   # dconf
   programs.dconf.enable = true;
 
@@ -47,6 +59,13 @@
     wget
   ];
 
+  # zsh
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+  };
+
+  # passwordless sudo
   security.sudo.wheelNeedsPassword = false;
 
   # services
@@ -89,6 +108,7 @@
     };
   };
 
+  # asahi
   hardware.asahi = {
     setupAsahiSound = true;
     useExperimentalGPUDriver = true;
@@ -98,7 +118,6 @@
       sha256 = "sha256:1lhl7xs83dfq2pn8n5ay1x51dq9gva1l6ql7ivcixxwlyr1yqkj2";
     };
   };
-
   hardware.graphics = {
     enable = true;
     package = lib.mkDefault config.hardware.asahi.pkgs.mesa-asahi-edge.drivers;
@@ -111,6 +130,7 @@
     settings.General.Experimental = true; # for gnome-bluetooth percentage
   };
 
+  # bootloader
   boot = {
     tmp.cleanOnBoot = true;
     m1n1CustomLogo = ../assets/bootlogo-m1n1.png;
@@ -121,6 +141,7 @@
     };
   };
 
+  # swap
   zramSwap = {
     enable = true;
     memoryPercent = 100;

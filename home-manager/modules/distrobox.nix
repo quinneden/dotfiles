@@ -25,14 +25,14 @@ in {
       mkBox = name: {
         img,
         home ? ".local/share/distrobox/${name}",
-        packages ? "git neovim",
+        packages ? "git eza zsh micro",
         init ? "true",
         flags ? "",
         path ? [],
         nixPackages ? [],
         symlinks ? [],
         alias ? lib.strings.toLower name,
-        exec ? "bash",
+        exec ? "zsh",
       }: {
         inherit home img flags packages alias symlinks exec;
         init = pkgs.writeShellScript "init" init;

@@ -18,6 +18,7 @@
         lix-module.overlays.default
       ];
     };
+    dotDir = "$HOME/.dotfiles";
   in {
     packages.aarch64-linux.default =
       nixpkgs.legacyPackages.aarch64-linux.callPackage ./ags {inherit inputs;};
@@ -27,7 +28,7 @@
       "nixos" = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         specialArgs = {
-          inherit inputs pkgs;
+          inherit inputs pkgs dotDir;
           asztal = self.packages.aarch64-linux.default;
         };
         modules = [
@@ -39,7 +40,7 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              extraSpecialArgs = {inherit inputs pkgs;};
+              extraSpecialArgs = {inherit inputs pkgs dotDir;};
             };
           }
           {networking.hostName = "nixos-macmini";}
@@ -50,7 +51,7 @@
     darwinConfigurations = {
       "macos" = nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
-        specialArgs = {inherit inputs;};
+        specialArgs = {inherit inputs dotDir;};
         modules = [
           ./darwin/configuration.nix
           home-manager.darwinModules.default

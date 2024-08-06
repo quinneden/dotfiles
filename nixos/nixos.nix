@@ -48,6 +48,8 @@ in {
     };
   };
 
+  environment.pathsToLink = ["/share/zsh"];
+
   specialisation = {
     gnome.configuration = {
       system.nixos.tags = ["Gnome"];
