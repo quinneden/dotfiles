@@ -41,7 +41,6 @@
       lazygit
       ripgrep
       jq
-      htmltree
     ];
   };
 }
