@@ -31,6 +31,8 @@
     libvirtd.enable = true;
   };
 
+  boot.binfmt.emulatedSystems = ["x86_64-linux"];
+
   # direnv
   programs.direnv = {
     package = pkgs.direnv;
@@ -86,15 +88,15 @@
   '';
 
   # kde connect
-  networking.firewall = rec {
-    allowedTCPPortRanges = [
-      {
-        from = 1714;
-        to = 1764;
-      }
-    ];
-    allowedUDPPortRanges = allowedTCPPortRanges;
-  };
+  # networking.firewall = rec {
+  #   allowedTCPPortRanges = [
+  #     {
+  #       from = 1714;
+  #       to = 1764;
+  #     }
+  #   ];
+  #   allowedUDPPortRanges = allowedTCPPortRanges;
+  # };
 
   # network
   networking = {
@@ -106,6 +108,7 @@
       enable = true;
       settings.General.EnableNetworkConfiguration = true;
     };
+    firewall.enable = false;
   };
 
   # asahi

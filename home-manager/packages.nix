@@ -26,10 +26,12 @@
       rustc
       gcc
       gnumake
+      gptfdisk
       cmake
       openssl
       pkg-config
       zoxide
+      vagrant
     ];
     cli = [
       bat
