@@ -10,6 +10,7 @@
       "homebrew/services"
     ];
     casks = [
+      "betterdisplay"
       "docker"
       "eloston-chromium"
       "eqmac"
@@ -23,6 +24,7 @@
       "vscodium"
     ];
     brews = [
+      "az"
       "openssl@3"
       "sqlite"
       "aria2"
@@ -33,6 +35,7 @@
       "cask"
       "chroma"
       "cmake"
+      "composer"
       "curl"
       "cython"
       "docker"
@@ -52,6 +55,7 @@
       "gobject-introspection"
       "gptfdisk"
       "html2text"
+      "httpd"
       "imagemagick"
       "jq"
       "just"
@@ -72,6 +76,7 @@
       "mingw-w64"
       "ncdu"
       "node"
+      "oci-cli"
       "perl"
       "pipenv"
       "pipx"

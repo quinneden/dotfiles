@@ -16,8 +16,7 @@
       };
 
       character = {
-        style = "fg:211"
-        success_symbol = "[❯]($style)";
+        success_symbol = "[❯](purple)";
         error_symbol = "[❯](red)";
         vimcmd_symbol = "[❮](green)";
       };

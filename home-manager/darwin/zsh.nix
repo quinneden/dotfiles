@@ -1,6 +1,6 @@
 {
   inputs,
-  dotdir,
+  dotDir,
   lib,
   pkgs,
   ...
@@ -20,15 +20,15 @@
       "alx.dev" = "curl -sL https://alx.sh/dev | EXPERT=1 sh";
       "alx.sh" = "curl -sL https://alx.sh | EXPERT=1 sh";
       bs = "stat -f%z";
-      cdflake = "cd ${dotdir}";
-      cdfl = "cd ${dotdir}";
+      cdflake = "cd ${dotDir}";
+      cdfl = "cd ${dotDir}";
       cddl = "cd ~/Downloads";
       code = "codium";
-      code-flake = "cd ${dotdir} && codium .";
-      darwin-switch = "darwin-rebuild switch --flake ${dotdir}#macos";
+      code-flake = "cd ${dotDir} && codium .";
+      darwin-switch = "darwin-rebuild switch --flake ${dotDir}#macos";
       df = "df -h";
       du = "du -h";
-      flake-tree = "eza -aT ${dotdir} -I '.git*|.vscode*|*.DS_Store|Icon?'";
+      flake-tree = "eza -aT ${dotDir} -I '.git*|.vscode*|*.DS_Store|Icon?'";
       fuck = "sudo rm -rf";
       gst = "git status";
       gsur = "git submodule update --init --recursive";
@@ -50,7 +50,7 @@
     };
     sessionVariables = {
       BAT_THEME = "Dracula";
-      dotdir = "${dotdir}";
+      dotdir = "${dotDir}";
       EDITOR = "micro";
       EZA_ICON_SPACING = "2";
       HOMEBREW_PREFIX = "/opt/homebrew";

@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./modules/packages.nix
+    ./packages
     ./scripts
   ];
 

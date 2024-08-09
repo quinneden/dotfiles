@@ -15,11 +15,13 @@ pkgs.stdenv.mkDerivation rec {
 
   configurePhase = ''
     mkdir -p $out/help
+    mkdir -p $out/syntax
   '';
 
   installPhase = ''
     cp $src/autofmt.lua $out/autofmt.lua
     cp $src/repo.json $out/repo.json
+    cp $src/syntax/nix.yaml $out/syntax/nix.yaml
     cp $src/help/autofmt.md $out/help/autofmt.md
   '';
 }
