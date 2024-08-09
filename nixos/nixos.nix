@@ -48,7 +48,11 @@ in {
     };
   };
 
-  environment.pathsToLink = ["/share/zsh"];
+  environment.pathsToLink = [
+    "/share/zsh"
+    "/share/qemu"
+    "/share/edk2"
+  ];
 
   specialisation = {
     gnome.configuration = {
