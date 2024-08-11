@@ -18,6 +18,7 @@
     ];
     linux = [
       (mpv.override {scripts = [mpvScripts.mpris];})
+      direnv
       hdrop
       nodejs
       vesktop
@@ -43,6 +44,7 @@
       lazygit
       ripgrep
       jq
+      nodePackages-pretti
     ];
   };
 }

@@ -15,7 +15,7 @@
     "flake-update" = "sudo nix flake update ~/.dotfiles";
     "nix-clean" = "sudo nix-collect-garbage -d && sudo rm /nix/var/nix/gcroots/auto/* && nix-collect-garbage -d";
 
-    "gs" = "git status";
+    "gst" = "git status";
     "gb" = "git branch";
     "gch" = "git checkout";
     "gc" = "git commit";
