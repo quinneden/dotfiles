@@ -25,11 +25,12 @@
   nix = {
     package = pkgs.lix;
     settings = {
+      auto-optimise-store = true;
       builders-use-substitutes = true;
       experimental-features = ["nix-command" "flakes"];
-      substituters = ["https://cache.lix.systems"];
+      substituters = ["https://quinneden.cachix.org"];
       trusted-substituters = config.nix.settings.substituters;
-      trusted-public-keys = ["cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="];
+      trusted-public-keys = ["quinneden.cachix.org-1:1iSAVU2R8SYzxTv3Qq8j6ssSPf0Hz+26gfgXkvlcbuA="];
       warn-dirty = false;
       trusted-users = ["quinn" "root"];
     };

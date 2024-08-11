@@ -25,7 +25,6 @@
     ../home-manager/alacritty.nix
     ../home-manager/kitty.nix
     ../home-manager/vscodium.nix
-    ../home-manager/packages
   ];
 
   news.display = "show";
