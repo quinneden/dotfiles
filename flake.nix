@@ -4,7 +4,6 @@
   outputs = inputs @ {
     home-manager,
     lix-module,
-    # lix,
     nix-darwin,
     nixos-apple-silicon,
     nixpkgs,
@@ -48,6 +47,7 @@
       };
     };
 
+    # darwin config
     darwinConfigurations = {
       "macos" = nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
@@ -69,17 +69,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # lix = {
-    #   url = "https://git.lix.systems/lix-project/lix/archive/main.tar.gz";
-    #   flake = false;
-    # };
-
     lix-module = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.90.0.tar.gz";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        # lix.follows = "lix";
-      };
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixos-apple-silicon = {
@@ -112,8 +104,6 @@
     ags.url = "github:Aylur/ags";
 
     astal.url = "github:astal-sh/libastal";
-
-    # nur.url = "github:nix-community/NUR";
 
     lf-icons = {
       url = "github:gokcehan/lf";

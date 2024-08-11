@@ -18,7 +18,7 @@
       "iterm2"
       "kitty"
       "macfuse"
-      "podman-desktop"
+      # "podman-desktop"
       "utm"
       "vagrant"
       "vscodium"

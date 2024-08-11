@@ -25,6 +25,7 @@
   nix = {
     package = pkgs.lix;
     settings = {
+      auto-optimise-store = true;
       builders-use-substitutes = true;
       experimental-features = ["nix-command" "flakes"];
       substituters = ["https://quinneden.cachix.org"];

@@ -1,6 +1,7 @@
 {
-  inputs,
   dotDir,
+  inputs,
+  config,
   lib,
   pkgs,
   ...
@@ -10,9 +11,10 @@
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
+    dotDir = ".config/zsh";
     oh-my-zsh = {
       enable = true;
-      custom = "/Users/quinn/.scripts/zsh";
+      custom = "${config.xdg.configHome}/zsh";
       plugins = ["zsh-navigation-tools" "nix-zsh-completions" "direnv" "iterm2"];
     };
     shellAliases = {
@@ -20,9 +22,9 @@
       "alx.dev" = "curl -sL https://alx.sh/dev | EXPERT=1 sh";
       "alx.sh" = "curl -sL https://alx.sh | EXPERT=1 sh";
       bs = "stat -f%z";
-      cdflake = "cd ${dotDir}";
-      cdfl = "cd ${dotDir}";
       cddl = "cd ~/Downloads";
+      cdfl = "cd ${dotDir}";
+      cdflake = "cd ${dotDir}";
       code = "codium";
       code-flake = "cd ${dotDir} && codium .";
       darwin-switch = "darwin-rebuild switch --flake ${dotDir}#macos";
@@ -36,41 +38,37 @@
       ll = "eza -glAh --octal-permissions --group-directories-first";
       ls = "eza -A";
       lsblk = "diskutil list";
+      lsudo = "lima sudo";
       mi = "micro";
       push = "git push";
       py = "python";
       reboot = "sudo reboot";
       repos = "cd ~/Repositories";
       rf = "rm -rf";
-      shutdown = "sudo shutdown -h now";
       sed = "gsed";
+      shutdown = "sudo shutdown -h now";
       surf = "sudo rm -rf";
       tree = "eza -aT -I '.git*'";
-      lsudo = "lima sudo";
     };
     sessionVariables = {
       BAT_THEME = "Dracula";
+      compdir = "${config.xdg.configHome}/zsh/completions";
       dotdir = "${dotDir}";
       EDITOR = "micro";
       EZA_ICON_SPACING = "2";
-      HOMEBREW_PREFIX = "/opt/homebrew";
       HOMEBREW_CELLAR = "/opt/homebrew/Cellar";
+      HOMEBREW_PREFIX = "/opt/homebrew";
       HOMEBREW_REPOSITORY = "/opt/homebrew";
       INFOPATH = "/opt/homebrew/share/info:\${INFOPATH:-}";
       LANG = "en_US.UTF-8";
       MICRO_TRUECOLOR = "1";
       PATH = "/opt/homebrew/bin:/opt/homebrew/sbin:/run/current-system/sw/bin:/etc/profiles/per-user/quinn/bin:/usr/local/bin\${PATH+:\$PATH}";
       workdir = "$HOME/workdir";
-      compdir = "$HOME/.scripts/zsh-custom/completions";
     };
     initExtra = ''
-      for f (~/.scripts/zsh/[^plugins]**/*(.)); do source $f; done
+      for f (~/.config/zsh/[^plugins]**/*(N.)); do source $f; done
 
       [ -e /opt/homebrew/bin/zoxide ] && alias cd="z"
-
-      iterm2_print_user_vars() {
-        iterm2_set_user_var gitBranch $((git branch 2> /dev/null) | grep \* | cut -c3-)
-      }
     '';
   };
 }
