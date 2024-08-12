@@ -28,10 +28,17 @@
       auto-optimise-store = true;
       builders-use-substitutes = true;
       experimental-features = ["nix-command" "flakes"];
-      substituters = ["https://quinneden.cachix.org"];
+      substituters = [
+        "https://quinneden.cachix.org"
+        "https://cache.lix.systems"
+      ];
       trusted-substituters = config.nix.settings.substituters;
-      trusted-public-keys = ["quinneden.cachix.org-1:1iSAVU2R8SYzxTv3Qq8j6ssSPf0Hz+26gfgXkvlcbuA="];
+      trusted-public-keys = [
+        "quinneden.cachix.org-1:1iSAVU2R8SYzxTv3Qq8j6ssSPf0Hz+26gfgXkvlcbuA="
+        "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
+      ];
       warn-dirty = false;
+      extra-nix-path = "nixpkgs=flake:nixpkgs";
       trusted-users = ["quinn" "root"];
     };
 
