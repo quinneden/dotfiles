@@ -45,7 +45,7 @@
       lazygit
       ripgrep
       jq
-      nodePackages-prettier
+      nodePackages.prettier
     ];
   };
 }

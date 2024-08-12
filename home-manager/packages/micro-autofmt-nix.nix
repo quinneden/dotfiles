@@ -9,8 +9,8 @@ pkgs.stdenv.mkDerivation rec {
   src = fetchFromGitHub {
     owner = "quinneden";
     repo = "micro-autofmt";
-    rev = "2c786b599da35e2c3897627a14e272d185587d28";
-    hash = "sha256-ke3NjIjtwPTbSUjAWE7LmGh44LdT7TrIOGqxagDb0zI=";
+    rev = "1147c5e47b10fd6d6ff44481ca77988a452e21d1";
+    hash = "sha256-DikU2ju7gx71F4rSHT2ktCmvr8B07EuGKSZSSP143Ew=";
   };
 
   configurePhase = ''
