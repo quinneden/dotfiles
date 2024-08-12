@@ -10,13 +10,6 @@
     self,
     ...
   }: let
-    pkgs = import inputs.nixpkgs {
-      config.allowUnfree = true;
-      overlays = [
-        nixos-apple-silicon.overlays.default
-        lix-module.overlays.default
-      ];
-    };
     dotDir = "$HOME/.dotfiles";
   in {
     packages.aarch64-linux.default =
@@ -26,8 +19,14 @@
     nixosConfigurations = {
       "nixos" = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
+        pkgs = import inputs.nixpkgs {
+          config.allowUnfree = true;
+          overlays = [
+            nixos-apple-silicon.overlays.default
+          ];
+        };
         specialArgs = {
-          inherit inputs pkgs dotDir;
+          inherit inputs dotDir;
           asztal = self.packages.aarch64-linux.default;
         };
         modules = [
@@ -39,7 +38,7 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              extraSpecialArgs = {inherit inputs pkgs dotDir;};
+              extraSpecialArgs = {inherit inputs dotDir;};
             };
           }
           {networking.hostName = "nixos-macmini";}

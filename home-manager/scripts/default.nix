@@ -1,6 +1,6 @@
 {
   imports = [
-    ./nx-switch.nix
+    ./nix-switch.nix
     ./vault.nix
     ./blocks.nix
     ./mi.nix
