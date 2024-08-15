@@ -16,7 +16,6 @@
     add_newline = true;
     format = builtins.concatStringsSep "" [
       "$nix_shell"
-      "$os "
       "$directory"
       "$container"
       "$git_branch $git_status"
@@ -37,7 +36,7 @@
       when = ''! test $env'';
       format = "  ";
     };
-    continuation_prompt = "∙  ┆ ";
+    continuation_prompt = "┆ ";
     line_break = {disabled = false;};
     status = {
       symbol = "✗";
@@ -78,7 +77,7 @@
       format = "[ $symbol $branch](fg:purple)(:$remote_branch)";
     };
     os = {
-      disabled = false;
+      disabled = true;
       format = "$symbol";
     };
     os.symbols = {
@@ -91,7 +90,6 @@
       openSUSE = os "" "green";
       SUSE = os "" "green";
       Ubuntu = os "" "bright-purple";
-      Macos = os "" "white";
     };
     python = lang "" "yellow";
     nodejs = lang "󰛦" "bright-blue";
