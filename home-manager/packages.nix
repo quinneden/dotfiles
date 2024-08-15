@@ -33,6 +33,7 @@
       pkg-config
       zoxide
       vagrant
+      python312
     ];
     cli = [
       bat

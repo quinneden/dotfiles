@@ -2,6 +2,7 @@
   description = "NixOS & Nix-darwin configurations.";
 
   outputs = inputs @ {
+    devenv,
     home-manager,
     lix-module,
     nix-darwin,
@@ -10,16 +11,18 @@
     self,
     ...
   }: let
-    dotDir = "$HOME/.dotfiles";
+    dotDir = "$HOME/.dotfiles" ;
   in {
-    packages.aarch64-linux.default =
-      nixpkgs.legacyPackages.aarch64-linux.callPackage ./ags {inherit inputs;};
+    packages.aarch64-linux = {
+      default = nixpkgs.legacyPackages.aarch64-linux.callPackage ./ags {inherit inputs;};
+    };
 
-    # nixos config
-    nixosConfigurations = {
+    nixosConfigurations = let
+      system = "aarch64-linux";
+    in {
       "nixos" = nixpkgs.lib.nixosSystem {
-        system = "aarch64-linux";
-        pkgs = import inputs.nixpkgs {
+        pkgs = import nixpkgs {
+          inherit system;
           config.allowUnfree = true;
           overlays = [
             nixos-apple-silicon.overlays.default
@@ -60,6 +63,11 @@
     };
   };
 
+  nixConfig = {
+    extra-substituters = "https://quinneden.cachix.org";
+    extra-trusted-public-keys = "quinneden.cachix.org-1:1iSAVU2R8SYzxTv3Qq8j6ssSPf0Hz+26gfgXkvlcbuA=";
+  };
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
@@ -77,6 +85,8 @@
       url = "github:quinneden/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    devenv.url = "github:cachix/devenv";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -107,6 +117,11 @@
     lf-icons = {
       url = "github:gokcehan/lf";
       flake = false;
+    };
+
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     firefox-gnome-theme = {

@@ -45,7 +45,7 @@
       "window.customTitleBarVisibility" = "auto";
       "editor.tabSize" = 2;
       "terminal.integrated.fontFamily" = "'OperatorMono Nerd Font Mono','SymbolsNerdFont'";
-      "terminal.integrated.fontSize" = "14";
+      "terminal.integrated.fontSize" = "15";
       "terminal.integrated.fontWeight" = "300";
       "terminal.integrated.fontWeightBold" = "500";
       "terminal.integrated.defaultProfile.linux" = "zsh";

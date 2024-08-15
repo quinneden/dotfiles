@@ -12,10 +12,11 @@
     ../home-manager/browser.nix
     ../home-manager/dconf.nix
     ../home-manager/distrobox.nix
+    ../home-manager/firefox.nix
     ../home-manager/git.nix
     ../home-manager/hyprland.nix
     ../home-manager/lf.nix
-    # ../home-manager/micro.nix
+    ../home-manager/micro.nix
     ../home-manager/packages.nix
     ../home-manager/sh.nix
     ../home-manager/starship.nix

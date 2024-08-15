@@ -8,17 +8,13 @@
   # nix
   documentation.nixos.enable = false; # .desktop
   nix.settings = {
-    experimental-features = "nix-command flakes";
+    experimental-features = ["nix-command" "flakes"];
     auto-optimise-store = true;
     trusted-users = ["quinn" "root"];
     substituters = [
-      "https://nixos-apple-silicon.cachix.org"
-      "https://hyprland.cachix.org"
       "https://quinneden.cachix.org"
     ];
     trusted-public-keys = [
-      "nixos-apple-silicon.cachix.org-1:xkpmN/hWmtMvApu5lYaNPy4sUXc/6Qfd+iTjdLX8HZ0="
-      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "quinneden.cachix.org-1:1iSAVU2R8SYzxTv3Qq8j6ssSPf0Hz+26gfgXkvlcbuA="
     ];
   };
@@ -87,17 +83,6 @@
     HandleLidSwitchExternalPower=ignore
   '';
 
-  # kde connect
-  # networking.firewall = rec {
-  #   allowedTCPPortRanges = [
-  #     {
-  #       from = 1714;
-  #       to = 1764;
-  #     }
-  #   ];
-  #   allowedUDPPortRanges = allowedTCPPortRanges;
-  # };
-
   # network
   networking = {
     networkmanager = {
@@ -129,8 +114,8 @@
   # bluetooth
   hardware.bluetooth = {
     enable = true;
-    powerOnBoot = false;
-    settings.General.Experimental = true; # for gnome-bluetooth percentage
+    powerOnBoot = true;
+    settings.General.Experimental = true;
   };
 
   # bootloader
@@ -138,7 +123,7 @@
     tmp.cleanOnBoot = true;
     m1n1CustomLogo = ../assets/bootlogo-m1n1.png;
     loader = {
-      # timeout = 2;
+      timeout = 2;
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = false;
     };
