@@ -23,8 +23,7 @@
       "alx.sh" = "curl -sL https://alx.sh | EXPERT=1 sh";
       bs = "stat -f%z";
       cddl = "cd ~/Downloads";
-      cdfl = "cd ${dotDir}";
-      cdflake = "cd ${dotDir}";
+      cddf = "cd ${dotDir}";
       code = "codium";
       code-flake = "cd ${dotDir} && codium .";
       darwin-switch = "darwin-rebuild switch --flake ${dotDir}#macos";
@@ -43,7 +42,7 @@
       push = "git push";
       py = "python";
       reboot = "sudo reboot";
-      repos = "cd ~/Repositories";
+      repos = "cd ~/repos";
       rf = "rm -rf";
       sed = "gsed";
       shutdown = "sudo shutdown -h now";
@@ -62,7 +61,7 @@
       INFOPATH = "/opt/homebrew/share/info:\${INFOPATH:-}";
       LANG = "en_US.UTF-8";
       MICRO_TRUECOLOR = "1";
-      PATH = "/opt/homebrew/bin:/opt/homebrew/sbin:/run/current-system/sw/bin:/etc/profiles/per-user/quinn/bin:/usr/local/bin\${PATH+:\$PATH}";
+      PATH = "/opt/homebrew/bin:/opt/homebrew/sbin:/run/current-system/sw/bin:/etc/profiles/per-user/quinn/bin:/usr/local/bin:/Users/quinn/.local/bin\${PATH+:\$PATH}";
       workdir = "$HOME/workdir";
     };
     initExtra = ''

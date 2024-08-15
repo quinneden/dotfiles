@@ -24,18 +24,17 @@
 
   nix = {
     package = pkgs.lix;
+    # distributedBuilds = true;
     settings = {
       auto-optimise-store = true;
       builders-use-substitutes = true;
       experimental-features = ["nix-command" "flakes"];
       substituters = [
-        "https://quinneden.cachix.org"
-        "https://cache.lix.systems"
+        "https://nixos-apple-silicon.cachix.org"
       ];
-      trusted-substituters = config.nix.settings.substituters;
+      # trusted-substituters = config.nix.settings.substituters;
       trusted-public-keys = [
-        "quinneden.cachix.org-1:1iSAVU2R8SYzxTv3Qq8j6ssSPf0Hz+26gfgXkvlcbuA="
-        "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
+        "nixos-apple-silicon.cachix.org-1:xkpmN/hWmtMvApu5lYaNPy4sUXc/6Qfd+iTjdLX8HZ0="
       ];
       warn-dirty = false;
       extra-nix-path = "nixpkgs=flake:nixpkgs";
