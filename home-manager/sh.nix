@@ -52,6 +52,11 @@ in {
         for f (${config.xdg.configHome}/zsh/[^completions]**/*(N.)); do source $f; done
 
         [[ $(type -w z) =~ 'function' ]] && alias cd='z' || true
+
+        if [[ $TERM_PROGRAM == 'vscode' ]]; then
+          autoload -U promptinit; promptinit
+          prompt pure
+        fi
       '';
       initExtraBeforeCompInit = ''
         fpath+=(${config.xdg.configHome}/zsh/completions)
