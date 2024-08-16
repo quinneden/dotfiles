@@ -41,7 +41,6 @@
       fd
       fzf
       cargo
-
       nil
       lua-language-server
       stylua

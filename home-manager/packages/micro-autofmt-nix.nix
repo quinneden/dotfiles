@@ -10,7 +10,7 @@ pkgs.stdenv.mkDerivation rec {
     owner = "quinneden";
     repo = "micro-autofmt";
     rev = "main";
-    hash = "sha256-h5+vtPK19mtYyV3voMdhL/5XFlrgCOxPnZjwUTK+3g0=";
+    hash = "sha256-ksQRPr68XaV4P53NckSY9cvqjLsV72BnihcdmW8hmoQ=";
   };
 
   configurePhase = ''

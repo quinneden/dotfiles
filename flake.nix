@@ -11,7 +11,7 @@
     self,
     ...
   }: let
-    dotDir = "$HOME/.dotfiles" ;
+    dotDir = "$HOME/.dotfiles";
   in {
     packages.aarch64-linux = {
       default = nixpkgs.legacyPackages.aarch64-linux.callPackage ./ags {inherit inputs;};
