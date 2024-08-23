@@ -9,6 +9,7 @@
     ../home-manager/darwin
     ../home-manager/git.nix
     ../home-manager/lf.nix
+    ../home-manager/micro.nix
     ../home-manager/nvim.nix
     ../home-manager/packages.nix
     ../home-manager/tmux.nix
