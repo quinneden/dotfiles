@@ -7,17 +7,27 @@
   username = "quinn";
 in {
   imports = [
-    ./audio.nix
-    ./fonts.nix
-    ./gnome.nix
     ./hardware.nix
-    ./hyprland.nix
-    ./locale.nix
-    ./nautilus.nix
-    ./system.nix
+    ../../../modules/nixos/audio.nix
+    ../../../modules/nixos/fonts.nix
+    ../../../modules/nixos/gnome.nix
+    ../../../modules/nixos/hyprland.nix
+    ../../../modules/nixos/locale.nix
+    ../../../modules/nixos/nautilus.nix
+    ../../../modules/nixos/system.nix
   ];
 
   hyprland.enable = true;
+
+  boot = {
+    binfmt.emulatedSystems = ["aarch64-linux"];
+    tmp.cleanOnBoot = true;
+    loader = {
+      timeout = 2;
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+  };
 
   users.users.${username} = {
     isNormalUser = true;
@@ -43,7 +53,7 @@ in {
       home.username = username;
       home.homeDirectory = "/home/${username}";
       imports = [
-        ./home.nix
+        ../../../modules/nixos/home.nix
       ];
     };
   };

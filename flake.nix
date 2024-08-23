@@ -12,17 +12,21 @@
     ...
   }: let
     dotDir = "$HOME/.dotfiles";
+    systems = [
+      "aarch64-darwin"
+      "aarch64-linux"
+      "x86_64-linux"
+    ];
+    forAllSystems = nixpkgs.lib.genAttrs systems;
   in {
-    packages.aarch64-linux = {
-      default = nixpkgs.legacyPackages.aarch64-linux.callPackage ./ags {inherit inputs;};
-    };
+    packages = forAllSystems (system: {
+      default = nixpkgs.legacyPackages.${self.system}.callPackage ./ags {inherit inputs;};
+    });
 
-    nixosConfigurations = let
-      system = "aarch64-linux";
-    in {
-      "nixos" = nixpkgs.lib.nixosSystem {
+    nixosConfigurations = {
+      "nixos-macmini" = nixpkgs.lib.nixosSystem {
         pkgs = import nixpkgs {
-          inherit system;
+          system = "aarch64-linux";
           config.allowUnfree = true;
           overlays = [
             nixos-apple-silicon.overlays.default
@@ -30,10 +34,10 @@
         };
         specialArgs = {
           inherit inputs dotDir;
-          asztal = self.packages.aarch64-linux.default;
+          asztal = self.packages.${self.system}.default;
         };
         modules = [
-          ./nixos/nixos.nix
+          ./hosts/macmini/nixos
           lix-module.nixosModules.default
           nixos-apple-silicon.nixosModules.default
           home-manager.nixosModules.home-manager
@@ -47,6 +51,30 @@
           {networking.hostName = "nixos-macmini";}
         ];
       };
+
+      "relic" = nixpkgs.lib.nixosSystem {
+        pkgs = import nixpkgs {
+          system = "x64-64-linux";
+          config.allowUnfree = true;
+        };
+        specialArgs = {
+          inherit inputs dotDir;
+          asztal = self.packages.${self.system}.default;
+        };
+        modules = [
+          ./hosts/relic
+          lix-module.nixosModules.default
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = {inherit inputs dotDir;};
+            };
+          }
+          {networking.hostName = "nixos-relic";}
+        ];
+      };
     };
 
     # darwin config
@@ -55,7 +83,7 @@
         system = "aarch64-darwin";
         specialArgs = {inherit inputs dotDir;};
         modules = [
-          ./darwin/configuration.nix
+          ./hosts/macmini/darwin
           home-manager.darwinModules.default
           {networking.hostName = "macos-macmini";}
         ];

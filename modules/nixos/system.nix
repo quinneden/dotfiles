@@ -6,7 +6,7 @@
   ...
 }: {
   # nix
-  documentation.nixos.enable = false; # .desktop
+  documentation.nixos.enable = false;
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];
     auto-optimise-store = true;
@@ -27,8 +27,6 @@
     libvirtd.enable = true;
   };
 
-  boot.binfmt.emulatedSystems = ["x86_64-linux"];
-
   # direnv
   programs.direnv = {
     package = pkgs.direnv;
@@ -47,7 +45,6 @@
   # packages
   environment.systemPackages = with pkgs; [
     alejandra
-    asahi-bless
     btrfs-progs
     home-manager
     micro
@@ -96,37 +93,11 @@
     firewall.enable = false;
   };
 
-  # asahi
-  hardware.asahi = {
-    setupAsahiSound = true;
-    useExperimentalGPUDriver = true;
-    experimentalGPUInstallMode = "replace";
-    peripheralFirmwareDirectory = builtins.fetchTarball {
-      url = "https://objectstorage.us-phoenix-1.oraclecloud.com/n/ax6cmlt4v0it/b/bucket-20240716-1828/o/firmware.tar.gz";
-      sha256 = "sha256:1lhl7xs83dfq2pn8n5ay1x51dq9gva1l6ql7ivcixxwlyr1yqkj2";
-    };
-  };
-  hardware.graphics = {
-    enable = true;
-    package = lib.mkDefault config.hardware.asahi.pkgs.mesa-asahi-edge.drivers;
-  };
-
   # bluetooth
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
     settings.General.Experimental = true;
-  };
-
-  # bootloader
-  boot = {
-    tmp.cleanOnBoot = true;
-    m1n1CustomLogo = ../assets/bootlogo-m1n1.png;
-    loader = {
-      timeout = 2;
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = false;
-    };
   };
 
   # swap

@@ -13,7 +13,6 @@
     "rf" = "rm -rf";
     "tree" = "eza --icons --tree --group-directories-first -I '.git*'";
     "flake-update" = "sudo nix flake update ~/.dotfiles";
-    "nix-clean" = "sudo nix-collect-garbage -d && sudo rm /nix/var/nix/gcroots/auto/* && nix-collect-garbage -d";
 
     "gst" = "git status";
     "gb" = "git branch";
