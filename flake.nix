@@ -12,12 +12,16 @@
     ...
   }: let
     dotDir = "$HOME/.dotfiles";
-    systems = [
-      "aarch64-darwin"
-      "aarch64-linux"
-      "x86_64-linux"
-    ];
-    forAllSystems = nixpkgs.lib.genAttrs systems;
+    forAllSystems = function:
+      nixpkgs.lib.genAttrs [
+        "aarch64-darwin"
+        "aarch64-linux"
+        "x86_64-linux"
+      ] (system:
+        function (import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        }));
   in {
     packages = forAllSystems (system: {
       default = nixpkgs.legacyPackages.${self.system}.callPackage ./ags {inherit inputs;};
@@ -53,10 +57,6 @@
       };
 
       "relic" = nixpkgs.lib.nixosSystem {
-        pkgs = import nixpkgs {
-          system = "x64-64-linux";
-          config.allowUnfree = true;
-        };
         specialArgs = {
           inherit inputs dotDir;
           asztal = self.packages.${self.system}.default;
@@ -141,6 +141,8 @@
     ags.url = "github:Aylur/ags";
 
     astal.url = "github:astal-sh/libastal";
+
+    flake-parts.url = "github:hercules-ci/flake-parts";
 
     lf-icons = {
       url = "github:gokcehan/lf";
