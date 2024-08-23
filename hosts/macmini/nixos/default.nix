@@ -8,13 +8,13 @@
 in {
   imports = [
     ./hardware.nix
-    ../../../modules/nixos/audio.nix
-    ../../../modules/nixos/fonts.nix
-    ../../../modules/nixos/gnome.nix
-    ../../../modules/nixos/hyprland.nix
-    ../../../modules/nixos/locale.nix
-    ../../../modules/nixos/nautilus.nix
-    ../../../modules/nixos/system.nix
+    ../../modules/nixos/audio.nix
+    ../../modules/nixos/fonts.nix
+    ../../modules/nixos/gnome.nix
+    ../../modules/nixos/hyprland.nix
+    ../../modules/nixos/locale.nix
+    ../../modules/nixos/nautilus.nix
+    ../../modules/nixos/system.nix
   ];
 
   hyprland.enable = true;
