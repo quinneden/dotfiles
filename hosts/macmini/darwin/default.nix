@@ -7,8 +7,8 @@
   ...
 }: {
   imports = [
-    ../modules/darwin/brew.nix
-    ../modules/darwin/system.nix
+    ../../../modules/darwin/brew.nix
+    ../../../modules/darwin/system.nix
   ];
 
   users.users.quinn = {
@@ -23,7 +23,7 @@
     extraSpecialArgs = {
       inherit inputs dotDir;
     };
-    users.quinn = import ../modules/darwin/home.nix;
+    users.quinn = import ../../../modules/darwin/home.nix;
   };
 
   security.pam.enableSudoTouchIdAuth = true;
