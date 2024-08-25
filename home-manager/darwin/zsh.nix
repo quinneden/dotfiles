@@ -42,7 +42,6 @@
       push = "git push";
       py = "python";
       reboot = "sudo reboot";
-      repos = "cd ~/repos";
       rf = "rm -rf";
       sed = "gsed";
       shutdown = "sudo shutdown -h now";

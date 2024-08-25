@@ -14,15 +14,12 @@
     "tree" = "eza --icons --tree --group-directories-first -I '.git*'";
     "flake-update" = "sudo nix flake update ~/.dotfiles";
     "nix-clean" = "sudo nix-collect-garbage -d && sudo rm /nix/var/nix/gcroots/auto/* && nix-collect-garbage -d";
-
     "gst" = "git status";
+    "gsw" = "git switch -c";
     "gb" = "git branch";
     "gch" = "git checkout";
-    "gc" = "git commit";
     "ga" = "git add";
     "gr" = "git reset --soft HEAD~1";
-
-    "del" = "gio trash";
   };
 in {
   options.shellAliases = with lib;
