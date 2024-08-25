@@ -7,14 +7,23 @@
   ...
 }: {
   imports = [
-    ./brew.nix
-    ./system.nix
+    ../../../modules/darwin/brew.nix
+    ../../../modules/darwin/system.nix
   ];
 
   users.users.quinn = {
     description = "Quinn Edenfield";
     home = "/Users/quinn";
     shell = pkgs.zsh;
+  };
+
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    extraSpecialArgs = {
+      inherit inputs dotDir;
+    };
+    users.quinn = import ../../../modules/darwin/home.nix;
   };
 
   security.pam.enableSudoTouchIdAuth = true;
@@ -24,7 +33,6 @@
 
   nix = {
     package = pkgs.lix;
-    # distributedBuilds = true;
     settings = {
       auto-optimise-store = true;
       builders-use-substitutes = true;
@@ -72,14 +80,5 @@
     };
     global.brewfile = true;
     caskArgs.language = "en-US";
-  };
-
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    extraSpecialArgs = {
-      inherit inputs dotDir;
-    };
-    users.quinn = import ./home.nix;
   };
 }
