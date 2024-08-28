@@ -57,12 +57,10 @@
       HOMEBREW_CELLAR = "/opt/homebrew/Cellar";
       HOMEBREW_PREFIX = "/opt/homebrew";
       HOMEBREW_REPOSITORY = "/opt/homebrew";
-
       INFOPATH = "/opt/homebrew/share/info:\${INFOPATH:-}";
       LANG = "en_US.UTF-8";
       MICRO_TRUECOLOR = "1";
       PATH = "/opt/homebrew/bin:/opt/homebrew/sbin:/opt/homebrew/opt/make/libexec/gnubin:/run/current-system/sw/bin:/etc/profiles/per-user/quinn/bin:/usr/local/bin:/Users/quinn/.local/bin\${PATH+:\$PATH}";
-      workdir = "$HOME/workdir";
     };
     initExtra = ''
       for f (~/.config/zsh/completions/*(N.)); do
