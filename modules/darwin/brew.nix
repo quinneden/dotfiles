@@ -88,6 +88,7 @@
       "pipx"
       "podman"
       "pure"
+      "pv"
       "pyenv-virtualenv"
       "pygments"
       "python@3.10"
