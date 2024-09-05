@@ -1,6 +1,7 @@
 {
   imports = [
     ./cfg.nix
+    ./darwin-switch.nix
     ./nix-switch.nix
     ./nish.nix
     ./vault.nix

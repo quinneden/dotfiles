@@ -3,10 +3,18 @@
     enable = true;
     enableZshIntegration = true;
     settings = {
-      format = ''
-        ''$username''$hostname''$directory''$git_branch''$git_state''$git_status''$cmd_duration''$line_break''$python''$character
-      '';
-
+      format = builtins.concatStringsSep "" [
+        "$username"
+        "$hostname"
+        "$directory"
+        "$git_branch"
+        "$git_state"
+        "$git_status"
+        "$cmd_duration"
+        "$line_break"
+        "$python"
+        "$character"
+      ];
       directory = {
         style = "blue";
       };
@@ -51,6 +59,11 @@
       python = {
         format = "[$virtualenv]($style) ";
         style = "bright-black";
+      };
+
+      nix_shell = {
+        disabled = false;
+        format = "(fg:white)[ ](bg:white fg:black)(fg:white) ";
       };
     };
   };

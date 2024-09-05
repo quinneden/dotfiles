@@ -42,6 +42,7 @@
         "pluginchannels": [
           "https://raw.githubusercontent.com/micro-editor/plugin-channel/master/channel.json"
         ],
+        "parsecursor": true,
         "pluginrepos": [],
         "reload": "auto",
         "rmtrailingws": true,

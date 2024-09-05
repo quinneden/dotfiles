@@ -18,13 +18,14 @@
       "iterm2"
       "kitty"
       "macfuse"
-      # "podman-desktop"
+      "podman-desktop"
       "utm"
       "vagrant"
       "vscodium"
     ];
     brews = [
       "automake"
+      "awscli"
       "az"
       "openssl@3"
       "sqlite"
@@ -102,6 +103,7 @@
       "rustup"
       "shellcheck"
       "tmux"
+      "trash"
       "tree"
       "w3m"
       "wget"
