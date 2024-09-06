@@ -26,11 +26,9 @@
       cddf = "cd ${dotDir}";
       code = "codium";
       code-flake = "cd ${dotDir} && codium .";
-      # darwin-switch = "darwin-rebuild switch --flake ${dotDir}#macos";
       df = "df -h";
       du = "du -h";
       flake-tree = "eza -aT ${dotDir} -I '.git*|.vscode*|*.DS_Store|Icon?'";
-      # fuck = "sudo rm -rf";
       gst = "git status";
       gsur = "git submodule update --init --recursive";
       l = "eza -la --group-directories-first";
@@ -54,13 +52,8 @@
       dotdir = "${dotDir}";
       EDITOR = "micro";
       EZA_ICON_SPACING = "2";
-      # HOMEBREW_CELLAR = "/opt/homebrew/Cellar";
-      # HOMEBREW_PREFIX = "/opt/homebrew";
-      # HOMEBREW_REPOSITORY = "/opt/homebrew";
-      # INFOPATH = "/opt/homebrew/share/info:\${INFOPATH:-}";
       LANG = "en_US.UTF-8";
       MICRO_TRUECOLOR = "1";
-      # PATH = "/opt/homebrew/bin:/opt/homebrew/sbin:/opt/homebrew/opt/make/libexec/gnubin:/run/current-system/sw/bin:/etc/profiles/per-user/quinn/bin:/usr/local/bin:/Users/quinn/.local/bin\${PATH+:\$PATH}";
     };
     initExtra = ''
       PATH=/opt/homebrew/opt/make/libexec/gnubin:/run/current-system/sw/bin:/etc/profiles/per-user/quinn/bin:/Users/quinn/.local/bin:$PATH; export PATH

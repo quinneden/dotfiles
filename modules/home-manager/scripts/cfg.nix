@@ -1,13 +1,9 @@
 {pkgs, ...}: let
   cfg = pkgs.writeShellScriptBin "cfg" ''
     find=$(find $dotdir -type f -iregex ".*/$1.nix" | awk '{ print length(), $0 | "sort -n" }' | sed s/"^[0-9][0-9] "/""/g)
-    if [[ $@ =~ -c ]]; then
-      if [[ $1 == -c ]]; then
-        edit='codium'
-        shift
-      else
-        edit='codium'
-      fi
+    if [[ $1 == -c ]]; then
+      edit='codium'
+      shift
     else
       edit='mi'
     fi
