@@ -38,7 +38,7 @@
         "browser.bookmarks.restore_default_bookmarks" = false;
         "browser.bookmarks.addedImportButton" = false;
 
-        "browser.download.useDownloadDir" = false;
+        "browser.download.useDownloadDir" = true;
 
         # Disable crappy home activity stream page
         "browser.newtabpage.activity-stream.feeds.topsites" = false;
@@ -91,7 +91,7 @@
         "signon.rememberSignons" = true;
         # Harden
         "privacy.trackingprotection.enabled" = true;
-        "dom.security.https_only_mode" = false;
+        "dom.security.https_only_mode" = true;
         # Layout
         "browser.uiCustomization.state" = builtins.toJSON {
           currentVersion = 20;

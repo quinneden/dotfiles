@@ -7,10 +7,12 @@
 }: {
   # nix
   documentation.nixos.enable = false;
+
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];
     auto-optimise-store = true;
     trusted-users = ["quinn" "root"];
+    warn-dirty = false;
     substituters = [
       "https://quinneden.cachix.org"
     ];
@@ -20,7 +22,7 @@
   };
 
   # virtualisation
-  programs.virt-manager.enable = true;
+  programs.virt-manager.enable = false;
   virtualisation = {
     podman.enable = true;
     docker.enable = true;
@@ -76,8 +78,6 @@
   # logind
   services.logind.extraConfig = ''
     HandlePowerKey=ignore
-    HandleLidSwitch=suspend
-    HandleLidSwitchExternalPower=ignore
   '';
 
   # network

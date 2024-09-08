@@ -24,11 +24,12 @@
         }));
   in {
     packages = forAllSystems (system: {
-      default = nixpkgs.legacyPackages.${self.system}.callPackage ./ags {inherit inputs;};
+      default = nixpkgs.legacyPackages.aarch64-linux.callPackage ./ags {inherit inputs;};
     });
 
     nixosConfigurations = {
       "nixos-macmini" = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
         pkgs = import nixpkgs {
           system = "aarch64-linux";
           config.allowUnfree = true;
@@ -38,7 +39,7 @@
         };
         specialArgs = {
           inherit inputs dotDir;
-          asztal = self.packages.${self.system}.default;
+          asztal = self.packages.aarch64-linux.default;
         };
         modules = [
           ./hosts/macmini/nixos
@@ -108,12 +109,12 @@
     };
 
     lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.90.0.tar.gz";
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixos-apple-silicon = {
-      url = "github:quinneden/nixos-apple-silicon";
+      url = "github:tpwrules/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

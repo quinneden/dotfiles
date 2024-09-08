@@ -46,6 +46,11 @@
         gnome-calendar
         gnome-system-monitor
         gnome-calculator
+        gnome-boxes
+        gnome-control-center
+        gnome-weather
+        gnome-clocks
+        gnome-software # for flatpak
       ])
       ++ (with pkgs;
         with gnome; [
@@ -53,11 +58,6 @@
           qogir-icon-theme
           loupe
           gnome-text-editor
-          gnome-boxes
-          gnome-control-center
-          gnome-weather
-          gnome-clocks
-          gnome-software # for flatpak
           wl-gammactl
           wl-clipboard
           wayshot

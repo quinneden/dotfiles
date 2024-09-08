@@ -17,35 +17,32 @@
         wl-clipboard
       ];
 
-      gnome.excludePackages =
-        (with pkgs; [
-          gedit
-          gnome-connections
-          gnome-console
-          gnome-photos
-          gnome-text-editor
-          gnome-tour
-          snapshot
-          cheese # webcam tool
-          epiphany # web browser
-          evince # document viewer
-          geary # email reader
-          gnome-font-viewer
-          totem # video player
-          yelp # Help view
-        ])
-        ++ (with pkgs.gnome; [
-          atomix # puzzle game
-          gnome-characters
-          gnome-contacts
-          gnome-initial-setup
-          gnome-maps
-          gnome-shell-extensions
-          gnome-music
-          hitori # sudoku game
-          iagno # go game
-          tali # poker game
-        ]);
+      gnome.excludePackages = with pkgs; [
+        gedit
+        gnome-connections
+        gnome-console
+        gnome-photos
+        gnome-text-editor
+        gnome-tour
+        snapshot
+        cheese # webcam tool
+        epiphany # web browser
+        evince # document viewer
+        geary # email reader
+        gnome-font-viewer
+        totem # video player
+        yelp # Help view
+        atomix # puzzle game
+        gnome-characters
+        gnome-contacts
+        gnome-initial-setup
+        gnome-maps
+        gnome-shell-extensions
+        gnome-music
+        hitori # sudoku game
+        iagno # go game
+        tali # poker game
+      ];
     };
 
     services.xserver = {
