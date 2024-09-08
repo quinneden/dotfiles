@@ -1,5 +1,5 @@
 {pkgs, ...}: let
-  nish = pkgs.writeShellScriptBin "nix-clean" ''
+  nix-clean = pkgs.writeShellScriptBin "nix-clean" ''
     garbage_collect() {
       if [[ -e /nix/var/nix/gcroots/auto ]]; then
         sudo rm -rf /nix/var/nix/gcroots/auto
