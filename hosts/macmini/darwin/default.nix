@@ -52,18 +52,18 @@
 
     linux-builder = {
       enable = true;
-      package = pkgs.darwin.linux-builder;
-      ephemeral = true;
-      maxJobs = 6;
-      config = {pkgs, ...}: {
-        virtualisation = {
-          cores = 6;
-          darwin-builder = {
-            diskSize = 100 * 1024;
-            memorySize = 6 * 1024;
-          };
-        };
-      };
+      # package = pkgs.darwin.linux-builder;
+      # ephemeral = true;
+      # maxJobs = 6;
+      # config = {pkgs, ...}: {
+      #   virtualisation = {
+      #     cores = 6;
+      #     darwin-builder = {
+      #       diskSize = 100 * 1024;
+      #       memorySize = 6 * 1024;
+      #     };
+      #   };
+      # };
     };
   };
 
