@@ -52,6 +52,7 @@
 
     linux-builder = {
       enable = true;
+      package = pkgs.darwin.linux-builder;
       ephemeral = true;
       maxJobs = 6;
       config = {pkgs, ...}: {

@@ -6,6 +6,5 @@ in {
   home.packages = with pkgs; [
     sec
     wipe-linux
-    nix-clean
   ];
 }
