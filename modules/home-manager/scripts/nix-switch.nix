@@ -1,4 +1,4 @@
-{pkgs, ...}: let
+{pkgs, lib, ...}: let
   symlink = pkgs.writeShellScript "symlink" ''
     if [[ "$1" == "-r" ]]; then
       rm -rf "$HOME/.config/ags"
@@ -26,5 +26,5 @@
     ${symlink} -a
   '';
 in {
-  home.packages = [nix-switch nix-boot nix-test];
+  home.packages = lib.mkIf pkgs.stdenv.isLinux [nix-switch nix-boot nix-test];
 }

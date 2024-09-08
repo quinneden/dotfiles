@@ -81,6 +81,9 @@
     darwinConfigurations = {
       "macos" = nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
+        pkgs = import nixpkgs {
+          system = "aarch64-darwin";
+        };
         specialArgs = {inherit inputs dotDir;};
         modules = [
           ./hosts/macmini/darwin

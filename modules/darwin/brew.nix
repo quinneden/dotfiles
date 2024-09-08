@@ -93,6 +93,7 @@
       "pygments"
       "python@3.10"
       "qemu"
+      "rbenv"
       "rclone"
       "ripgrep"
       "rm-improved"

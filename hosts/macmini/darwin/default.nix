@@ -33,17 +33,18 @@
 
   nix = {
     package = pkgs.lix;
+    distributedBuilds = true;
     settings = {
       auto-optimise-store = true;
       builders-use-substitutes = true;
       experimental-features = ["nix-command" "flakes"];
-      substituters = [
-        "https://quinneden.cachix.org"
-      ];
-      trusted-substituters = config.nix.settings.substituters;
-      trusted-public-keys = [
-        "quinneden.cachix.org-1:1iSAVU2R8SYzxTv3Qq8j6ssSPf0Hz+26gfgXkvlcbuA="
-      ];
+      # substituters = [
+      #   "https://quinneden.cachix.org"
+      # ];
+      # trusted-substituters = config.nix.settings.substituters;
+      # trusted-public-keys = [
+      #   "quinneden.cachix.org-1:1iSAVU2R8SYzxTv3Qq8j6ssSPf0Hz+26gfgXkvlcbuA="
+      # ];
       warn-dirty = false;
       extra-nix-path = "nixpkgs=flake:nixpkgs";
       trusted-users = ["quinn" "root"];

@@ -1,5 +1,6 @@
 {
   imports = [
+    ../modules/packages.nix
     ./cfg.nix
     ./darwin-switch.nix
     ./nix-switch.nix
