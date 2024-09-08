@@ -51,6 +51,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               extraSpecialArgs = {inherit inputs dotDir;};
+              backupFileExtension = "backup";
             };
           }
           {networking.hostName = "nixos-macmini";}
