@@ -44,6 +44,7 @@
       lazydocker
       lazygit
       ripgrep
+      trashy
       jq
       nodePackages.prettier
     ];

@@ -9,7 +9,6 @@
     "cddf" = "cd $dotdir";
     "code" = "codium";
     "py" = "python";
-    "fuck" = "sudo rm -rf";
     "rf" = "rm -rf";
     "tree" = "eza --icons --tree --group-directories-first -I '.git*'";
     "flake-update" = "sudo nix flake update ~/.dotfiles";
@@ -45,9 +44,9 @@ in {
         bindkey "^[[1;5D" backward-word
         unsetopt BEEP
 
-        for f (${config.xdg.configHome}/zsh/[^completions]**/*(N.)); do source $f; done
+        for f (${config.xdg.configHome}/zsh/functions/*(N.)); do source $f; done
 
-        [[ $(type -w z) =~ 'function' ]] && alias cd='z' || true
+        [[ $(type -w z) == 'z: function' ]] && alias cd='z' || true
 
         if [[ $TERM_PROGRAM == 'vscode' ]]; then
           autoload -U promptinit; promptinit
