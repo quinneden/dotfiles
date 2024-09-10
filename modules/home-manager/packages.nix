@@ -33,6 +33,7 @@
       zoxide
       vagrant
       python312
+      gtrash
     ];
     cli = [
       bat
@@ -44,7 +45,6 @@
       lazydocker
       lazygit
       ripgrep
-      trashy
       jq
       nodePackages.prettier
     ];

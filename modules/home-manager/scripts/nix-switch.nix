@@ -10,9 +10,10 @@
     fi
   '';
   nix-switch = pkgs.writeShellScriptBin "nix-switch" ''
-    ${symlink} -r
+    rm -rf "$HOME/.config/ags"
     sudo nixos-rebuild switch --flake $HOME/.dotfiles#nixos-macmini --impure $@
-    ${symlink} -a
+    rm -rf "$HOME/.config/ags"
+    ln -s "$HOME/.dotfiles/ags" "$HOME/.config/ags"
   '';
   nix-boot = pkgs.writeShellScriptBin "nix-boot" ''
     ${symlink} -r

@@ -50,6 +50,5 @@
     LC_ALL = "en_US.UTF-8";
   };
 
-  programs.home-manager.enable = true;
   home.stateVersion = "24.11";
 }

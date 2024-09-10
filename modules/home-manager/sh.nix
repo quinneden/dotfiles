@@ -44,7 +44,7 @@ in {
         bindkey "^[[1;5D" backward-word
         unsetopt BEEP
 
-        for f (${config.xdg.configHome}/zsh/functions/*(N.)); do source $f; done
+        for f (${config.xdg.configHome}/zsh/{functions,completions}/*(N.)); do source $f; done
 
         [[ $(type -w z) == 'z: function' ]] && alias cd='z' || true
 
