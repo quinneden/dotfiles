@@ -25,8 +25,10 @@
       rustup
       rustc
       gcc
+      glow
       gnumake
       gptfdisk
+      lima
       cmake
       openssl
       pkg-config

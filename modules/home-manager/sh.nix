@@ -57,10 +57,9 @@ in {
         fpath+=(${config.xdg.configHome}/zsh/completions)
       '';
       sessionVariables = {
-        SHELL = "${pkgs.zsh}/bin/zsh";
         LC_ALL = "en_US.UTF-8";
         dotdir = "/home/quinn/.dotfiles";
-        EDITOR = "${pkgs.micro}/bin/micro";
+        EDITOR = "mi";
       };
     };
 

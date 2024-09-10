@@ -8,6 +8,11 @@
   # nix
   documentation.nixos.enable = false;
 
+  boot = {
+    supportedFilesystems = ["zfs"];
+    zfs.forceImportRoot = false;
+  };
+
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];
     auto-optimise-store = true;
@@ -91,6 +96,7 @@
       settings.General.EnableNetworkConfiguration = true;
     };
     firewall.enable = false;
+    hostId = "a25f4bea";
   };
 
   # bluetooth
