@@ -11,6 +11,7 @@
     self,
     ...
   }: let
+    secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
     dotDir = "$HOME/.dotfiles";
     forAllSystems = function:
       nixpkgs.lib.genAttrs [
@@ -103,8 +104,8 @@
   };
 
   nixConfig = {
-    extra-substituters = "https://quinneden.cachix.org";
-    extra-trusted-public-keys = "quinneden.cachix.org-1:1iSAVU2R8SYzxTv3Qq8j6ssSPf0Hz+26gfgXkvlcbuA=";
+    extra-substituters = "${secrets.cachix.quinneden.url}";
+    extra-trusted-public-keys = "${secrets.cachix.quinneden.public-key}";
   };
 
   inputs = {

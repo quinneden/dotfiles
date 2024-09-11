@@ -14,15 +14,16 @@
   };
 
   nix.settings = {
+    access-tokens = ["github=${secrets.github.api}"];
     experimental-features = ["nix-command" "flakes"];
     auto-optimise-store = true;
     trusted-users = ["quinn" "root"];
     warn-dirty = false;
     substituters = [
-      "https://quinneden.cachix.org"
+      "${secrets.cachix.nixos-asahi.url}"
     ];
     trusted-public-keys = [
-      "quinneden.cachix.org-1:1iSAVU2R8SYzxTv3Qq8j6ssSPf0Hz+26gfgXkvlcbuA="
+      "${secrets.cachix.nixos-asahi.public-key}"
     ];
   };
 

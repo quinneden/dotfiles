@@ -2,6 +2,7 @@
   config,
   inputs,
   dotDir,
+  secrets,
   lib,
   pkgs,
   ...
@@ -38,14 +39,15 @@
       auto-optimise-store = true;
       experimental-features = ["nix-command" "flakes"];
       substituters = [
-        "https://quinneden.cachix.org"
+        "${secrets.cachix.quinneden.url}"
       ];
       trusted-public-keys = [
-        "quinneden.cachix.org-1:1iSAVU2R8SYzxTv3Qq8j6ssSPf0Hz+26gfgXkvlcbuA="
+        "${secrets.cachix.quinneden.public-key}"
       ];
       warn-dirty = false;
       extra-nix-path = "nixpkgs=flake:nixpkgs";
       trusted-users = ["quinn" "root"];
+      access-tokens = ["github=${secrets.github.api}"];
     };
 
     linux-builder = {
