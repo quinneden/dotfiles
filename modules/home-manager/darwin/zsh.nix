@@ -54,9 +54,12 @@
       EZA_ICON_SPACING = "2";
       LANG = "en_US.UTF-8";
       MICRO_TRUECOLOR = "1";
+      TMPDIR = "/tmp";
     };
     initExtra = ''
-      PATH=/opt/homebrew/opt/make/libexec/gnubin:/run/current-system/sw/bin:/etc/profiles/per-user/quinn/bin:/Users/quinn/.local/bin:$PATH; export PATH
+      PATH=/opt/homebrew/opt/make/libexec/gnubin:/run/current-system/sw/bin:/etc/profiles/per-user/quinn/bin:/Users/quinn/.local/bin:$PATH;
+
+      eval $(/opt/homebrew/bin/brew shellenv)
 
       for f (~/.config/zsh/completions/*(N.)); do
         source $f

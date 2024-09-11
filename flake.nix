@@ -14,7 +14,6 @@
     dotDir = "$HOME/.dotfiles";
     forAllSystems = function:
       nixpkgs.lib.genAttrs [
-        "aarch64-darwin"
         "aarch64-linux"
         "x86_64-linux"
       ] (system:
@@ -79,16 +78,23 @@
       };
     };
 
-    # darwin config
-    darwinConfigurations = {
+    darwinConfigurations = let
+      system = "aarch64-darwin";
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+        overlays = [
+          nixos-apple-silicon.overlays.default
+          lix-module.overlays.lixFromNixpkgs
+        ];
+      };
+    in {
       "macos" = nix-darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        pkgs = import nixpkgs {
-          system = "aarch64-darwin";
-        };
+        inherit system pkgs;
         specialArgs = {inherit inputs dotDir;};
         modules = [
           ./hosts/macmini/darwin
+          lix-module.nixosModules.lixFromNixpkgs
           home-manager.darwinModules.default
           {networking.hostName = "macos-macmini";}
         ];
@@ -102,7 +108,7 @@
   };
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     nix-darwin = {
       url = "github:LnL7/nix-darwin";

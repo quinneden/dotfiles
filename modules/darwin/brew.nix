@@ -23,6 +23,7 @@
       "vscodium"
     ];
     brews = [
+      "act"
       "automake"
       "awscli"
       "az"
