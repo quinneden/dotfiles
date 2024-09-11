@@ -22,7 +22,7 @@
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = {
-      inherit inputs dotDir;
+      inherit inputs dotDir secrets;
     };
     users.quinn = import ../../../modules/darwin/home.nix;
   };

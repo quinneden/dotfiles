@@ -1,4 +1,9 @@
 {
+  pkgs,
+  inputs,
+  secrets,
+  ...
+}: {
   programs.git = {
     enable = true;
     extraConfig = {
@@ -8,6 +13,11 @@
       github.user = "quinneden";
       push.autoSetupRemote = true;
       init.defaultBranch = "main";
+      url = {
+        "https://oauth2:${secrets.github.api}@github.com" = {
+          insteadOf = "https://github.com";
+        };
+      };
     };
     userEmail = "quinnyxboy@gmail.com";
     userName = "Quinn Edenfield";

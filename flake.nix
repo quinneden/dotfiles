@@ -11,7 +11,7 @@
     self,
     ...
   }: let
-    secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
+    secrets = with inputs; builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
     dotDir = "$HOME/.dotfiles";
     forAllSystems = function:
       nixpkgs.lib.genAttrs [
@@ -38,7 +38,7 @@
           ];
         };
         specialArgs = {
-          inherit inputs dotDir;
+          inherit inputs dotDir secrets;
           asztal = self.packages.aarch64-linux.default;
         };
         modules = [
@@ -50,7 +50,7 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              extraSpecialArgs = {inherit inputs dotDir;};
+              extraSpecialArgs = {inherit inputs dotDir secrets;};
               backupFileExtension = "backup";
             };
           }
@@ -71,7 +71,7 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              extraSpecialArgs = {inherit inputs dotDir;};
+              extraSpecialArgs = {inherit inputs dotDir secrets;};
             };
           }
           {networking.hostName = "nixos-relic";}
@@ -92,7 +92,7 @@
     in {
       "macos" = nix-darwin.lib.darwinSystem {
         inherit system pkgs;
-        specialArgs = {inherit inputs dotDir;};
+        specialArgs = {inherit inputs dotDir secrets;};
         modules = [
           ./hosts/macmini/darwin
           lix-module.nixosModules.lixFromNixpkgs
@@ -101,11 +101,6 @@
         ];
       };
     };
-  };
-
-  nixConfig = {
-    extra-substituters = "${secrets.cachix.quinneden.url}";
-    extra-trusted-public-keys = "${secrets.cachix.quinneden.public-key}";
   };
 
   inputs = {
