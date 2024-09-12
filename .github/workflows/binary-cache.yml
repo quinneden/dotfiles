@@ -13,6 +13,10 @@ jobs:
       id-token: write
     steps:
       - uses: actions/checkout@main
+      - name: Unlock secrets
+        uses: sliteteam/github-action-git-crypt-unlock@1.2.0
+        env:
+          GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
       - uses: DeterminateSystems/nix-installer-action@main
         with:
           github-token: ${{ github.token }}
@@ -33,6 +37,10 @@ jobs:
         id-token: write
       steps:
         - uses: actions/checkout@main
+        - name: Unlock secrets
+          uses: sliteteam/github-action-git-crypt-unlock@1.2.0
+          env:
+            GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
         - uses: DeterminateSystems/nix-installer-action@main
           with:
             github-token: ${{ github.token }}
