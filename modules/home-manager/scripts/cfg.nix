@@ -48,6 +48,4 @@
 
     main "$@" && exit
   '';
-in {
-  home.packages = [cfg];
-}
+in {home.packages = [cfg];}

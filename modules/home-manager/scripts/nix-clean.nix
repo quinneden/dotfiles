@@ -9,7 +9,4 @@
 
     echo "\n$store_paths store paths deleted, $mib_saved MiB saved."
   '';
-in {
-  home.packages = [nix-clean];
-}
-
+in {home.packages = [nix-clean];}

@@ -2,6 +2,7 @@
   imports = [
     ../modules/packages.nix
     ./cfg.nix
+    ./cop.nix
     ./darwin-switch.nix
     ./nix-switch.nix
     ./nix-clean.nix
@@ -10,5 +11,7 @@
     ./vault.nix
     ./blocks.nix
     ./mi.nix
+    ./sec.nix
+    ./wipe-linux.nix
   ];
 }

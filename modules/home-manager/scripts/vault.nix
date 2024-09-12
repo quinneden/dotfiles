@@ -5,6 +5,4 @@
     git commit -m "sync $(date '+%Y-%m-%d %H:%M')"
     git push
   '';
-in {
-  home.packages = [vault];
-}
+in {home.packages = [vault];}

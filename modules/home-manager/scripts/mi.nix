@@ -8,6 +8,4 @@
       echo -ne '\e[2 q'
     fi
   '';
-in {
-  home.packages = [mi];
-}
+in {home.packages = [mi];}

@@ -6,6 +6,4 @@
       nix hash to-sri --type sha256 "$PREFETCH_URL"
     fi
   '';
-in {
-  home.packages = [nix-get-sha256];
-}
+in {home.packages = [nix-get-sha256];}

@@ -47,6 +47,7 @@
       tree = "eza -aT -I '.git*'";
     };
     sessionVariables = {
+      PAGER = "bat --style=grid,numbers --wrap=never";
       BAT_THEME = "Dracula";
       compdir = "${config.xdg.configHome}/zsh/completions";
       dotdir = "${dotDir}";

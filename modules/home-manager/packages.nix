@@ -9,7 +9,7 @@
     darwin = [
       alejandra
       aria2
-      devenv
+      # devenv
       gawk
       gnutar
       xz

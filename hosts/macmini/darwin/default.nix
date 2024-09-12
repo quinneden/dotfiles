@@ -15,7 +15,7 @@
   users.users.quinn = {
     description = "Quinn Edenfield";
     home = "/Users/quinn";
-    shell = pkgs.zsh;
+    shell = "${pkgs.zsh}/bin/zsh";
   };
 
   home-manager = {

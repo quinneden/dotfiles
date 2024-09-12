@@ -25,6 +25,4 @@
     sudo nixos-rebuild test --flake $HOME/.dotfiles#nixos-macmini --impure $@
     ${symlink} -a
   '';
-in {
-  home.packages = lib.mkIf pkgs.stdenv.isLinux [nix-switch nix-boot nix-test];
-}
+in {home.packages = lib.mkIf pkgs.stdenv.isLinux [nix-switch nix-boot nix-test];}
