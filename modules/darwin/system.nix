@@ -30,7 +30,7 @@
       };
 
       NSGlobalDomain = {
-        AppleInterfaceStyle = "Dark"; # dark mode
+        # AppleInterfaceStyle = "Dark"; # dark mode
         ApplePressAndHoldEnabled = false; # enable press and hold
         InitialKeyRepeat = 12; # normal minimum is 15 (225 ms), maximum is 120 (1800 ms)
         KeyRepeat = 2; # normal minimum is 2 (30 ms), maximum is 120 (1800 ms)

@@ -51,6 +51,7 @@
       "gh"
       "git"
       "git-crypt"
+      "git-lfs"
       "glab"
       "glow"
       "gnu-sed"

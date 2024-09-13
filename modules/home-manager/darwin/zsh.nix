@@ -56,11 +56,14 @@
       LANG = "en_US.UTF-8";
       MICRO_TRUECOLOR = "1";
       TMPDIR = "/tmp";
+      PATH = "/run/current-system/sw/bin:/etc/profiles/per-user/quinn/bin:/Users/quinn/.local/bin:\${PATH:+$PATH}";
     };
     initExtra = ''
-      PATH=/opt/homebrew/opt/make/libexec/gnubin:/run/current-system/sw/bin:/etc/profiles/per-user/quinn/bin:/Users/quinn/.local/bin:$PATH;
+      [[ $PATH =~ '/nix/store' ]] || eval $(/opt/homebrew/bin/brew shellenv)
 
-      eval $(/opt/homebrew/bin/brew shellenv)
+      eval "$(zoxide init zsh)"
+
+      if __zoxide_z; then alias -- cd='z'; fi
 
       for f (~/.config/zsh/completions/*(N.)); do
         source $f
@@ -72,8 +75,6 @@
       done
 
       for f (~/.config/zsh/functions/*(N.)); do source $f; done
-
-      [ -e /opt/homebrew/bin/zoxide ] && alias cd="z"
     '';
   };
 }

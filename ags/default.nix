@@ -1,5 +1,6 @@
 {
   inputs,
+  pkgs,
   writeShellScript,
   system,
   stdenv,
@@ -35,7 +36,7 @@
     fzf
     brightnessctl
     swww
-    # inputs.matugen.packages.${pkgs.system}.default
+    inputs.matugen.packages.${pkgs.system}.default
     slurp
     wf-recorder
     wl-clipboard
