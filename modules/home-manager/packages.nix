@@ -9,7 +9,7 @@
     darwin = [
       alejandra
       aria2
-      # devenv
+      devenv
       gawk
       gnutar
       xz
@@ -19,7 +19,6 @@
     linux = [
       (mpv.override {scripts = [mpvScripts.mpris];})
       direnv
-      hdrop
       nodejs
       vesktop
       rustup
@@ -44,6 +43,7 @@
       fd
       fzf
       gh
+      gnupg
       lazydocker
       lazygit
       ripgrep
