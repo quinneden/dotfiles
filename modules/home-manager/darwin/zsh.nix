@@ -65,7 +65,9 @@
 
       if __zoxide_z; then alias -- cd='z'; fi
 
-      for f (~/.config/zsh/{completions,functions}/*(N.)); do source $f; done
+      autoload -Uz compinit && compinit
+
+      for f (~/.config/zsh/functions/*(N.)); do source $f; done
     '';
   };
 }
