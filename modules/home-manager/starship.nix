@@ -8,10 +8,6 @@
     format = "[$symbol ](${color})";
   };
   os = icon: fg: "[${icon} ](fg:${fg})";
-  # pad = {
-  #   left = "";
-  #   right = "";
-  # };
   settings = {
     add_newline = true;
     format = builtins.concatStringsSep "" [
@@ -29,11 +25,20 @@
       "$cmd_duration"
       "$status"
       "$line_break"
-      "[❯](fg:211)"
+      ''''${custom.vscode}''
+      "$character"
       ''''${custom.space}''
     ];
+    character = {
+      success_symbol = "[❯](fg:84)";
+      error_symbol = "[❯](fg:196)";
+    };
     custom.space = {
       when = ''! test $env'';
+      format = "  ";
+    };
+    custom.vscode = {
+      when = ''[[ $TERM_PROGRAM == vscode ]]'';
       format = "  ";
     };
     continuation_prompt = "┆ ";

@@ -18,6 +18,7 @@
     ];
     linux = [
       (mpv.override {scripts = [mpvScripts.mpris];})
+      apfsprogs
       direnv
       nodejs
       vesktop
@@ -27,10 +28,12 @@
       glow
       gnumake
       gptfdisk
+      hfsprogs
       lima
       cmake
       openssl
       pkg-config
+      pure-prompt
       zoxide
       vagrant
       python312

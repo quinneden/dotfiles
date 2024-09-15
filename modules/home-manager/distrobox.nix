@@ -13,7 +13,7 @@
       symlinks = [
         ".bashrc"
         ".zshrc"
-        ".config/nvim"
+        # ".config/nvim"
         ".config/nix"
         ".config/zsh"
         ".config/starship.toml"

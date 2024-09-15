@@ -48,10 +48,10 @@ in {
 
         [[ $(type -w z) == 'z: function' ]] && alias cd='z' || true
 
-        if [[ $TERM_PROGRAM == 'vscode' ]]; then
-          autoload -U promptinit; promptinit
-          prompt pure
-        fi
+        # if [[ $TERM_PROGRAM == 'vscode' ]]; then
+        #   autoload -U promptinit; promptinit
+        #   prompt pure
+        # fi
       '';
       initExtraBeforeCompInit = ''
         fpath+=(${config.xdg.configHome}/zsh/completions)

@@ -27,16 +27,21 @@
       default = nixpkgs.legacyPackages.aarch64-linux.callPackage ./ags {inherit inputs;};
     });
 
-    nixosConfigurations = {
-      "nixos-macmini" = nixpkgs.lib.nixosSystem {
+    nixosConfigurations = let
+      system = "aarch64-linux";
+      pkgs = import nixpkgs {
         system = "aarch64-linux";
-        pkgs = import nixpkgs {
-          system = "aarch64-linux";
-          config.allowUnfree = true;
-          overlays = [
-            nixos-apple-silicon.overlays.default
-          ];
-        };
+        config.allowUnfree = true;
+        overlays = [
+          nixos-apple-silicon.overlays.default
+          (final: prev: {
+            neovim = inputs.nixvim.packages.${pkgs.system}.default;
+          })
+        ];
+      };
+    in {
+      "nixos-macmini" = nixpkgs.lib.nixosSystem {
+        inherit system pkgs;
         specialArgs = {
           inherit inputs dotDir secrets;
           asztal = self.packages.aarch64-linux.default;
@@ -121,12 +126,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    devenv.url = "github:cachix/devenv";
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixvim.url = "github:elythh/nixvim";
+
+    devenv.url = "github:cachix/devenv";
+
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";

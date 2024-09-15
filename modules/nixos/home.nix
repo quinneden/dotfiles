@@ -6,7 +6,7 @@
   ...
 }: {
   imports = [
-    ../home-manager/nvim.nix
+    # ../home-manager/nvim.nix
     ../home-manager/ags.nix
     ../home-manager/blackbox.nix
     ../home-manager/browser.nix
