@@ -65,16 +65,7 @@
 
       if __zoxide_z; then alias -- cd='z'; fi
 
-      for f (~/.config/zsh/completions/*(N.)); do
-        source $f
-        base=$(basename $f)
-        cmd=$(basename $f | tr -d '_')
-        if [[ ! $(type -w $cmd) =~ 'none' ]]; then
-          compdef $base $cmd
-        fi
-      done
-
-      for f (~/.config/zsh/functions/*(N.)); do source $f; done
+      for f (~/.config/zsh/{completions,functions}/*(N.)); do source $f; done
     '';
   };
 }

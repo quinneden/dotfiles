@@ -112,6 +112,7 @@
       "whalebrew"
       "wrangler"
       "yapf"
+      "zlib"
       "zoxide"
     ];
     masApps = {
