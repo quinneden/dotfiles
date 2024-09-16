@@ -32,8 +32,8 @@ jobs:
       - run: sudo apt install -y qemu-system-aarch64 qemu-efi binfmt-support qemu-user-static
       - uses: DeterminateSystems/magic-nix-cache-action@main
       - run: |
-          mount -o remount,size=15G /run/qemu
-          mount -o remount,size=15G /run/user/1001
+          sudo mount -o remount,size=15G /run/qemu
+          sudo mount -o remount,size=15G /run/user/1001
           nix build -L --impure .#nixosConfigurations.nixos-macmini.config.system.build.toplevel
 
   build-darwin:
