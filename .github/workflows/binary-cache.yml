@@ -26,12 +26,14 @@ jobs:
         env:
           KEY_ENCODED: ${{ secrets.GIT_CRYPT_KEY }}
         run: |
-          sudo apt update && sudo apt install git-crypt
-          git config --global --add safe.directory "${PWD}"
-          echo "${KEY_ENCODED}" | base64 -d | git-crypt unlock -
+          # sudo apt update && sudo apt install git-crypt
+          # git config --global --add safe.directory "${PWD}"
+          # echo "${KEY_ENCODED}" | base64 -d | git-crypt unlock -
       - run: sudo apt install -y qemu-system-aarch64 qemu-efi binfmt-support qemu-user-static
       - uses: DeterminateSystems/magic-nix-cache-action@main
-      - run: nix build -L --impure .#nixosConfigurations.nixos-macmini.config.system.build.toplevel
+      - run: |
+          # nix build -L --impure .#nixosConfigurations.nixos-macmini.config.system.build.toplevel
+          mount
 
   build-darwin:
       runs-on: macos-latest
