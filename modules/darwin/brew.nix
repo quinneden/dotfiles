@@ -85,6 +85,7 @@
       "node"
       "oci-cli"
       "p7zip"
+      "pass"
       "perl"
       "pipenv"
       "pipx"
