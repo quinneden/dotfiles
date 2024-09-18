@@ -43,7 +43,6 @@
       substituters = [
         "${secrets.cachix.quinneden.url}"
         https://cache.lix.systems
-        ssh-ng://lima-nix-builder
       ];
       trusted-substituters = config.nix.settings.substituters;
       trusted-public-keys = [
@@ -56,34 +55,50 @@
       access-tokens = ["github=${secrets.github.api}"];
     };
 
-    buildMachines = [
-      {
-        hostName = "lima-nix-builder";
-        system = "aarch64-linux";
-        maxJobs = 6;
-        protocol = "ssh-ng";
-        sshUser = "quinn";
-        sshKey = "${config.users.users.quinn.home}/.lima/_config/user";
-        supportedFeatures = ["benchmark" "big-parallel" "nixos-test" "kvm"];
-      }
-    ];
+    # buildMachines = [
+    #   {
+    #     hostName = "lima-nix-builder";
+    #     system = "aarch64-linux";
+    #     maxJobs = 6;
+    #     protocol = "ssh-ng";
+    #     sshUser = "root";
+    #     sshKey = "${config.users.users.quinn.home}/.lima/_config/user";
+    #     supportedFeatures = ["benchmark" "big-parallel" "nixos-test" "kvm"];
+    #   }
+    # ];
 
     linux-builder = {
-      enable = false;
-    #   ephemeral = true;
-    #   maxJobs = 6;
-    #   config = {
-    #     pkgs,
-    #     ...
-    #   }: {
-    #     virtualisation = {
-    #       cores = 6;
-    #       darwin-builder = {
-    #         diskSize = 100 * 1024;
-    #         memorySize = 6 * 1024;
-    #       };
-    #     };
-    #   };
+      enable = true;
+      ephemeral = true;
+      maxJobs = 6;
+      config = {
+        pkgs,
+        ...
+      }: {
+        nix = {
+          package = pkgs.lix;
+          settings = {
+            max-jobs = 6;
+            access-tokens = ["github=${secrets.github.api}"];
+            substituters = [
+              "${secrets.cachix.quinneden.url}"
+              "https://cache.lix.systems"
+            ];
+            trusted-substituters = config.nix.settings.substituters;
+            trusted-public-keys = [
+              "${secrets.cachix.quinneden.public-key}"
+              "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
+            ];
+          };
+        };
+        virtualisation = {
+          cores = 6;
+          darwin-builder = {
+            diskSize = 100 * 1024;
+            memorySize = 6 * 1024;
+          };
+        };
+      };
     };
   };
 
