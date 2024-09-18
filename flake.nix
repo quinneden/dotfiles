@@ -16,15 +16,15 @@
       nixpkgs.lib.genAttrs [
         "aarch64-linux"
         "x86_64-linux"
-      ] (system: pkgs:
+      ] (system:
         function (import nixpkgs {
           inherit system;
           config.allowUnfree = true;
         }));
   in {
-    packages = forAllSystems {
-      ags = nixpkgs.legacyPackages.${self.system}.callPackage ./ags {inherit inputs;};
-    };
+    packages = forAllSystems (pkgs: {
+      ags = pkgs.callPackage ./ags {inherit inputs;};
+    });
 
     darwinConfigurations = let
       system = "aarch64-darwin";
@@ -57,12 +57,13 @@
           config.allowUnfree = true;
           overlays = [
             nixos-apple-silicon.overlays.default
+            lix-module.overlays.lixFromNixpkgs
             (final: prev: {neovim = inputs.nixvim.packages.${system}.default;})
           ];
         };
         specialArgs = {
-          inherit inputs dotDir secrets;
-          asztal = self.packages.${self.system}.ags;
+          inherit inputs dotDir secrets self;
+          asztal = self.packages.aarch64-linux.ags;
         };
         modules = [
           ./hosts/macmini/nixos
