@@ -22,9 +22,9 @@
           config.allowUnfree = true;
         }));
   in {
-    packages = forAllSystems (pkgs: {
-      ags = pkgs.callPackage ./ags {inherit inputs;};
-    });
+    packages = forAllSystems {
+      ags = nixpkgs.legacyPackages.${self.system}.callPackage ./ags {inherit inputs;};
+    };
 
     darwinConfigurations = let
       system = "aarch64-darwin";
