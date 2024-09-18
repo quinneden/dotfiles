@@ -8,6 +8,7 @@
     taps = [
       "homebrew/bundle"
       "homebrew/services"
+      "snyk/tap"
     ];
     casks = [
       "betterdisplay"
@@ -85,6 +86,7 @@
       "node"
       "oci-cli"
       "p7zip"
+      "pass"
       "perl"
       "pipenv"
       "pipx"
@@ -104,6 +106,8 @@
       "rust"
       "rustup"
       "shellcheck"
+      "snyk"
+      "socket_vmnet"
       "tmux"
       "trash"
       "tree"

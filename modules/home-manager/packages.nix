@@ -9,7 +9,7 @@
     darwin = [
       alejandra
       aria2
-      devenv
+      # devenv
       gawk
       gnutar
       xz
@@ -32,6 +32,7 @@
       lima
       cmake
       openssl
+      pass
       pkg-config
       pure-prompt
       zoxide

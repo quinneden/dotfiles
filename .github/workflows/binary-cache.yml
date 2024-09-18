@@ -3,6 +3,8 @@ name: CI
 
 on:
   push:
+    branches:
+    - main
   workflow_dispatch:
 
 jobs:
@@ -31,7 +33,10 @@ jobs:
           echo "${KEY_ENCODED}" | base64 -d | git-crypt unlock -
       - run: sudo apt install -y qemu-system-aarch64 qemu-efi binfmt-support qemu-user-static
       - uses: DeterminateSystems/magic-nix-cache-action@main
-      - run: nix build -L --impure .#nixosConfigurations.nixos-macmini.config.system.build.toplevel
+      - run: |
+          sudo mount -o remount,size=15G /run/qemu
+          sudo mount -o remount,size=15G /run/user/1001
+          nix build -L --impure .#nixosConfigurations.nixos-macmini.config.system.build.toplevel
 
   build-darwin:
       runs-on: macos-latest
