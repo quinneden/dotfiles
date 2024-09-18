@@ -83,6 +83,7 @@
             substituters = [
               "${secrets.cachix.quinneden.url}"
               "https://cache.lix.systems"
+              "ssh-ng://builder@linux-builder"
             ];
             trusted-substituters = config.nix.settings.substituters;
             trusted-public-keys = [
