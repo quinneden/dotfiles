@@ -8,6 +8,7 @@
     taps = [
       "homebrew/bundle"
       "homebrew/services"
+      "snyk/tap"
     ];
     casks = [
       "betterdisplay"
@@ -105,6 +106,8 @@
       "rust"
       "rustup"
       "shellcheck"
+      "snyk"
+      "socket_vmnet"
       "tmux"
       "trash"
       "tree"
