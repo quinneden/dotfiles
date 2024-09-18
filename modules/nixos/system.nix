@@ -19,12 +19,16 @@
     experimental-features = ["nix-command" "flakes"];
     auto-optimise-store = true;
     trusted-users = ["quinn" "root"];
+    extra-nix-path = "nixpkgs=flake:nixpkgs";
     warn-dirty = false;
     substituters = [
       "${secrets.cachix.nixos-asahi.url}"
+      https://cache.lix.systems
     ];
+    trusted-substituters = config.nix.settings.substituters;
     trusted-public-keys = [
       "${secrets.cachix.nixos-asahi.public-key}"
+      "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
     ];
   };
 
@@ -54,8 +58,9 @@
   # packages
   environment.systemPackages = with pkgs; [
     alejandra
+    apfsprogs
+    hfsprogs
     btrfs-progs
-    home-manager
     micro
     ripgrep
     neovim
