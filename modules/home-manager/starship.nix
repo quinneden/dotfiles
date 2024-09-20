@@ -35,10 +35,10 @@
     };
     custom.space = {
       when = ''! test $env'';
-      format = "  ";
+      format = "";
     };
     custom.vscode = {
-      when = ''[[ $TERM_PROGRAM == vscode ]]'';
+      when = ''test $TERM_PROGRAM == vscode'';
       format = "  ";
     };
     continuation_prompt = "┆ ";
@@ -74,7 +74,7 @@
       read_only = "[ro]";
       truncate_to_repo = true;
       truncation_length = 4;
-      truncation_symbol = "";
+      truncation_symbol = "../";
     };
     git_branch = {
       symbol = "";

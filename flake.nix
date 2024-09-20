@@ -57,7 +57,6 @@
           config.allowUnfree = true;
           overlays = [
             nixos-apple-silicon.overlays.default
-            lix-module.overlays.lixFromNixpkgs
             (final: prev: {neovim = inputs.nixvim.packages.${system}.default;})
           ];
         };
@@ -67,7 +66,7 @@
         };
         modules = [
           ./hosts/macmini/nixos
-          lix-module.nixosModules.default
+          lix-module.nixosModules.lixFromNixpkgs
           nixos-apple-silicon.nixosModules.default
           home-manager.nixosModules.home-manager
           {

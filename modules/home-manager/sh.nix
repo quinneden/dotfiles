@@ -36,7 +36,7 @@ in {
       syntaxHighlighting.enable = true;
       oh-my-zsh = {
         enable = true;
-        plugins = ["fzf" "eza" "zoxide"];
+        plugins = ["fzf" "eza" "zoxide" "direnv"];
       };
       initExtra = ''
         zstyle ':completion:*' menu select

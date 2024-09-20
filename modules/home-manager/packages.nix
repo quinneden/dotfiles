@@ -35,6 +35,7 @@
       pass
       pkg-config
       pure-prompt
+      rclone
       zoxide
       vagrant
       python312
