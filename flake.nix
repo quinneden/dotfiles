@@ -31,10 +31,6 @@
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
-        overlays = [
-          nixos-apple-silicon.overlays.default
-          lix-module.overlays.lixFromNixpkgs
-        ];
       };
     in {
       "macos" = nix-darwin.lib.darwinSystem {
@@ -147,9 +143,5 @@
       url = "github:rafaelmardojai/firefox-gnome-theme";
       flake = false;
     };
-    # hyprland-hyprspace = {
-    #   url = "github:KZDKM/Hyprspace";
-    #   inputs.hyprland.follows = "hyprland";
-    # };
   };
 }
