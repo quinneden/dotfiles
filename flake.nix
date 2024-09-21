@@ -30,6 +30,7 @@
       system = "aarch64-darwin";
       pkgs = import nixpkgs {
         inherit system;
+        overlays = [lix-module.overlays.lixFromNixpkgs];
         config.allowUnfree = true;
       };
     in {
@@ -38,7 +39,6 @@
         specialArgs = {inherit inputs dotDir secrets;};
         modules = [
           ./hosts/macmini/darwin
-          lix-module.nixosModules.lixFromNixpkgs
           home-manager.darwinModules.default
           {networking.hostName = "macos-macmini";}
         ];

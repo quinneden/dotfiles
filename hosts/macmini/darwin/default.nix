@@ -30,24 +30,25 @@
   security.pam.enableSudoTouchIdAuth = true;
 
   nix.configureBuildUsers = true;
-  ids.uids.nixbld = lib.mkForce 40000;
-  ids.gids.nixbld = 30000;
+  #ids.uids.nixbld = lib.mkForce 40000;
+  #ids.gids.nixbld = 30000;
 
   nix = {
     distributedBuilds = true;
     daemonProcessType = "Adaptive";
     settings = {
+      accept-flake-config = true;
       auto-optimise-store = true;
       builders-use-substitutes = true;
       experimental-features = ["nix-command" "flakes"];
       substituters = [
         "${secrets.cachix.quinneden.url}"
-        https://cache.lix.systems
+        "https://cache.lix.systems"
       ];
       trusted-substituters = config.nix.settings.substituters;
       trusted-public-keys = [
         "${secrets.cachix.quinneden.public-key}"
-        cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o=
+        "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
       ];
       warn-dirty = false;
       extra-nix-path = "nixpkgs=flake:nixpkgs";
@@ -71,10 +72,7 @@
       enable = true;
       ephemeral = true;
       maxJobs = 6;
-      config = {
-        pkgs,
-        ...
-      }: {
+      config = ({pkgs, ...}: {
         nix = {
           package = pkgs.lix;
           settings = {
@@ -83,7 +81,6 @@
             substituters = [
               "${secrets.cachix.quinneden.url}"
               "https://cache.lix.systems"
-              "ssh-ng://builder@linux-builder"
             ];
             trusted-substituters = config.nix.settings.substituters;
             trusted-public-keys = [
@@ -99,7 +96,7 @@
             memorySize = 6 * 1024;
           };
         };
-      };
+      });
     };
   };
 

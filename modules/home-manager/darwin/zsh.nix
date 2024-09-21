@@ -61,9 +61,10 @@
     initExtra = ''
       [[ $PATH =~ '/nix/store' ]] || eval $(/opt/homebrew/bin/brew shellenv)
 
-      eval "$(zoxide init zsh)"
+      if type zoxide &>/dev/null; then eval "$(zoxide init zsh)"; fi
+      if type z &>/dev/null; then alias cd='z'; fi
 
-      if __zoxide_z; then alias -- cd='z'; fi
+      fpath+=("${pkgs.lix}/share/zsh/site-functions" "/opt/homebrew/share/zsh/site-functions")
 
       autoload -Uz compinit && compinit
 
