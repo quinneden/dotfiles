@@ -15,6 +15,7 @@
     forAllSystems = function:
       nixpkgs.lib.genAttrs [
         "aarch64-linux"
+        "aarch64-darwin"
         "x86_64-linux"
       ] (system:
         function (import nixpkgs {

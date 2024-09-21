@@ -34,8 +34,7 @@ jobs:
       - run: sudo apt install -y qemu-system-aarch64 qemu-efi binfmt-support qemu-user-static
       - uses: DeterminateSystems/magic-nix-cache-action@main
       - run: |
-          sudo mount -o remount,size=15G /run/qemu
-          sudo mount -o remount,size=15G /run/user/1001
+          sudo mount -o remount,size=30G /run
           nix build -L --impure .#packages.aarch64-linux.ci.nixos-macmini
 
   build-darwin:
@@ -65,4 +64,4 @@ jobs:
             git config --global --add safe.directory "${PWD}"
             echo "${KEY_ENCODED}" | base64 -d | git-crypt unlock -
         - uses: DeterminateSystems/magic-nix-cache-action@main
-        - run: nix build -L .#packages.ci.darwin
+        - run: nix build -L .#packages.aarch64-darwin.ci.darwin
