@@ -36,7 +36,7 @@ jobs:
       - run: |
           sudo mount -o remount,size=15G /run/qemu
           sudo mount -o remount,size=15G /run/user/1001
-          nix build -L --impure .#nixosConfigurations.nixos-macmini.config.system.build.toplevel
+          nix build -L --impure .#packages.aarch64-linux.ci.nixos-macmini
 
   build-darwin:
       runs-on: macos-latest
@@ -65,4 +65,4 @@ jobs:
             git config --global --add safe.directory "${PWD}"
             echo "${KEY_ENCODED}" | base64 -d | git-crypt unlock -
         - uses: DeterminateSystems/magic-nix-cache-action@main
-        - run: nix build -L .#darwinConfigurations.macos.config.system.build.toplevel
+        - run: nix build -L .#packages.ci.darwin

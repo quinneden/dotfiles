@@ -24,6 +24,13 @@
   in {
     packages = forAllSystems (pkgs: {
       ags = pkgs.callPackage ./ags {inherit inputs;};
+      ci = {
+        darwin = let
+          config.nix.linux-builder.enable = false;
+        in
+          self.darwinConfigurations.macos.config.system.build.toplevel;
+        nixos-macmini = self.nixosConfigurations.nixos-macmini.config.system.build.toplevel;
+      };
     });
 
     darwinConfigurations = let
