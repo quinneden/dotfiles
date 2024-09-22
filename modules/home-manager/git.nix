@@ -3,7 +3,12 @@
   inputs,
   secrets,
   ...
-}: {
+}: let
+  commit-status = pkgs.fetchurl {
+    url = "https://gist.github.com/quinneden/378834a3a54dec450b5462935a78a462/raw/5e4c64051e181b62d2f4128c863a5c468ccb1bdc/git-commit-status";
+    hash = "sha256-MU3ZRba7Bdkjf7Ao03tzULVSD48Pe4DLRNO7bEe8cTY=";
+  };
+in {
   programs.git = {
     enable = true;
     extraConfig = {
@@ -13,38 +18,8 @@
       github.user = "quinneden";
       push.autoSetupRemote = true;
       init.defaultBranch = "main";
-      url = {
-        "https://oauth2:${secrets.github.api}@github.com" = {
-          insteadOf = "https://github.com";
-        };
-      };
-      alias.commit-status = ''
-        TMPFILE=$(mktemp /tmp/git-commit-status-message.XXX); \
-    		git status --porcelain \
-    		  | grep '^[MARCDT]' \
-    		  | sort \
-    		  | sed -re 's/^([[:upper:]])[[:upper:]]?[[:space:]]+/\\1:\\n/' \
-    		  | awk '!x[$0]++' \
-    		  | sed -re 's/^([[:upper:]]:)$/\\n\\1/' \
-    		  | sed -re 's/^M:$/Modified: /' \
-    		  | sed -re 's/^A:$/Added: /' \
-    		  | sed -re 's/^R:$/Renamed: /' \
-    		  | sed -re 's/^C:$/Copied: /' \
-    		  | sed -re 's/^D:$/Deleted: /' \
-    		  | sed -re 's/^T:$/File Type Changed: /' \
-    		  | tr '\n' ' ' | xargs \
-    		  > $TMPFILE; \
-    		cat $TMPFILE; \
-    	        commit=\'\'; \
-    	        while :; do \
-    			echo '> Commit with this message? [Yn]: '; \
-    			read commit; \
-    			([ -z \"$commit\" ] || [ \"$commit\" = y ] || [ \"$commit\" = Y ] || [ \"$commit\" = n ]) && break; \
-    	        done; \
-    		test \"$commit\" != n || exit; \
-    		git commit -F $TMPFILE; \
-    		rm -f $TMPFILE \
-      '';
+      url."https://oauth2:${secrets.github.api}@github.com".insteadOf = "https://github.com";
+      include.path = "${commit-status}";
     };
     userEmail = "quinnyxboy@gmail.com";
     userName = "Quinn Edenfield";
