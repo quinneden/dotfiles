@@ -43,11 +43,13 @@
       experimental-features = ["nix-command" "flakes"];
       substituters = [
         "${secrets.cachix.quinneden.url}"
+        "${secrets.cachix.nixos-asahi.url}"
         "https://cache.lix.systems"
       ];
       trusted-substituters = config.nix.settings.substituters;
       trusted-public-keys = [
         "${secrets.cachix.quinneden.public-key}"
+        "${secrets.cachix.nixos-asahi.public-key}"
         "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
       ];
       warn-dirty = false;
@@ -80,11 +82,13 @@
             access-tokens = ["github=${secrets.github.api}"];
             substituters = [
               "${secrets.cachix.quinneden.url}"
+              "${secrets.cachix.nixos-asahi.url}"
               "https://cache.lix.systems"
             ];
             trusted-substituters = config.nix.settings.substituters;
             trusted-public-keys = [
               "${secrets.cachix.quinneden.public-key}"
+              "${secrets.cachix.nixos-asahi.public-key}"
               "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
             ];
           };

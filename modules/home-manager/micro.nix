@@ -32,7 +32,7 @@
         "autoclose": true,
         "autofmt.fmt-onsave": true,
         "autosu": true,
-        "colorscheme": "geany",
+        "colorscheme": "dracula-tc",
         "comment": true,
         "diff": true,
         "ftoptions": true,

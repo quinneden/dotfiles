@@ -114,6 +114,7 @@
     devenv.url = "github:cachix/devenv";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     matugen.url = "github:InioX/matugen";
+    r2-cli-nix.url = "github:quinneden/r2-cli-nix";
     ags.url = "github:Aylur/ags";
     nix-darwin = {
       url = "github:LnL7/nix-darwin";

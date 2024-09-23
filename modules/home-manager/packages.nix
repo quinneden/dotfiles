@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, inputs, ...}: {
   imports = [
     ./modules/packages.nix
     ./packages
@@ -54,6 +54,7 @@
       ripgrep
       jq
       nodePackages.prettier
+      inputs.r2-cli-nix.packages.${system}.default
     ];
   };
 }
