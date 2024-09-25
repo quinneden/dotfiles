@@ -62,7 +62,6 @@
           wl-clipboard
           wayshot
           pavucontrol
-          brightnessctl
           swww
         ]);
 

@@ -7,14 +7,14 @@
 }: {
   imports = [
     # ../home-manager/nvim.nix
-    ../home-manager/ags.nix
+    # ../home-manager/ags.nix
     ../home-manager/blackbox.nix
     ../home-manager/browser.nix
     ../home-manager/dconf.nix
     ../home-manager/distrobox.nix
     ../home-manager/firefox.nix
     ../home-manager/git.nix
-    ../home-manager/hyprland.nix
+    # ../home-manager/hyprland.nix
     ../home-manager/lf.nix
     ../home-manager/micro.nix
     ../home-manager/packages.nix
@@ -37,10 +37,10 @@
       BAT_THEME = "base16";
       GOPATH = "${config.home.homeDirectory}/.local/share/go";
       GOMODCACHE = "${config.home.homeDirectory}/.cache/go/pkg/mod";
-      XDG_CACHE_HOME  = "${config.home.homeDirectory}/.cache";
+      XDG_CACHE_HOME = "${config.home.homeDirectory}/.cache";
       XDG_CONFIG_HOME = "${config.home.homeDirectory}/.config";
       XDG_DATA_HOME = "${config.home.homeDirectory}/.local/share";
-      XDG_STATE_HOME  = "${config.home.homeDirectory}/.local/state";
+      XDG_STATE_HOME = "${config.home.homeDirectory}/.local/state";
     };
 
     sessionPath = [
