@@ -66,6 +66,8 @@
 
       fpath+=("${pkgs.lix}/share/zsh/site-functions" "/opt/homebrew/share/zsh/site-functions")
 
+      compdef _copilot cop || true
+
       autoload -Uz compinit && compinit
 
       for f (~/.config/zsh/functions/*(N.)); do source $f; done

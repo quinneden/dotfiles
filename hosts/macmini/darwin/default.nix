@@ -41,13 +41,13 @@
       auto-optimise-store = true;
       builders-use-substitutes = true;
       experimental-features = ["nix-command" "flakes"];
-      substituters = [
+      extra-substituters = [
         "${secrets.cachix.quinneden.url}"
         "${secrets.cachix.nixos-asahi.url}"
         "https://cache.lix.systems"
       ];
-      trusted-substituters = config.nix.settings.substituters;
-      trusted-public-keys = [
+      # extra-trusted-substituters = config.nix.settings.extra-substituters;
+      extra-trusted-public-keys = [
         "${secrets.cachix.quinneden.public-key}"
         "${secrets.cachix.nixos-asahi.public-key}"
         "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
@@ -80,13 +80,13 @@
           settings = {
             max-jobs = 6;
             access-tokens = ["github=${secrets.github.api}"];
-            substituters = [
+            extra-substituters = [
               "${secrets.cachix.quinneden.url}"
               "${secrets.cachix.nixos-asahi.url}"
               "https://cache.lix.systems"
             ];
-            trusted-substituters = config.nix.settings.substituters;
-            trusted-public-keys = [
+            # extra-trusted-substituters = config.nix.settings.substituters;
+            extra-trusted-public-keys = [
               "${secrets.cachix.quinneden.public-key}"
               "${secrets.cachix.nixos-asahi.public-key}"
               "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="

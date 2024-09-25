@@ -23,7 +23,7 @@
         local BREAK=1; sleep 0.3
         printf "\n$store_paths store paths deleted, $mib_float MiB saved.\n"
       else
-        printf "error: unknown error while collecting garbage"; exit 1
+        printf "error: garbage collection failed\n"; exit 1
       fi
     }
 

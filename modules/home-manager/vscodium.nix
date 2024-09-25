@@ -3,17 +3,17 @@
     enable = true;
     package = pkgs.vscodium;
     extensions = with pkgs.vscode-extensions; [
-      arrterian.nix-env-selector
       bbenoist.nix
-      catppuccin.catppuccin-vsc
-      catppuccin.catppuccin-vsc-icons
+      pr1sm8.theme-panda
+      # catppuccin.catppuccin-vsc
+      # catppuccin.catppuccin-vsc-icons
       jeff-hykin.better-nix-syntax
       kamadorueda.alejandra
+      mkhl.direnv
     ];
     userSettings = {
       "alejandra.program" = "alejandra";
       "breadcrumbs.enabled" = true;
-      # "catppuccin.accentColor" = "lavender";
       "editor.fontFamily" = "'Operator Mono Lig Book', 'SymbolsNerdFont'";
       "editor.fontLigatures" = true;
       "editor.fontSize" = 17;
@@ -33,7 +33,7 @@
       "files.autoSave" = "off";
       "update.mode" = "none";
       "window.titleBarStyle" = "custom";
-      "workbench.colorTheme" = "Catppuccin Mocha";
+      "workbench.colorTheme" = "Panda Syntax";
       "workbench.editor.limit.enabled" = true;
       "workbench.editor.limit.perEditorGroup" = true;
       "workbench.editor.limit.value" = 10;
@@ -44,7 +44,7 @@
       "workbench.statusBar.visible" = true;
       "window.customTitleBarVisibility" = "auto";
       "editor.tabSize" = 2;
-      "terminal.integrated.fontFamily" = "'OperatorMono Nerd Font Mono'";
+      "terminal.integrated.fontFamily" = "'CaskaydiaCove Nerd Font Mono'";
       "terminal.integrated.fontSize" = "16";
       "terminal.integrated.fontWeight" = "300";
       "terminal.integrated.fontWeightBold" = "500";

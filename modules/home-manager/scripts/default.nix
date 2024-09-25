@@ -11,6 +11,7 @@
     ./nix-clean.nix
     ./nix-get-sha256.nix
     ./nix-switch.nix
+    ./repos.nix
     ./rm-result.nix
     ./sec.nix
     ./vault.nix
