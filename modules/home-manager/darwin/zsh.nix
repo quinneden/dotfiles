@@ -15,7 +15,7 @@
     oh-my-zsh = {
       enable = true;
       custom = "${config.xdg.configHome}/zsh";
-      plugins = ["zsh-navigation-tools" "nix-zsh-completions" "direnv" "iterm2"];
+      plugins = ["direnv" "iterm2"];
     };
     shellAliases = {
       "alx.builds" = "curl -sL https://fedora-asahi-remix.org/builds | EXPERT=1 sh";
@@ -59,14 +59,14 @@
       PATH = "/run/current-system/sw/bin:/etc/profiles/per-user/quinn/bin:/Users/quinn/.local/bin:\${PATH:+$PATH}";
     };
     initExtra = ''
+      HISTFILE="$ZDOTDIR/.zsh_history"; export HISTFILE
+
       [[ $PATH =~ '/nix/store' ]] || eval $(/opt/homebrew/bin/brew shellenv)
 
       if type zoxide &>/dev/null; then eval "$(zoxide init zsh)"; fi
       if type z &>/dev/null; then alias cd='z'; fi
 
       fpath+=("${pkgs.lix}/share/zsh/site-functions" "/opt/homebrew/share/zsh/site-functions")
-
-      compdef _copilot cop || true
 
       autoload -Uz compinit && compinit
 

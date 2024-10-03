@@ -13,7 +13,7 @@
     ../home-manager/micro.nix
     # ../home-manager/nvim.nix
     ../home-manager/packages.nix
-    ../home-manager/tmux.nix
+    # ../home-manager/tmux.nix
   ];
 
   news.display = "show";

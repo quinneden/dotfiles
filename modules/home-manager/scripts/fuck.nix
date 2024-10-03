@@ -27,7 +27,7 @@
         eval $trash_cmd "''${files[@]}"
       fi
 
-      if [[ $? -eq 0 ]]; then
+      if [[ $? -eq 0 && $# -ge 1 ]]; then
         local LIST_DEL=$(for f in "''${files[@]}"; do printf "  $(basename $f)\n"; done)
         printf "Deleted:\n$LIST_DEL\n"
       fi
