@@ -3,10 +3,7 @@
     enable = true;
     package = pkgs.vscodium;
     extensions = with pkgs.vscode-extensions; [
-      bbenoist.nix
       pr1sm8.theme-panda
-      # catppuccin.catppuccin-vsc
-      # catppuccin.catppuccin-vsc-icons
       jeff-hykin.better-nix-syntax
       kamadorueda.alejandra
       mkhl.direnv
@@ -14,9 +11,9 @@
     userSettings = {
       "alejandra.program" = "alejandra";
       "breadcrumbs.enabled" = true;
-      "editor.fontFamily" = "'Operator Mono Lig Book', 'SymbolsNerdFont'";
+      "editor.fontFamily" = "'CaskaydiaCove Nerd Font Mono'";
       "editor.fontLigatures" = true;
-      "editor.fontSize" = 17;
+      "editor.fontSize" = 15;
       "editor.formatOnPaste" = true;
       "editor.formatOnSave" = true;
       "editor.formatOnType" = false;
@@ -28,7 +25,7 @@
       "editor.scrollbar.vertical" = "hidden";
       "editor.scrollbar.verticalScrollbarSize" = 2;
       "explorer.confirmDragAndDrop" = true;
-      "explorer.openEditors.visible" = 0;
+      "explorer.openEditors.visible" = 1;
       "extensions.autoUpdate" = true;
       "files.autoSave" = "off";
       "update.mode" = "none";
@@ -37,7 +34,6 @@
       "workbench.editor.limit.enabled" = true;
       "workbench.editor.limit.perEditorGroup" = true;
       "workbench.editor.limit.value" = 10;
-      "workbench.iconTheme" = "catppuccin-mocha";
       "workbench.layoutControl.enabled" = true;
       "workbench.layoutControl.type" = "menu";
       "workbench.startupEditor" = "none";
@@ -54,6 +50,11 @@
       {
         key = "ctrl+/";
         command = "editor.action.commentLine";
+        when = "editorTextFocus && !editorReadonly";
+      }
+      {
+        key = "ctrl+shift+/";
+        command = "editor.action.blockComment";
         when = "editorTextFocus && !editorReadonly";
       }
       {
