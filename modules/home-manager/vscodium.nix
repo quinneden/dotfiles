@@ -3,7 +3,7 @@
     enable = true;
     package = pkgs.vscodium;
     extensions = with pkgs.vscode-extensions; [
-      pr1sm8.theme-panda
+      # pr1sm8.theme-panda
       jeff-hykin.better-nix-syntax
       kamadorueda.alejandra
       mkhl.direnv

@@ -37,8 +37,8 @@ in {
     useExperimentalGPUDriver = true;
     experimentalGPUInstallMode = "replace";
     peripheralFirmwareDirectory = builtins.fetchTarball {
-      url = "";
-      sha256 = "";
+      url = "https://objectstorage.us-phoenix-1.oraclecloud.com/n/ax6cmlt4v0it/b/bucket-20240716-1828/o/firmware.tar.gz";
+      sha256 = "sha256:1lhl7xs83dfq2pn8n5ay1x51dq9gva1l6ql7ivcixxwlyr1yqkj2";
     };
   };
   # hardware.graphics = {
