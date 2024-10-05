@@ -1,4 +1,9 @@
-{pkgs, lib, ...}: let
+{
+  pkgs,
+  lib,
+  stdenv,
+  ...
+}: let
   sec = pkgs.writeShellScriptBin "sec" ''
     KEYCHAIN="secrets.keychain"
 
@@ -54,4 +59,4 @@
 
     main "$@"
   '';
-in {home.packages = lib.mkIf pkgs.stdenv.isDarwin [sec];}
+in {home.packages = [sec];}
