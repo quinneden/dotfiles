@@ -3,6 +3,7 @@
     ../modules/packages.nix
     ./blocks.nix
     ./cfg.nix
+    ./commit.nix
     ./cop.nix
     ./darwin-switch.nix
     ./fuck.nix

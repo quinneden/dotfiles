@@ -16,13 +16,15 @@
       nixpkgs.lib.genAttrs [
         "aarch64-linux"
         "aarch64-darwin"
-        "x86_64-linux"
+        # "x86_64-linux"
       ] (system:
         function (import nixpkgs {
           inherit system;
           config.allowUnfree = true;
         }));
   in {
+    formatter = forAllSystems (system: inputs.alejandra.defaultPackage.${system});
+
     packages = forAllSystems (pkgs: {
       ags = pkgs.callPackage ./ags {inherit inputs;};
       ci = {
@@ -30,6 +32,7 @@
           config.nix.linux-builder.enable = false;
         in
           self.darwinConfigurations.macos.config.system.build.toplevel;
+
         nixos-macmini = self.nixosConfigurations.nixos-macmini.config.system.build.toplevel;
       };
     });
@@ -66,7 +69,7 @@
         };
         specialArgs = {
           inherit inputs dotDir secrets self;
-          asztal = self.packages.aarch64-linux.ags;
+          asztal = self.packages.${system}.ags;
         };
         modules = [
           ./hosts/macmini/nixos
@@ -80,31 +83,32 @@
               extraSpecialArgs = {inherit inputs dotDir secrets;};
               backupFileExtension = "backup";
             };
+
+            networking.hostName = "nixos-macmini";
           }
-          {networking.hostName = "nixos-macmini";}
         ];
       };
 
-      "relic" = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs dotDir;
-          asztal = self.packages.${self.system}.ags;
-        };
-        modules = [
-          ./hosts/relic
-          lix-module.nixosModules.default
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              extraSpecialArgs = {inherit inputs dotDir secrets;};
-              backupFileExtension = "backup";
-            };
-          }
-          {networking.hostName = "nixos-relic";}
-        ];
-      };
+      # "relic" = nixpkgs.lib.nixosSystem {
+      #   specialArgs = {
+      #     inherit inputs dotDir;
+      #     asztal = self.packages.${self.system}.ags;
+      #   };
+      #   modules = [
+      #     ./hosts/relic
+      #     lix-module.nixosModules.default
+      #     home-manager.nixosModules.home-manager
+      #     {
+      #       home-manager = {
+      #         useGlobalPkgs = true;
+      #         useUserPackages = true;
+      #         extraSpecialArgs = {inherit inputs dotDir secrets;};
+      #         backupFileExtension = "backup";
+      #       };
+      #     }
+      #     {networking.hostName = "nixos-relic";}
+      #   ];
+      # };
     };
   };
 

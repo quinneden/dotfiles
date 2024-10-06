@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  stdenv,
+  ...
+}: let
   rm-result = pkgs.writeShellScriptBin "rm-result" ''
     main() {
       if [[ $# -eq 0 ]]; then
