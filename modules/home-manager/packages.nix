@@ -7,7 +7,6 @@
 
   packages = with pkgs; {
     darwin = [
-      alejandra
       aria2
       gawk
       gnutar
@@ -53,7 +52,7 @@
       ripgrep
       jq
       nodePackages.prettier
-      inputs.r2-cli-nix.packages.${system}.default
+      inputs.alejandra.defaultPackage.${system}
     ];
   };
 }

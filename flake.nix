@@ -121,7 +121,7 @@
     r2-cli-nix.url = "github:quinneden/r2-cli-nix";
     ags.url = "github:Aylur/ags";
     alejandra = {
-      url = "github:kamadorueda/alejandra/3.0.0";
+      url = "github:kamadorueda/alejandra";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-darwin = {

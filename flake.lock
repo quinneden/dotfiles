@@ -28,16 +28,27 @@
         ]
       },
       "locked": {
+<<<<<<< HEAD
         "lastModified": 1660592437,
         "narHash": "sha256-xFumnivtVwu5fFBOrTxrv6fv3geHKF04RGP23EsDVaI=",
         "owner": "kamadorueda",
         "repo": "alejandra",
         "rev": "e7eac49074b70814b542fee987af2987dd0520b5",
+=======
+        "lastModified": 1719514321,
+        "narHash": "sha256-ys1nJdZ8zB8JlpUbQmnj0hZalg03bEPgQdZN30DhETE=",
+        "owner": "kamadorueda",
+        "repo": "alejandra",
+        "rev": "d7552fef2ccf1bbf0d36b27f6fddb19073f205b7",
+>>>>>>> origin/main
         "type": "github"
       },
       "original": {
         "owner": "kamadorueda",
+<<<<<<< HEAD
         "ref": "3.0.0",
+=======
+>>>>>>> origin/main
         "repo": "alejandra",
         "type": "github"
       }
@@ -263,11 +274,19 @@
         "rust-analyzer-src": "rust-analyzer-src"
       },
       "locked": {
+<<<<<<< HEAD
         "lastModified": 1657607339,
         "narHash": "sha256-HaqoAwlbVVZH2n4P3jN2FFPMpVuhxDy1poNOR7kzODc=",
         "owner": "nix-community",
         "repo": "fenix",
         "rev": "b814c83d9e6aa5a28d0cf356ecfdafb2505ad37d",
+=======
+        "lastModified": 1668234453,
+        "narHash": "sha256-FmuZThToBvRsqCauYJ3l8HJoGLAY5cMULeYEKIaGrRw=",
+        "owner": "nix-community",
+        "repo": "fenix",
+        "rev": "8f219f6b36e8d0d56afa7f67e6e3df63ef013cdb",
+>>>>>>> origin/main
         "type": "github"
       },
       "original": {
@@ -1774,11 +1793,19 @@
     "rust-analyzer-src": {
       "flake": false,
       "locked": {
+<<<<<<< HEAD
         "lastModified": 1657557289,
         "narHash": "sha256-PRW+nUwuqNTRAEa83SfX+7g+g8nQ+2MMbasQ9nt6+UM=",
         "owner": "rust-lang",
         "repo": "rust-analyzer",
         "rev": "caf23f29144b371035b864a1017dbc32573ad56d",
+=======
+        "lastModified": 1668182250,
+        "narHash": "sha256-PYGaOCiFvnJdVz+ZCaKF8geGdffXjJUNcMwaBHv0FT4=",
+        "owner": "rust-lang",
+        "repo": "rust-analyzer",
+        "rev": "45ec315e01dc8dd1146dfeb65f0ef6e5c2efed78",
+>>>>>>> origin/main
         "type": "github"
       },
       "original": {
