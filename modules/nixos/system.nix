@@ -27,6 +27,9 @@
     ];
   };
 
+  # ssh
+  programs.ssh.startAgent = true;
+
   # virtualisation
   programs.virt-manager.enable = false;
   virtualisation = {

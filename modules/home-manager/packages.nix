@@ -23,6 +23,7 @@
       rustup
       rustc
       gcc
+      git-crypt
       glow
       gnumake
       gptfdisk

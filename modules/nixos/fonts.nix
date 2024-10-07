@@ -14,3 +14,18 @@ in {
     ];
   };
 }
+
+# fonts = {
+#   packages = with pkgs; [
+#     source-code-pro
+#     noto-fonts
+#     noto-fonts-cjk
+#     twitter-color-emoji
+#     font-awesome
+#     powerline-fonts
+#     (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+#   ];
+#   fontconfig = {
+#     hinting.autohint = true;
+#   };
+# };

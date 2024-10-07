@@ -2,7 +2,7 @@
   pkgs,
   inputs,
   config,
-  asztal,
+  # asztal,
   lib,
   ...
 }: {
@@ -18,7 +18,7 @@
       ];
     };
 
-    services.xserver.displayManager.startx.enable = true;
+    # services.xserver.displayManager.startx.enable = true;
 
     programs.hyprland = {
       enable = true;
@@ -30,6 +30,7 @@
       enable = true;
       extraPortals = with pkgs; [
         xdg-desktop-portal-gtk
+        xdg-desktop-portal-hyprland
       ];
     };
 
@@ -97,15 +98,6 @@
         # tracker-miners.enable = true;
         # tracker.enable = true;
       };
-    };
-
-    services.greetd = {
-      enable = true;
-      settings.default_session.command = pkgs.writeShellScript "greeter" ''
-        export XKB_DEFAULT_LAYOUT=${config.services.xserver.xkb.layout}
-        export XCURSOR_THEME=Qogir
-        ${asztal}/bin/greeter
-      '';
     };
 
     systemd.tmpfiles.rules = [
