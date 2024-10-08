@@ -21,7 +21,6 @@ in {
   hyprland.enable = true;
 
   boot = {
-    binfmt.emulatedSystems = ["x86_64-linux"];
     tmp.cleanOnBoot = true;
     m1n1CustomLogo = ../../../assets/bootlogo-m1n1.png;
     loader = {

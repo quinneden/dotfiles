@@ -13,22 +13,27 @@
     access-tokens = ["github=${secrets.github.api}"];
     experimental-features = ["nix-command" "flakes"];
     auto-optimise-store = true;
-    trusted-users = ["quinn" "root"];
+    trusted-users = ["quinn"];
     extra-nix-path = "nixpkgs=flake:nixpkgs";
     warn-dirty = false;
-    extra-substituters = [
-      "${secrets.cachix.nixos-asahi.url}"
+    substituters = [
+      # "${secrets.cachix.nixos-asahi.url}"
       "https://cache.lix.systems"
     ];
     # extra-trusted-substituters = config.nix.settings.substituters;
-    extra-trusted-public-keys = [
-      "${secrets.cachix.nixos-asahi.public-key}"
+    trusted-public-keys = [
+      # "${secrets.cachix.nixos-asahi.public-key}"
       "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
     ];
   };
 
   # ssh
   programs.ssh.startAgent = true;
+
+  programs.gnupg.agent = {
+     enable = true;
+     pinentryPackage = pkgs.pinentry-curses;
+  };
 
   # virtualisation
   programs.virt-manager.enable = false;
@@ -58,6 +63,7 @@
     alejandra
     apfsprogs
     hfsprogs
+    pinentry-curses
     btrfs-progs
     micro
     ripgrep
@@ -114,7 +120,7 @@
   # swap
   zramSwap = {
     enable = true;
-    memoryPercent = 100;
+    memoryPercent = 300;
   };
 
   system.stateVersion = "24.11";

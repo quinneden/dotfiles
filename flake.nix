@@ -64,7 +64,6 @@
           config.allowUnfree = true;
           overlays = [
             nixos-apple-silicon.overlays.default
-            (final: prev: {neovim = inputs.nixvim.packages.${system}.default;})
           ];
         };
         specialArgs = {
@@ -73,7 +72,7 @@
         };
         modules = [
           ./hosts/macmini/nixos
-          lix-module.nixosModules.lixFromNixpkgs
+          lix-module.nixosModules.default
           nixos-apple-silicon.nixosModules.default
           home-manager.nixosModules.home-manager
           {
@@ -113,12 +112,8 @@
   };
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixvim.url = "github:elythh/nixvim";
-    devenv.url = "github:cachix/devenv";
-    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     matugen.url = "github:InioX/matugen";
-    r2-cli-nix.url = "github:quinneden/r2-cli-nix";
     ags.url = "github:Aylur/ags";
     alejandra = {
       url = "github:kamadorueda/alejandra";
@@ -142,7 +137,6 @@
     };
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
