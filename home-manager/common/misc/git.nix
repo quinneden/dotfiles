@@ -1,4 +1,4 @@
-{ secrets, ... }:
+{ pkgs, secrets, ... }:
 let
   username = "quinneden";
 in
@@ -17,9 +17,12 @@ in
     userEmail = "quinnyxboy@gmail.com";
     userName = username;
   };
-  programs.ssh = {
-    enable = true;
-    addKeysToAgent = "yes";
-  };
-  services.ssh-agent.enable = true;
+  programs.ssh =
+    if !pkgs.stdenv.isLinux then
+      { }
+    else
+      {
+        enable = true;
+        addKeysToAgent = "yes";
+      };
 }

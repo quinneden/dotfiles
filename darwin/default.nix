@@ -11,8 +11,9 @@
   imports = [
     ./brew.nix
     ./system.nix
-    ../../modules/fonts
     inputs.home-manager.darwinModules.default
+    inputs.lix-module.nixosModules.lixFromNixpkgs
+    inputs.mac-app-util.darwinModules.default
   ];
 
   users.users.quinn = {
@@ -21,21 +22,18 @@
     shell = "/bin/zsh";
   };
 
+  nixpkgs = {
+    config.allowUnfree = true;
+    overlays = [ inputs.lix-module.overlays.lixFromNixpkgs ];
+  };
+
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = {
       inherit inputs dotdir secrets;
     };
-    users.quinn.imports = [
-      inputs.mac-app-util.homeManagerModules.default
-      ./home.nix
-      ../../modules/home-manager/extra/micro.nix
-      ../../modules/home-manager/git
-      ../../modules/home-manager/packages
-      ../../modules/home-manager/vscodium
-      ../../modules/home-manager/zsh
-    ];
+    users.quinn = import ./home.nix;
   };
 
   security.pam.enableSudoTouchIdAuth = true;
@@ -46,7 +44,7 @@
     daemonProcessType = "Adaptive";
     settings = {
       accept-flake-config = true;
-      access-tokens = [ "github=${secrets.github.api}" ];
+      access-tokens = [ "github=${secrets.github.token}" ];
       builders-use-substitutes = true;
       experimental-features = [
         "nix-command"
@@ -79,7 +77,7 @@
             package = pkgs.lix;
             settings = {
               max-jobs = 6;
-              access-tokens = [ "github=${secrets.github.api}" ];
+              access-tokens = [ "github=${secrets.github.token}" ];
               extra-substituters = [
                 #   "${secrets.cachix.quinneden.url}"
                 #   "${secrets.cachix.nixos-asahi.url}"

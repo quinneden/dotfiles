@@ -83,33 +83,20 @@
     {
       formatter = forAllSystems (pkgs: pkgs.nixfmt-rfc-style);
 
-      packages.aarch64-linux.default = nixpkgs.legacyPackages.aarch64-linux.callPackage ./ags {
+      packages.aarch64-linux.default = nixpkgs.legacyPackages.aarch64-linux.callPackage ./nixos/ags {
         inherit inputs;
       };
 
-      darwinConfigurations =
-        let
+      darwinConfigurations = {
+        "macos" = nix-darwin.lib.darwinSystem {
           system = "aarch64-darwin";
-          pkgs = import nixpkgs {
-            inherit system;
-            config.allowUnfree = true;
-            overlays = [ inputs.lix-module.overlays.lixFromNixpkgs ];
+          specialArgs = {
+            inherit inputs secrets;
+            dotdir = "$HOME/.dotfiles";
           };
-        in
-        {
-          "macos" = nix-darwin.lib.darwinSystem {
-            inherit system pkgs;
-            specialArgs = {
-              inherit inputs secrets;
-              dotdir = "$HOME/.dotfiles";
-            };
-            modules = [
-              ./hosts/darwin
-              inputs.lix-module.nixosModules.lixFromNixpkgs
-              inputs.mac-app-util.darwinModules.default
-            ];
-          };
+          modules = [ ./darwin ];
         };
+      };
 
       nixosConfigurations = {
         nixos-macmini = nixpkgs.lib.nixosSystem {
@@ -119,7 +106,7 @@
             asztal = self.packages.aarch64-linux.default;
           };
           modules = [
-            ./nixos/nixos.nix
+            ./nixos
             home-manager.nixosModules.home-manager
             inputs.lix-module.nixosModules.default
             inputs.nixos-asahi.nixosModules.default
@@ -127,32 +114,5 @@
           ];
         };
       };
-
-      # nixosConfigurations =
-      #   let
-      #     system = "aarch64-linux";
-      #     pkgs = import nixpkgs {
-      #       inherit system;
-      #       config.allowUnfree = true;
-      #       overlays = [ inputs.nixos-asahi.overlays.default ];
-      #     };
-      #   in
-      #   {
-      #     "nixos" = nixpkgs.lib.nixosSystem {
-      #       inherit pkgs system;
-      #       specialArgs = {
-      #         inherit
-      #           inputs
-      #           dotdir
-      #           self
-      #           secrets
-      #           ;
-      #       };
-      #       modules = [
-      #         ./hosts/nixos
-      #         lix-module.nixosModules.default
-      #       ];
-      #     };
-      #   };
     };
 }

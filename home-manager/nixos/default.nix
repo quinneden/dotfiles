@@ -1,0 +1,24 @@
+{
+  imports = [
+    ./ags.nix
+    ./modules
+    ./blackbox.nix
+    ./browser.nix
+    ./dconf.nix
+    ./default.nix
+    ./distrobox.nix
+    ./hyprland.nix
+    ./lf.nix
+    ./nvim.nix
+    ./packages.nix
+    ./scripts
+    ./sh.nix
+    ./starship.nix
+    ./stm.nix
+    ./sway.nix
+    ./theme.nix
+    ./tmux.nix
+    ./wezterm.nix
+    ./zsh.nix
+  ];
+}

@@ -52,7 +52,6 @@ in
     };
   };
 
-
   environment.pathsToLink = [
     "/share/zsh"
     "/share/qemu"
@@ -70,21 +69,6 @@ in
       home.username = username;
       home.homeDirectory = "/home/${username}";
       imports = [
-        ../home-manager/ags.nix
-        ../home-manager/blackbox.nix
-        ../home-manager/browser.nix
-        ../home-manager/dconf.nix
-        ../home-manager/distrobox.nix
-        ../home-manager/git.nix
-        ../home-manager/hyprland.nix
-        ../home-manager/lf.nix
-        ../home-manager/packages.nix
-        ../home-manager/zsh.nix
-        ../home-manager/theme.nix
-        ../home-manager/tmux.nix
-        ../home-manager/wezterm.nix
-        ../home-manager/micro.nix
-        ../home-manager/vscodium
         ./home.nix
       ];
     };

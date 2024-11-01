@@ -5,6 +5,10 @@
   ...
 }:
 {
+  imports = [
+    ../home-manager/common
+    ../home-manager/darwin
+  ];
 
   home.file.".hushlogin".text = "";
 
