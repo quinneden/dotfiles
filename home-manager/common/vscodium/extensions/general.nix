@@ -6,7 +6,6 @@ let
   normal = with pkgs.vscode-extensions; [
     bbenoist.nix
     sumneko.lua
-    # kamadorueda.alejandra
     xaver.clang-format
     ziglang.vscode-zig
   ];

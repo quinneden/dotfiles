@@ -7,13 +7,11 @@
   "editor.formatOnSave" = true;
   "editor.formatOnPaste" = false;
   "editor.guides.indentation" = false;
-  # "editor.renderLineHighlight" = "none";
-  # "editor.semanticHighlighting.enabled" = false;
   "editor.minimap.enabled" = false;
   "editor.scrollbar.vertical" = "hidden";
   "editor.scrollbar.horizontal" = "hidden";
   "terminal.integrated.fontSize" = 14;
   "terminal.integrated.fontFamily" = "CaskcaydiaCove Nerd Font";
   "terminal.integrated.defaultProfile.linux" = "zsh";
-  "terminal.integrated.shellIntegration.decorationsEnabled" = false;
+  "terminal.integrated.shellIntegration.decorationsEnabled" = "never";
 }
