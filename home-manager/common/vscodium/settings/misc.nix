@@ -1,5 +1,4 @@
 {
-  # "symbols.hidesExplorerArrows" = true;
   "extensions.ignoreRecommendations" = true;
   "breadcrums.enabled" = false;
   "html.autoCreateQuotes" = false;

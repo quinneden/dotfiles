@@ -27,7 +27,7 @@ in
       fontsOverlays = _: prev: {
         nerdfonts = prev.nerdfonts.override {
           fonts = [
-            "CascadiaCode"
+            "CaskaydiaCove"
             "Hack"
             "JetBrainsMono"
             "IosevkaTerm"
@@ -51,9 +51,9 @@ in
     in
     ([
       fontsOverlays
-      # miscOverlays
+      (if pkgs.stdenv.isLinux then miscOverlays else null)
     ])
     ++ (with inputs; [
-      nixos-asahi.overlays.default
+      (if pkgs.stdenv.isLinux then nixos-asahi.overlays.default else null)
     ]);
 }

@@ -10,6 +10,7 @@
 {
   imports = [
     ./brew.nix
+    ./fonts.nix
     ./system.nix
     inputs.home-manager.darwinModules.default
     inputs.lix-module.nixosModules.lixFromNixpkgs
