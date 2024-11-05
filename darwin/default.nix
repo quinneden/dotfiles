@@ -13,7 +13,6 @@
     ./fonts.nix
     ./system.nix
     inputs.home-manager.darwinModules.default
-    inputs.lix-module.nixosModules.lixFromNixpkgs
     inputs.mac-app-util.darwinModules.default
   ];
 
@@ -52,14 +51,6 @@
         "flakes"
       ];
       extra-nix-path = "nixpkgs=flake:nixpkgs";
-      # extra-substituters = [
-      #   "${secrets.cachix.quinneden.url}"
-      #   "https://cache.lix.systems"
-      # ];
-      # extra-trusted-public-keys = [
-      #   "${secrets.cachix.quinneden.public-key}"
-      #   "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
-      # ];
       trusted-users = [
         "quinn"
         "root"
@@ -80,13 +71,9 @@
               max-jobs = 6;
               access-tokens = [ "github=${secrets.github.token}" ];
               extra-substituters = [
-                #   "${secrets.cachix.quinneden.url}"
-                #   "${secrets.cachix.nixos-asahi.url}"
                 "https://cache.lix.systems"
               ];
               extra-trusted-public-keys = [
-                # "${secrets.cachix.quinneden.public-key}"
-                # "${secrets.cachix.nixos-asahi.public-key}"
                 "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
               ];
             };

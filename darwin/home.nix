@@ -8,6 +8,7 @@
   imports = [
     ../home-manager/common
     ../home-manager/darwin
+    inputs.mac-app-util.homeManagerModules.default
   ];
 
   home.file.".hushlogin".text = "";

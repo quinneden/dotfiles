@@ -21,12 +21,6 @@ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
     sha256 = "1kys452zd99519jwvw5yqil0lm8wjvfaczsb555l0lk9lligbn35";
   }
   {
-    name = "symbols";
-    publisher = "miguelsolorio";
-    version = "0.0.17";
-    sha256 = "0b9mknig6fmhzs0fy1mwsa7bnwkqabsrwjmrcdmggrx9p8956v42";
-  }
-  {
     name = "color-highlight";
     publisher = "naumovs";
     version = "2.8.0";
