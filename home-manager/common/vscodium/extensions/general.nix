@@ -21,7 +21,7 @@ let
       rvest.vs-code-prettier-eslint
       rust-lang.rust-analyzer
       jnoortheen.nix-ide
-    	miguelsolorio.symbols
+      miguelsolorio.symbols
     ])
     ++ (with open-vsx; [
       pr1sm8.theme-panda
