@@ -12,7 +12,7 @@
   brightnessctl,
   accountsservice,
   slurp,
-  wf-recorder,
+  # wf-recorder,
   wl-clipboard,
   wayshot,
   swappy,
@@ -36,7 +36,7 @@ let
     swww
     inputs.matugen.packages.${system}.default
     slurp
-    wf-recorder
+    # wf-recorder
     wl-clipboard
     wayshot
     swappy

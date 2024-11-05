@@ -9,7 +9,7 @@
     ./lf.nix
     # ./nvim.nix
     ./packages.nix
-    ./sh.nix
+    # ./sh.nix
     # ./stm.nix
     ./sway.nix
     ./theme.nix

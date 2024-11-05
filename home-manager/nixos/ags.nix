@@ -10,7 +10,7 @@
     swww
     inputs.matugen.packages.${system}.default
     slurp
-    wf-recorder
+    # wf-recorder
     wl-clipboard
     wayshot
     swappy
@@ -22,7 +22,7 @@
 
   programs.ags = {
     enable = true;
-    configDir = ../ags;
+    configDir = ../../nixos/ags;
     extraPackages = with pkgs; [ accountsservice ];
   };
 }
