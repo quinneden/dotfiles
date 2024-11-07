@@ -8,6 +8,7 @@
     zip
     zstd
     nil
+    nix-tree
     cachix
     eza
     nixfmt-rfc-style
