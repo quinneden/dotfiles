@@ -18,6 +18,7 @@
     auto-optimise-store = true;
     substituters = [
       "https://cache.lix.systems"
+      "https://cache.nixos.org"
       "https://hyprland.cachix.org"
     ];
     trusted-public-keys = [
