@@ -45,7 +45,7 @@
     settings = {
       accept-flake-config = true;
       access-tokens = [ "github=${secrets.github.token}" ];
-      builders-use-substitutes = true;
+      # builders-use-substitutes = false;
       experimental-features = [
         "nix-command"
         "flakes"
@@ -54,6 +54,14 @@
       trusted-users = [
         "quinn"
         "root"
+      ];
+      substituters = [
+        "https://cache.lix.systems"
+        "https://cache.nixos.org"
+      ];
+      trusted-public-keys = [
+        "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
+        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       ];
       warn-dirty = false;
     };
@@ -66,16 +74,15 @@
         { pkgs, ... }:
         {
           nix = {
-            package = pkgs.lix;
             settings = {
               max-jobs = 6;
               access-tokens = [ "github=${secrets.github.token}" ];
-              extra-substituters = [
-                "https://cache.lix.systems"
-              ];
-              extra-trusted-public-keys = [
-                "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
-              ];
+              # extra-substituters = [
+              #   "https://cache.lix.systems"
+              # ];
+              # extra-trusted-public-keys = [
+              #   "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
+              # ];
             };
           };
           virtualisation = {
