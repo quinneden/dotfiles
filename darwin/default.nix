@@ -14,7 +14,7 @@
     ./system.nix
     inputs.home-manager.darwinModules.default
     inputs.mac-app-util.darwinModules.default
-    inputs.nh_darwin.nixDarwinModules.default
+    # inputs.nh_darwin.nixDarwinModules.default
   ];
 
   users.users.quinn = {
@@ -39,13 +39,13 @@
 
   security.pam.enableSudoTouchIdAuth = true;
 
-  programs.nh = {
+/*  programs.nh = {
     enable = true;
     flake = "$HOME/.dotfiles";
     clean.enable = true;
     package = inputs.nh_darwin.packages.${pkgs.stdenv.hostPlatform.system}.default;
-  };
-
+  }; */
+  
   nix = {
     configureBuildUsers = true;
     distributedBuilds = true;
@@ -76,7 +76,7 @@
 
     linux-builder = {
       enable = true;
-      ephemeral = true;
+/*      ephemeral = true;
       maxJobs = 6;
       config =
         { pkgs, ... }:
@@ -100,7 +100,7 @@
               memorySize = 6 * 1024;
             };
           };
-        };
+        }; */
     };
   };
 
