@@ -2,7 +2,7 @@
   description = "NixOS & Nix-darwin configurations.";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
     lix-module.url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
 
@@ -50,6 +50,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     mac-app-util.url = "github:hraban/mac-app-util";
+    nh_darwin.url = "github:ToyVo/nh_darwin";
   };
 
   outputs =

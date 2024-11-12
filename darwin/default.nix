@@ -14,6 +14,7 @@
     ./system.nix
     inputs.home-manager.darwinModules.default
     inputs.mac-app-util.darwinModules.default
+    inputs.nh_darwin.nixDarwinModules.default
   ];
 
   users.users.quinn = {
@@ -38,6 +39,13 @@
 
   security.pam.enableSudoTouchIdAuth = true;
 
+  programs.nh = {
+    enable = true;
+    flake = "$HOME/.dotfiles";
+    clean.enable = true;
+    package = inputs.nh_darwin.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  };
+
   nix = {
     configureBuildUsers = true;
     distributedBuilds = true;
@@ -45,7 +53,7 @@
     settings = {
       accept-flake-config = true;
       access-tokens = [ "github=${secrets.github.token}" ];
-      # builders-use-substitutes = false;
+      builders-use-substitutes = true;
       experimental-features = [
         "nix-command"
         "flakes"
@@ -55,13 +63,13 @@
         "quinn"
         "root"
       ];
-      substituters = [
+      extra-substituters = [
         "https://cache.lix.systems"
-        "https://cache.nixos.org"
+        "https://toyvo.cachix.org"
       ];
-      trusted-public-keys = [
+      extra-trusted-public-keys = [
         "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
-        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+        "toyvo.cachix.org-1:s++CG1te6YaS9mjICre0Ybbya2o/S9fZIyDNGiD4UXs="
       ];
       warn-dirty = false;
     };
@@ -77,12 +85,12 @@
             settings = {
               max-jobs = 6;
               access-tokens = [ "github=${secrets.github.token}" ];
-              # extra-substituters = [
-              #   "https://cache.lix.systems"
-              # ];
-              # extra-trusted-public-keys = [
-              #   "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
-              # ];
+              extra-substituters = [
+                "https://cache.lix.systems"
+              ];
+              extra-trusted-public-keys = [
+                "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
+              ];
             };
           };
           virtualisation = {

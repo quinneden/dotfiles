@@ -94,6 +94,7 @@
       "shc"
       "shellcheck"
       "socket_vmnet"
+      "tmux"
       "tree"
       "w3m"
       "wget"
