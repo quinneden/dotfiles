@@ -45,7 +45,7 @@
     clean.enable = true;
     package = inputs.nh_darwin.packages.${pkgs.stdenv.hostPlatform.system}.default;
   }; */
-  
+
   nix = {
     configureBuildUsers = true;
     distributedBuilds = true;
@@ -65,42 +65,39 @@
       ];
       extra-substituters = [
         "https://cache.lix.systems"
-        "https://toyvo.cachix.org"
       ];
       extra-trusted-public-keys = [
         "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
-        "toyvo.cachix.org-1:s++CG1te6YaS9mjICre0Ybbya2o/S9fZIyDNGiD4UXs="
       ];
       warn-dirty = false;
     };
 
     linux-builder = {
       enable = true;
-/*      ephemeral = true;
-      maxJobs = 6;
-      config =
-        { pkgs, ... }:
-        {
-          nix = {
-            settings = {
-              max-jobs = 6;
-              access-tokens = [ "github=${secrets.github.token}" ];
-              extra-substituters = [
-                "https://cache.lix.systems"
-              ];
-              extra-trusted-public-keys = [
-                "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
-              ];
-            };
-          };
-          virtualisation = {
-            cores = 6;
-            darwin-builder = {
-              diskSize = 100 * 1024;
-              memorySize = 6 * 1024;
-            };
-          };
-        }; */
+      ephemeral = true;
+      # config =
+      #   { pkgs, ... }:
+      #   {
+      #     # nix = {
+      #     #   settings = {
+      #     #     max-jobs = 6;
+      #     #     access-tokens = [ "github=${secrets.github.token}" ];
+      #     #     extra-substituters = [
+      #     #       "https://cache.lix.systems"
+      #     #     ];
+      #     #     extra-trusted-public-keys = [
+      #     #       "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
+      #     #     ];
+      #     #   };
+      #     # };
+      #     virtualisation = {
+      #       cores = 8;
+      #       darwin-builder = {
+      #         diskSize = 100 * 1024;
+      #         memorySize = 8 * 1024;
+      #       };
+      #     };
+      #   };
     };
   };
 
