@@ -16,7 +16,7 @@
       "podman-desktop"
       "utm"
       "vagrant"
-      # "vscodium"
+      "vscodium"
       "wezterm"
     ];
     brews = [
@@ -72,6 +72,7 @@
       "micro"
       "ncdu"
       "node"
+      "openssh"
       "openssl@3"
       "p7zip"
       "paperkey"
