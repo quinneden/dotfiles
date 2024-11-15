@@ -67,29 +67,30 @@
     linux-builder = {
       enable = true;
       ephemeral = true;
-      # config =
-      #   { pkgs, ... }:
-      #   {
-      #     # nix = {
-      #     #   settings = {
-      #     #     max-jobs = 6;
-      #     #     access-tokens = [ "github=${secrets.github.token}" ];
-      #     #     extra-substituters = [
-      #     #       "https://cache.lix.systems"
-      #     #     ];
-      #     #     extra-trusted-public-keys = [
-      #     #       "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
-      #     #     ];
-      #     #   };
-      #     # };
-      #     virtualisation = {
-      #       cores = 8;
-      #       darwin-builder = {
-      #         diskSize = 100 * 1024;
-      #         memorySize = 8 * 1024;
-      #       };
-      #     };
-      #   };
+      config =
+        { pkgs, ... }:
+        {
+          # nix = {
+          #   package = pkgs.lix;
+          #   settings = {
+          #     max-jobs = 8;
+          #     access-tokens = [ "github=${secrets.github.token}" ];
+          #     substituters = [
+          #       "https://cache.lix.systems"
+          #     ];
+          #     trusted-public-keys = [
+          #       "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
+          #     ];
+          #   };
+          # };
+          virtualisation = {
+            cores = 8;
+            darwin-builder = {
+              diskSize = 100 * 1024;
+              memorySize = 8 * 1024;
+            };
+          };
+        };
     };
   };
 

@@ -7,7 +7,7 @@
     ];
     casks = [
       "betterdisplay"
-      "docker"
+      # "docker"
       "eloston-chromium"
       "eqmac"
       "hammerspoon"
