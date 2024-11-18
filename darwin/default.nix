@@ -11,6 +11,7 @@
   imports = [
     ./brew.nix
     ./fonts.nix
+    ./overlays.nix
     ./system.nix
     inputs.home-manager.darwinModules.default
     inputs.mac-app-util.darwinModules.default
@@ -22,10 +23,7 @@
     shell = "/bin/zsh";
   };
 
-  nixpkgs = {
-    config.allowUnfree = true;
-    overlays = [ inputs.lix-module.overlays.lixFromNixpkgs ];
-  };
+  nixpkgs.config.allowUnfree = true;
 
   home-manager = {
     useGlobalPkgs = true;
@@ -92,12 +90,23 @@
           };
         };
     };
+
+    buildMachines = [
+      {
+        hostName = "nixos-macserver";
+        systems = [ "aarch64-linux" ];
+        maxJobs = 8;
+        supportedFeatures = [
+          "nixos-test"
+          "benchmark"
+          "big-parallel"
+          "kvm"
+        ];
+      }
+    ];
   };
 
-  services = {
-    activate-system.enable = true;
-    nix-daemon.enable = true;
-  };
+  services.nix-daemon.enable = true;
 
   homebrew = {
     enable = true;

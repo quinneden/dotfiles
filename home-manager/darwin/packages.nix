@@ -4,6 +4,7 @@
     aria2
     gawk
     gnutar
+    ks
     xz
     zip
     zstd
