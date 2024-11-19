@@ -40,6 +40,7 @@
     configureBuildUsers = true;
     distributedBuilds = true;
     daemonProcessType = "Adaptive";
+    nixPath = [ "nixpkgs=flake:nixpkgs" ];
     settings = {
       accept-flake-config = true;
       access-tokens = [ "github=${secrets.github.token}" ];
