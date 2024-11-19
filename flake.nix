@@ -51,6 +51,7 @@
     };
     mac-app-util.url = "github:hraban/mac-app-util";
     nh_darwin.url = "github:ToyVo/nh_darwin";
+    micro-autofmt-nix.url = "github:quinneden/micro-autofmt-nix";
   };
 
   outputs =

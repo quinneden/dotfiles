@@ -68,19 +68,19 @@
       config =
         { pkgs, ... }:
         {
-          # nix = {
-          #   package = pkgs.lix;
-          #   settings = {
-          #     max-jobs = 8;
-          #     access-tokens = [ "github=${secrets.github.token}" ];
-          #     substituters = [
-          #       "https://cache.lix.systems"
-          #     ];
-          #     trusted-public-keys = [
-          #       "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
-          #     ];
-          #   };
-          # };
+          nix = {
+            package = pkgs.lix;
+            settings = {
+              max-jobs = 8;
+              access-tokens = [ "github=${secrets.github.token}" ];
+              extra-substituters = [
+                "https://cache.lix.systems"
+              ];
+              extra-trusted-public-keys = [
+                "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
+              ];
+            };
+          };
           virtualisation = {
             cores = 8;
             darwin-builder = {
@@ -91,19 +91,19 @@
         };
     };
 
-    buildMachines = [
-      {
-        hostName = "nixos-macserver";
-        systems = [ "aarch64-linux" ];
-        maxJobs = 8;
-        supportedFeatures = [
-          "nixos-test"
-          "benchmark"
-          "big-parallel"
-          "kvm"
-        ];
-      }
-    ];
+    # buildMachines = [
+    #   {
+    #     hostName = "nixos-macserver";
+    #     systems = [ "aarch64-linux" ];
+    #     maxJobs = 8;
+    #     supportedFeatures = [
+    #       "nixos-test"
+    #       "benchmark"
+    #       "big-parallel"
+    #       "kvm"
+    #     ];
+    #   }
+    # ];
   };
 
   services.nix-daemon.enable = true;

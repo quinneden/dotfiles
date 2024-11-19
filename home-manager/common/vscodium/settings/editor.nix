@@ -10,8 +10,9 @@
   "editor.minimap.enabled" = false;
   "editor.scrollbar.vertical" = "hidden";
   "editor.scrollbar.horizontal" = "hidden";
-  "terminal.integrated.fontSize" = 14;
-  "terminal.integrated.fontFamily" = "CaskcaydiaCove Nerd Font";
+  "terminal.integrated.cursorStyle" = "line";
   "terminal.integrated.defaultProfile.linux" = "zsh";
+  "terminal.integrated.fontFamily" = "CaskcaydiaCove Nerd Font";
+  "terminal.integrated.fontSize" = 14;
   "terminal.integrated.shellIntegration.decorationsEnabled" = "never";
 }

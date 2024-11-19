@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, inputs, ... }:
 {
   xdg.configFile."micro/bindings.json".text = ''
     {
@@ -40,7 +40,6 @@
       "literate": true,
       "pluginchannels": [],
       "pluginrepos": [
-        "https://github.com/quinneden/micro-colors",
         "https://github.com/quinneden/micro-autofmt/raw/refs/heads/main/repo.json"
       ],
       "parsecursor": true,
@@ -90,4 +89,11 @@
     #color-link symbol.brackets "default"
     color-link symbol.tag "#AE81FF,#282828"
   '';
+
+  home.file."micro-autofmt" = {
+    recursive = true;
+    target = "${config.xdg.configHome}/micro/plug/autofmt";
+    # source = builtins.toPath (builtins.getFlake "github:quinneden/micro-autofmt-nix;
+    source = inputs.micro-autofmt-nix.packages.${pkgs.system}.default;
+  };
 }
