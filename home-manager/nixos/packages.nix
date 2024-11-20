@@ -9,7 +9,6 @@
   packages = with pkgs; {
     linux = [
       (mpv.override { scripts = [ mpvScripts.mpris ]; })
-      asahi-bless
       fragments
       inputs.nix-shell-scripts.packages.aarch64-linux.default
       nh

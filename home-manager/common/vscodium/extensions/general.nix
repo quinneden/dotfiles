@@ -22,6 +22,7 @@ let
       rust-lang.rust-analyzer
       jnoortheen.nix-ide
       miguelsolorio.symbols
+      # github.copilot
     ])
     ++ (with open-vsx; [
       pr1sm8.theme-panda
