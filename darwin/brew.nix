@@ -4,6 +4,7 @@
     taps = [
       "homebrew/bundle"
       "homebrew/services"
+      "slp/krunkit"
     ];
     casks = [
       "betterdisplay"
@@ -56,6 +57,7 @@
       "ipython"
       "jq"
       "just"
+      "krunkit"
       "ldid"
       "lf"
       "lftp"
@@ -94,7 +96,7 @@
       "rustup"
       "shc"
       "shellcheck"
-      "socket_vmnet"
+      # "socket_vmnet"
       "tmux"
       "tree"
       "w3m"

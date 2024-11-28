@@ -92,20 +92,32 @@
         };
     };
 
-    # buildMachines = [
-    #   {
-    #     hostName = "nixos-macserver";
-    #     systems = [ "aarch64-linux" ];
-    #     maxJobs = 8;
-    #     supportedFeatures = [
-    #       "nixos-test"
-    #       "benchmark"
-    #       "big-parallel"
-    #       "kvm"
-    #     ];
-    #   }
-    # ];
+    buildMachines = [
+      {
+        hostName = "macserver";
+        speedFactor = 2;
+        sshUser = "root";
+        sshKey = "/etc/ssh/keys/macserver_host_ed25519_key";
+        # publicHostKey = "";
+        protocol = "ssh-ng";
+        system = "aarch64-linux";
+        maxJobs = 8;
+        supportedFeatures = [
+          "nixos-test"
+          "benchmark"
+          "big-parallel"
+          "kvm"
+        ];
+      }
+    ];
   };
+
+  #   programs.ssh.knownHosts = {
+  #     "macserver" = {
+  #       hostNames = [ "10.0.0.243" ];
+  #       publicKeyFile = "/etc/ssh/keys/macserver_ed25519.pub";
+  #     };
+  #   };
 
   services.nix-daemon.enable = true;
 
