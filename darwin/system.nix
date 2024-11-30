@@ -51,6 +51,7 @@
         };
         NSGlobalDomain = {
           WebKitDeveloperExtras = true;
+          AppleFontSmoothing = 2;
         };
         "com.apple.finder" = {
           ShowExternalHardDrivesOnDesktop = true;
