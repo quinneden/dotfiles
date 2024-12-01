@@ -92,24 +92,21 @@
         };
     };
 
-    # buildMachines = [
-    #   {
-    #     hostName = "macserver";
-    #     speedFactor = 2;
-    #     sshUser = "root";
-    #     # sshKey = "/Users/quinn/.ssh/authorized_keys.d/root_macserver_ed25519";
-    #     publicHostKey = "c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSU1uMk0zOGhVQ1BNT2hpd3VvaE55dnRaYk9OUHFuZVlZNEdySk1XZ2gyRWQgcm9vdEBtYWNzZXJ2ZXIK";
-    #     protocol = "ssh-ng";
-    #     system = "aarch64-linux";
-    #     maxJobs = 8;
-    #     supportedFeatures = [
-    #       "nixos-test"
-    #       "benchmark"
-    #       "big-parallel"
-    #       "kvm"
-    #     ];
-    #   }
-    # ];
+    buildMachines = [
+      {
+        hostName = "fedora-builder";
+        maxJobs = 8;
+        protocol = "ssh-ng";
+        speedFactor = 2;
+        system = "aarch64-linux";
+        supportedFeatures = [
+          "nixos-test"
+          "benchmark"
+          "big-parallel"
+          "kvm"
+        ];
+      }
+    ];
   };
 
   #   programs.ssh.knownHosts = {
