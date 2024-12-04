@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   inputs,
   system,
@@ -13,23 +14,13 @@
           inherit (prev) system;
         in
         {
-          ks = prev.ks.overrideAttrs (
-            finalAttrs: previousAttrs: {
-              version = "0.4.2";
-              src = prev.fetchFromGitHub {
-                owner = "loteoo";
-                repo = "ks";
-                rev = "${finalAttrs.version}";
-                hash = "sha256-v05wqlG7Utq1b7ctvDY9MCdjHVVZZNNzuHaIBwuRjEE=";
-              };
-            }
-          );
+          deskflow-darwin = pkgs.deskflow.overrideAttrs ({
+            platforms = (prev.platforms ++ [ "aarch64-apple-darwin" ]);
+          });
         };
     in
-    ([
-      miscOverlays
-    ])
-    ++ (with inputs; [
-      lix-module.overlays.lixFromNixpkgs
-    ]);
+    [
+      # miscOverlays
+      inputs.lix-module.overlays.default
+    ];
 }

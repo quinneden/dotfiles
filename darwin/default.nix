@@ -7,6 +7,15 @@
   secrets,
   ...
 }:
+let
+  push-to-picache = pkgs.writeShellScriptBin ''
+    set -eu
+    set -f
+    export IFS=' '
+    echo "Uploading paths" $OUT_PATHS
+    exec nix copy --to "http://picache.qeden.me" $OUT_PATHS
+  '';
+in
 {
   imports = [
     ./brew.nix
@@ -49,17 +58,19 @@
         "nix-command"
         "flakes"
       ];
-      extra-nix-path = "nixpkgs=flake:nixpkgs";
       trusted-users = [
         "quinn"
         "root"
       ];
       extra-substituters = [
         "https://cache.lix.systems"
+        # "http://picache.qeden.me"
       ];
       extra-trusted-public-keys = [
         "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
+        # "picache.qeden.me:YbzItsTq/D/ns+o9/KzrPraH2hrnmNk/D5aclZZx+YA="
       ];
+      # secret-key-files = [ ../.secrets/keys/cache-secret-key.pem ];
       warn-dirty = false;
     };
 
@@ -69,8 +80,24 @@
       config =
         { pkgs, ... }:
         {
+          imports = [
+            (
+              let
+                module = fetchTarball {
+                  name = "source";
+                  url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-2.tar.gz";
+                  sha256 = "sha256-DN5/166jhiiAW0Uw6nueXaGTueVxhfZISAkoxasmz/g=";
+                };
+                lixSrc = fetchTarball {
+                  name = "source";
+                  url = "https://git.lix.systems/lix-project/lix/archive/2.91.1.tar.gz";
+                  sha256 = "sha256-hiGtfzxFkDc9TSYsb96Whg0vnqBVV7CUxyscZNhed0U=";
+                };
+              in
+              import "${module}/module.nix" { lix = lixSrc; }
+            )
+          ];
           nix = {
-            package = pkgs.lix;
             settings = {
               max-jobs = 8;
               access-tokens = [ "github=${secrets.github.token}" ];
@@ -92,29 +119,22 @@
         };
     };
 
-    buildMachines = [
-      {
-        hostName = "fedora-builder";
-        maxJobs = 8;
-        protocol = "ssh-ng";
-        speedFactor = 2;
-        system = "aarch64-linux";
-        supportedFeatures = [
-          "nixos-test"
-          "benchmark"
-          "big-parallel"
-          "kvm"
-        ];
-      }
-    ];
+    # buildMachines = [
+    #   {
+    #     hostName = "fedora-builder";
+    #     maxJobs = 8;
+    #     protocol = "ssh-ng";
+    #     speedFactor = 2;
+    #     system = "aarch64-linux";
+    #     supportedFeatures = [
+    #       "nixos-test"
+    #       "benchmark"
+    #       "big-parallel"
+    #       "kvm"
+    #     ];
+    #   }
+    # ];
   };
-
-  #   programs.ssh.knownHosts = {
-  #     "macserver" = {
-  #       hostNames = [ "10.0.0.243" ];
-  #       publicKeyFile = "/etc/ssh/keys/macserver_ed25519.pub";
-  #     };
-  #   };
 
   services.nix-daemon.enable = true;
 

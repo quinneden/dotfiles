@@ -5,6 +5,7 @@
   ...
 }:
 let
+in
 #   patchForVagrant = pkgs.writeText "vagrant-bump-rexml-to-3_3.patch" ''
 #     diff --git a/vagrant_cloud.gemspec b/vagrant_cloud.gemspec
 #     index 219d47d..c704aee 100644
@@ -20,7 +21,6 @@ let
 #        s.add_development_dependency 'rake', '~> 12.3'
 #        s.add_development_dependency 'rspec', '~> 3.0'
 #   '';
-in
 {
   nixpkgs.overlays =
     let
@@ -38,17 +38,17 @@ in
         };
       };
 
-      # miscOverlays =
-      #   _: prev:
-      #   let
-      #     inherit (prev) system;
-      #   in
-      #   {
-      #     vagrant = prev.vagrant.overrideAttrs (old: {
-      #       patches = patchForVagrant;
-      #     });
-      #   };
     in
+    # miscOverlays =
+    #   _: prev:
+    #   let
+    #     inherit (prev) system;
+    #   in
+    #   {
+    #     vagrant = prev.vagrant.overrideAttrs (old: {
+    #       patches = patchForVagrant;
+    #     });
+    #   };
     ([
       fontsOverlays
       # (if pkgs.stdenv.isLinux then miscOverlays else null)
