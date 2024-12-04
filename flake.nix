@@ -5,8 +5,8 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     hyprland.url = "github:hyprwm/hyprland";
     matugen.url = "github:InioX/matugen";
-    ags.url = "github:Aylur/ags/v1";
-    astal.url = "github:Aylur/astal";
+    ags.url = "github:quinneden/ags";
+    astal.url = "github:quinneden/astal";
     nix-shell-scripts.url = "github:quinneden/nix-shell-scripts";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     mac-app-util.url = "github:hraban/mac-app-util";
@@ -18,8 +18,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-asahi = {
-      url = "github:zzywysm/nixos-asahi";
+    nixos-apple-silicon = {
+      url = "github:tpwrules/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -63,22 +63,6 @@
       ...
     }:
     let
-      # forAllSystems =
-      #   function:
-      #   nixpkgs.lib.genAttrs
-      #     [
-      #       "aarch64-linux"
-      #       "aarch64-darwin"
-      #     ]
-      #     (
-      #       system:
-      #       function (
-      #         import nixpkgs {
-      #           inherit system;
-      #           config.allowUnfree = true;
-      #         }
-      #       )
-      #     );
       secrets = builtins.fromJSON (builtins.readFile .secrets/common.json);
       forAllSystems = inputs.nixpkgs.lib.genAttrs [
         "aarch64-darwin"
@@ -114,7 +98,7 @@
             ./nixos
             home-manager.nixosModules.home-manager
             inputs.lix-module.nixosModules.default
-            inputs.nixos-asahi.nixosModules.default
+            inputs.nixos-apple-silicon.nixosModules.default
             { networking.hostName = "nixos-macmini"; }
           ];
         };

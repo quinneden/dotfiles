@@ -41,7 +41,7 @@ let
   };
 
   linuxVariables = {
-    NIXOS_CONFIG = "$HOME/.dotfiles";
+    # NIXOS_CONFIG = "$HOME/.dotfiles";
   };
 
   initExtraCommon = ''
