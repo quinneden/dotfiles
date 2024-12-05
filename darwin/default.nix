@@ -46,10 +46,40 @@ in
   security.pam.enableSudoTouchIdAuth = true;
 
   nix = {
+    gc = {
+      user = "root";
+      automatic = true;
+      options = "--delete-older-than 3d";
+      interval = [
+        {
+          Hour = 4;
+          Minute = 15;
+          Weekday = 7;
+        }
+      ];
+    };
+
+    optimise = {
+      user = "root";
+      automatic = true;
+      interval = [
+        {
+          Hour = 4;
+          Minute = 15;
+          Weekday = 7;
+        }
+      ];
+    };
+
+    channel.enable = false;
+
     configureBuildUsers = true;
     distributedBuilds = true;
+
     daemonProcessType = "Adaptive";
+
     nixPath = [ "nixpkgs=flake:nixpkgs" ];
+
     settings = {
       accept-flake-config = true;
       access-tokens = [ "github=${secrets.github.token}" ];
@@ -137,6 +167,11 @@ in
   };
 
   services.nix-daemon.enable = true;
+
+  programs.zsh = {
+    enable = true;
+    enableFastSyntaxHighlighting = true;
+  };
 
   homebrew = {
     enable = true;

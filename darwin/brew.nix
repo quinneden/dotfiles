@@ -8,6 +8,7 @@
     ];
     casks = [
       "betterdisplay"
+      "deskflow"
       "eloston-chromium"
       "eqmac"
       "iterm2"
@@ -30,7 +31,6 @@
       "cmake"
       "curl"
       "cython"
-      "deskflow"
       "eza"
       "fd"
       "flex"
