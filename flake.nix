@@ -5,8 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     hyprland.url = "github:hyprwm/hyprland";
     matugen.url = "github:InioX/matugen";
-    ags.url = "github:quinneden/ags";
-    astal.url = "github:quinneden/astal";
+    ags.url = "github:aylur/ags/v1";
     nix-shell-scripts.url = "github:quinneden/nix-shell-scripts";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     mac-app-util.url = "github:hraban/mac-app-util";

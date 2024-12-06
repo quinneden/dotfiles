@@ -48,6 +48,10 @@ let
       key = "alt+right";
       command = "workbench.action.focusNextGroup";
     }
+    {
+      key = "ctrl+shift+i";
+      command = "copilot-chat.focus";
+    }
   ];
 in
 [ ] ++ keybindings

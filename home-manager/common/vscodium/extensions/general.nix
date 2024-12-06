@@ -12,6 +12,7 @@ let
 
   marketplace = inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace;
   open-vsx = inputs.nix-vscode-extensions.extensions.${pkgs.system}.open-vsx;
+  release = inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace-release;
 
   community =
     (with marketplace; [
@@ -22,7 +23,10 @@ let
       rust-lang.rust-analyzer
       jnoortheen.nix-ide
       miguelsolorio.symbols
-      # github.copilot
+    ])
+    ++ (with release; [
+      github.copilot
+      github.copilot-chat
     ])
     ++ (with open-vsx; [
       pr1sm8.theme-panda
