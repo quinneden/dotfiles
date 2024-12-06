@@ -18,6 +18,7 @@ let
 in
 {
   imports = [
+    # ./aerospace.nix
     ./brew.nix
     ./fonts.nix
     ./overlays.nix
@@ -167,11 +168,6 @@ in
   };
 
   services.nix-daemon.enable = true;
-
-  programs.zsh = {
-    enable = true;
-    enableFastSyntaxHighlighting = true;
-  };
 
   homebrew = {
     enable = true;

@@ -64,7 +64,7 @@ in
     shellAliases = commonAliases // (if pkgs.stdenv.isDarwin then darwinAliases else linuxAliases);
     enableCompletion = true;
     autosuggestion.enable = true;
-    syntaxHighlighting.enable = false;
+    syntaxHighlighting.enable = true;
     oh-my-zsh = {
       enable = true;
       plugins = [

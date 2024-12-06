@@ -16,6 +16,5 @@
     inputs.nix-shell-scripts.packages.${system}.default
     inputs.nix-shell-scripts.packages.${system}.nixos-deploy
     zoxide
-    zsh-fast-syntax-highlighting
   ];
 }
