@@ -56,10 +56,10 @@
 
   # services
   services = {
-    xserver = {
-      enable = true;
-      excludePackages = [ pkgs.xterm ];
-    };
+    # xserver = {
+    #   enable = true;
+    #   excludePackages = [ pkgs.xterm ];
+    # };
     flatpak.enable = true;
     openssh.enable = true;
   };
@@ -127,5 +127,5 @@
     };
   };
 
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.05";
 }

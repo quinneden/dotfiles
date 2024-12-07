@@ -1,10 +1,10 @@
 { inputs, pkgs, ... }:
 let
-  hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
-  # plugins = inputs.hyprland-plugins.packages.${pkgs.system};
+  hyprland = inputs.hyprland.packages.${pkgs.system}.default;
+  plugins = inputs.hyprland-plugins.packages.${pkgs.system};
 
   playerctl = "${pkgs.playerctl}/bin/playerctl";
-  brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
+  # brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
   pactl = "${pkgs.pulseaudio}/bin/pactl";
   screenshot = import ./scripts/screenshot.nix pkgs;
 in
@@ -21,13 +21,13 @@ in
   wayland.windowManager.hyprland = {
     enable = true;
     package = hyprland;
-    systemd.enable = true;
+    systemd.enable = false;
     xwayland.enable = true;
     plugins = [
-      # inputs.hyprland-hyprspace.packages.${pkgs.system}.default
+      inputs.hyprland-hyprspace.packages.${pkgs.system}.default
       # plugins.hyprexpo
-      # plugins.hyprbars
-      # plugins.borderspp
+      plugins.hyprbars
+      # plugins.borders-plus-plus
     ];
 
     settings = {
@@ -127,9 +127,9 @@ in
           ",XF86Launch4,   ${e} -r 'recorder.start()'"
           ",Print,         exec, ${screenshot}"
           "SHIFT,Print,    exec, ${screenshot} --full"
-          "SUPER, Return, exec, xterm" # xterm is a symlink, not actually xterm
+          "SUPER, Return, exec, xterm"
           "SUPER, W, exec, firefox"
-          "SUPER, E, exec, wezterm -e lf"
+          "SUPER, E, exec, wezterm"
 
           "ALT, Tab, focuscurrentorlast"
           "CTRL ALT, Delete, exit"
@@ -160,8 +160,8 @@ in
         ++ (map (i: mvtows (toString i) (toString i)) arr);
 
       bindle = [
-        ",XF86MonBrightnessUp,   exec, ${brightnessctl} set +5%"
-        ",XF86MonBrightnessDown, exec, ${brightnessctl} set  5%-"
+        # ",XF86MonBrightnessUp,   exec, ${brightnessctl} set +5%"
+        # ",XF86MonBrightnessDown, exec, ${brightnessctl} set  5%-"
         ",XF86AudioRaiseVolume,  exec, ${pactl} set-sink-volume @DEFAULT_SINK@ +5%"
         ",XF86AudioLowerVolume,  exec, ${pactl} set-sink-volume @DEFAULT_SINK@ -5%"
       ];

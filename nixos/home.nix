@@ -19,6 +19,7 @@
     sessionVariables = {
       NIXPKGS_ALLOW_UNFREE = "1";
       NIXPKGS_ALLOW_INSECURE = "1";
+      GSK_RENDERER = "ngl";
       BAT_THEME = "base16";
       GOPATH = "${config.home.homeDirectory}/.local/share/go";
       GOMODCACHE = "${config.home.homeDirectory}/.cache/go/pkg/mod";
@@ -38,20 +39,10 @@
       "file://${home}/Videos"
       "file://${home}/Downloads"
       "file://${home}/Desktop"
-      "file://${home}/Work"
-      "file://${home}/Projects"
-      "file://${home}/Vault"
-      "file://${home}/School"
-      "file://${home}/.config Config"
+      "file://${home}/workdir Workdir"
+      "file://${home}/repos Repositories"
     ];
 
-  services = {
-    kdeconnect = {
-      enable = true;
-      indicator = true;
-    };
-  };
-
   programs.home-manager.enable = true;
-  home.stateVersion = "21.11";
+  home.stateVersion = "25.05";
 }

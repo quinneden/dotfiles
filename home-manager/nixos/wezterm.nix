@@ -104,7 +104,7 @@
         cell_width = 0.9;
         default_cursor_style = "BlinkingBar";
 
-        # front_end = "WebGpu";
+        front_end = "WebGpu";
 
         window_close_confirmation = "NeverPrompt";
         hide_tab_bar_if_only_one_tab = true;
@@ -126,7 +126,7 @@
 
         audible_bell = "Disabled";
 
-        default_prog = [ "${pkgs.tmux}/bin/tmux" ];
+        default_prog = [ "${pkgs.zsh}/bin/zsh" ];
       };
 
       extraLua = ''

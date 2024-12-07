@@ -14,7 +14,7 @@ in
       };
       bars = [ ];
       keybindings = {
-        "${mod}+Return" = "exec xterm";
+        "${mod}+Return" = "exec blackbox";
         "${mod}+w" = "exec firefox";
         "${mod}+q" = "kill";
         "${mod}+f" = "floating toggle";
