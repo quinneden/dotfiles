@@ -25,6 +25,7 @@ in
   users.users.${username} = {
     isNormalUser = true;
     initialPassword = username;
+    shell = pkgs.zsh;
     extraGroups = [
       "nixosvmtest"
       "networkmanager"
@@ -38,7 +39,7 @@ in
 
   programs.nh = {
     enable = true;
-    # flake = /home/${username}/.dotfiles;
+    flake = /home/${username}/.dotfiles;
   };
 
   programs.direnv = {
@@ -52,11 +53,17 @@ in
     };
   };
 
+  programs.zsh.enable = true;
+
   environment.pathsToLink = [
     "/share/zsh"
     "/share/qemu"
     "/share/edk2"
   ];
+
+  environment.sessionVariables = {
+    GSK_RENDERER = "ngl";
+  };
 
   home-manager = {
     backupFileExtension = "backup";

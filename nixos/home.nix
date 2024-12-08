@@ -19,7 +19,6 @@
     sessionVariables = {
       NIXPKGS_ALLOW_UNFREE = "1";
       NIXPKGS_ALLOW_INSECURE = "1";
-      GSK_RENDERER = "ngl";
       BAT_THEME = "base16";
       GOPATH = "${config.home.homeDirectory}/.local/share/go";
       GOMODCACHE = "${config.home.homeDirectory}/.cache/go/pkg/mod";

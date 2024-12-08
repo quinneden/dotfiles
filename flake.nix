@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     hyprland.url = "github:hyprwm/hyprland";
+    hyprcursor-phinger.url = "github:quinneden/hyprcursor-phinger";
     matugen.url = "github:InioX/matugen";
     ags.url = "github:aylur/ags/v1";
     nix-shell-scripts.url = "github:quinneden/nix-shell-scripts";
@@ -11,6 +12,7 @@
     mac-app-util.url = "github:hraban/mac-app-util";
     micro-autofmt-nix.url = "github:quinneden/micro-autofmt-nix";
     micro-colors-nix.url = "github:quinneden/micro-colors-nix";
+    wezterm.url = "github:wez/wezterm?dir=nix";
 
     lix-module = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-2.tar.gz";

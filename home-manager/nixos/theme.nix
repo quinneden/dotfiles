@@ -1,4 +1,9 @@
-{ pkgs, config, ... }:
+{
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
 let
   coreFonts = with pkgs.nerd-fonts; [
     ubuntu
@@ -19,9 +24,9 @@ let
     size = 12;
   };
   cursorTheme = {
-    name = "Qogir";
+    name = "phinger-cursors-dark";
     size = 18;
-    package = pkgs.qogir-icon-theme;
+    package = inputs.hyprcursor-phinger.packages.${pkgs.system}.default;
   };
   iconTheme = {
     name = "MoreWaita";

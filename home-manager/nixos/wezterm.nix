@@ -95,25 +95,33 @@
       };
 
       settings = {
-        enable_wayland = false;
+        enable_wayland = true;
+
         color_schemes = {
           "Gnome Light" = gnome-light;
           "Charmful Dark" = charmful-dark;
         };
+
         color_scheme = "Charmful Dark";
-        cell_width = 0.9;
+
+        font_size = 13;
+        line_height = 1.1;
+        # cell_width = 0.9;
+
         default_cursor_style = "BlinkingBar";
 
         front_end = "WebGpu";
 
         window_close_confirmation = "NeverPrompt";
+
         hide_tab_bar_if_only_one_tab = true;
+        use_fancy_tab_bar = true;
 
         window_padding = {
           top = "1cell";
-          right = "3cell";
+          right = "2cell";
           bottom = "1cell";
-          left = "3cell";
+          left = "2cell";
         };
 
         inactive_pane_hsb = {
@@ -150,7 +158,7 @@
         wezterm.on("toggle-opacity", function(window)
         	local overrides = window:get_config_overrides() or {}
         	if not overrides.window_background_opacity then
-        		overrides.window_background_opacity = 0.7
+        		overrides.window_background_opacity = 0.9
         	else
         		overrides.window_background_opacity = nil
         	end

@@ -1,6 +1,6 @@
 { inputs, pkgs, ... }:
 let
-  hyprland = inputs.hyprland.packages.${pkgs.system}.default;
+  hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
   plugins = inputs.hyprland-plugins.packages.${pkgs.system};
 
   playerctl = "${pkgs.playerctl}/bin/playerctl";
@@ -24,16 +24,16 @@ in
     systemd.enable = false;
     xwayland.enable = true;
     plugins = [
-      inputs.hyprland-hyprspace.packages.${pkgs.system}.default
+      # inputs.hyprland-hyprspace.packages.${pkgs.system}.default
       # plugins.hyprexpo
-      plugins.hyprbars
-      # plugins.borders-plus-plus
+      # plugins.hyprbars
+      plugins.borders-plus-plus
     ];
 
     settings = {
       exec-once = [
         "ags -b hypr"
-        "hyprctl setcursor Qogir 24"
+        "hyprctl setcursor phinger-cursors-dark 24"
       ];
 
       monitor = [
@@ -49,7 +49,7 @@ in
 
       misc = {
         disable_splash_rendering = true;
-        force_default_wallpaper = 1;
+        force_default_wallpaper = 0;
       };
 
       input = {
@@ -75,8 +75,8 @@ in
       };
 
       gestures = {
-        workspace_swipe = true;
-        workspace_swipe_use_r = true;
+        workspace_swipe = false;
+        # workspace_swipe_use_r = true;
       };
 
       windowrule =
@@ -122,21 +122,20 @@ in
         [
           "CTRL SHIFT, R,  ${e} quit; ags -b hypr"
           "SUPER, R,       ${e} -t launcher"
-          "SUPER, Tab,     ${e} -t overview"
+          "ALT, Tab,     ${e} -t overview"
           ",XF86PowerOff,  ${e} -r 'powermenu.shutdown()'"
           ",XF86Launch4,   ${e} -r 'recorder.start()'"
           ",Print,         exec, ${screenshot}"
           "SHIFT,Print,    exec, ${screenshot} --full"
-          "SUPER, Return, exec, xterm"
+          "SUPER, Return, exec, wezterm"
           "SUPER, W, exec, firefox"
-          "SUPER, E, exec, wezterm"
+          "SUPER, E, exec, wezterm -e lf"
 
-          "ALT, Tab, focuscurrentorlast"
+          "SUPER, Tab, focuscurrentorlast"
           "CTRL ALT, Delete, exit"
           "SUPER, Q, killactive"
           "SUPER, G, togglefloating"
           "SUPER, F, fullscreen"
-          # "SUPER, O, fakefullscreen"
           "SUPER, P, togglesplit"
 
           (mvfocus "up" "u")
@@ -172,7 +171,6 @@ in
         ",XF86AudioPause,   exec, ${playerctl} pause"
         ",XF86AudioPrev,    exec, ${playerctl} previous"
         ",XF86AudioNext,    exec, ${playerctl} next"
-        ",XF86AudioMicMute, exec, ${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
       ];
 
       bindm = [
@@ -222,19 +220,6 @@ in
           exitOnSwitch = true;
           drawActiveWorkspace = true;
           reverseSwipe = true;
-        };
-        hyprbars = {
-          bar_color = "rgb(2a2a2a)";
-          bar_height = 28;
-          col_text = "rgba(ffffffdd)";
-          bar_text_size = 11;
-          bar_text_font = "Ubuntu Nerd Font";
-
-          buttons = {
-            button_size = 0;
-            "col.maximize" = "rgba(ffffff11)";
-            "col.close" = "rgba(ff111133)";
-          };
         };
       };
     };

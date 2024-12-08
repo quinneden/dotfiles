@@ -78,9 +78,9 @@ in
 {
   programs.tmux = {
     enable = true;
-    plugins = with pkgs.tmuxPlugins; [
-      yank
-    ];
+    # plugins = with pkgs.tmuxPlugins; [
+    #   yank
+    # ];
     prefix = "C-Space";
     baseIndex = 1;
     escapeTime = 0;
@@ -93,7 +93,7 @@ in
       bind '"' split-window -v -c "#{pane_current_path}"
       bind % split-window -h -c "#{pane_current_path}"
 
-      set-option -g default-terminal "screen-256color"
+      set-option -g default-terminal "xterm-256color"
       set-option -g status-right-length 100
       set-option -g @indicator_color "yellow"
       set-option -g @window_color "magenta"
