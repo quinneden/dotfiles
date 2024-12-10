@@ -13,6 +13,7 @@
     micro-autofmt-nix.url = "github:quinneden/micro-autofmt-nix";
     micro-colors-nix.url = "github:quinneden/micro-colors-nix";
     wezterm.url = "github:wez/wezterm?dir=nix";
+    nh.url = "github:viperml/nh";
 
     lix-module = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-2.tar.gz";

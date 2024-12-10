@@ -7,20 +7,21 @@
   secrets,
   ...
 }:
-let
-  push-to-picache = pkgs.writeShellScriptBin ''
-    set -eu
-    set -f
-    export IFS=' '
-    echo "Uploading paths" $OUT_PATHS
-    exec nix copy --to "http://picache.qeden.me" $OUT_PATHS
-  '';
-in
+# let
+#   push-to-picache = pkgs.writeShellScriptBin ''
+#     set -eu
+#     set -f
+#     export IFS=' '
+#     echo "Uploading paths" $OUT_PATHS
+#     exec nix copy --to "http://picache.qeden.me" $OUT_PATHS
+#   '';
+# in
 {
   imports = [
     # ./aerospace.nix
     ./brew.nix
     ./fonts.nix
+    ./modules
     ./overlays.nix
     ./system.nix
     inputs.home-manager.darwinModules.default
@@ -47,18 +48,18 @@ in
   security.pam.enableSudoTouchIdAuth = true;
 
   nix = {
-    gc = {
-      user = "root";
-      automatic = true;
-      options = "--delete-older-than 3d";
-      interval = [
-        {
-          Hour = 4;
-          Minute = 15;
-          Weekday = 7;
-        }
-      ];
-    };
+    # gc = {
+    #   user = "root";
+    #   automatic = true;
+    #   options = "--delete-older-than 3d";
+    #   interval = [
+    #     {
+    #       Hour = 4;
+    #       Minute = 15;
+    #       Weekday = 7;
+    #     }
+    #   ];
+    # };
 
     optimise = {
       user = "root";
@@ -95,10 +96,12 @@ in
       ];
       extra-substituters = [
         "https://cache.lix.systems"
+        "https://quinneden.cachix.org"
         # "http://picache.qeden.me"
       ];
       extra-trusted-public-keys = [
         "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
+        "quinneden.cachix.org-1:1iSAVU2R8SYzxTv3Qq8j6ssSPf0Hz+26gfgXkvlcbuA="
         # "picache.qeden.me:YbzItsTq/D/ns+o9/KzrPraH2hrnmNk/D5aclZZx+YA="
       ];
       # secret-key-files = [ ../.secrets/keys/cache-secret-key.pem ];
@@ -168,6 +171,14 @@ in
   };
 
   services.nix-daemon.enable = true;
+
+  programs.nh = {
+    enable = true;
+    package = inputs.nh.packages.${pkgs.system}.default;
+    flake = "/Users/quinn/.dotfiles#darwinConfigurations.macos";
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 1d";
+  };
 
   homebrew = {
     enable = true;

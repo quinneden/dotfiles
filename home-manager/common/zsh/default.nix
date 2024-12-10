@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   config,
   ...
@@ -23,7 +24,6 @@ let
     "alx.sh" = "curl -sL https://alx.sh | EXPERT=1 sh";
     "qeden.systems" = "curl -sL https://qeden.systems/install | sh";
     bs = "stat -f%z";
-    lsblk = "diskutil list";
     reboot = "sudo reboot";
     sed = "gsed";
     shutdown = "sudo shutdown -h now";
@@ -41,7 +41,7 @@ let
   };
 
   linuxVariables = {
-    # NIXOS_CONFIG = "$HOME/.dotfiles";
+    NIXOS_CONFIG = "$HOME/.dotfiles";
   };
 
   initExtraCommon = ''
@@ -65,6 +65,7 @@ in
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
+    history.path = "${config.xdg.configHome}/zsh/.zsh_history";
     oh-my-zsh = {
       enable = true;
       plugins = [
@@ -72,16 +73,18 @@ in
         "eza"
         "zoxide"
         "direnv"
-        # "nix-zsh-completions"
+        "${if pkgs.stdenv.isDarwin then "iterm2" else ""}"
       ];
       custom = "${config.xdg.configHome}/zsh";
     };
-    # initExtraBeforeCompInit = initExtraBeforeCompInitCommon + (if pkgs.stdenv.isDarwin then initExtraBeforeCompInitDarwin else null);
-    initExtraBeforeCompInit = ''
-      fpath+=("/opt/homebrew/share/zsh/site-functions" "${pkgs.lix}/share/zsh/site-functions" "${
-        if pkgs.stdenv.isDarwin then "/opt/homebrew/share/zsh/site-functions" else ""
-      }")
-    '';
+    initExtraBeforeCompInit =
+      ''
+        fpath+=(
+          "${pkgs.lix}/share/zsh/site-functions"
+          "/etc/profiles/per-user/quinn/share/zsh/site-functions"
+        )
+      ''
+      + (if pkgs.stdenv.isDarwin then ''fpath+=("/opt/homebrew/share/zsh/site-functions")'' else '''');
     initExtra = initExtraCommon + (if pkgs.stdenv.isDarwin then initExtraDarwin else "");
     sessionVariables =
       {

@@ -22,5 +22,6 @@
     [
       # miscOverlays
       inputs.lix-module.overlays.default
+      inputs.nix-shell-scripts.overlays.default
     ];
 }
