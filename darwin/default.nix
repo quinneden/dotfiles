@@ -175,7 +175,7 @@
   programs.nh = {
     enable = true;
     package = inputs.nh.packages.${pkgs.system}.default;
-    flake = "/Users/quinn/.dotfiles#darwinConfigurations.macos";
+    flake = config.users.users.quinn.home;
     clean.enable = true;
     clean.extraArgs = "--keep-since 1d";
   };

@@ -847,11 +847,11 @@
         "nixpkgs": "nixpkgs_10"
       },
       "locked": {
-        "lastModified": 1733814489,
-        "narHash": "sha256-gDz+tuypsUrL43LN+EGZ/0rbVpbQyanF2hCmWDhAeXs=",
+        "lastModified": 1733816221,
+        "narHash": "sha256-dwcVSY04rNNlIWYUr57NKU3LqiI0yBD8pc/H19kAPVY=",
         "owner": "quinneden",
         "repo": "nix-shell-scripts",
-        "rev": "688271c4cefd1c5e67547e44864951c4727bc6f1",
+        "rev": "7aaa14f2b2379393118433cdaaff678bc98f8e23",
         "type": "github"
       },
       "original": {

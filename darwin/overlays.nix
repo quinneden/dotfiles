@@ -19,9 +19,12 @@
           });
         };
     in
-    [
+    ([
       # miscOverlays
-      inputs.lix-module.overlays.default
-      inputs.nix-shell-scripts.overlays.default
-    ];
+    ])
+    ++ (with inputs; [
+      lix-module.overlays.default
+      nix-shell-scripts.overlays.default
+      nh.overlays.default
+    ]);
 }
