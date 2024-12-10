@@ -65,7 +65,13 @@
       ...
     }:
     let
-      secrets = builtins.fromJSON (builtins.readFile .secrets/common.json);
+      secrets = {
+        cachix = builtins.fromJSON (builtins.readFile .secrets/cachix.json);
+        cloudflare = builtins.fromJSON (builtins.readFile .secrets/cloudflare.json);
+        github = builtins.fromJSON (builtins.readFile .secrets/github.json);
+        pubkeys = builtins.fromJSON (builtins.readFile .secrets/pubkeys.json);
+      };
+
       forAllSystems = inputs.nixpkgs.lib.genAttrs [
         "aarch64-darwin"
         "aarch64-linux"

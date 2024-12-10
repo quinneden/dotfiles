@@ -68,7 +68,6 @@
       "micro"
       "ncdu"
       "node"
-      "openssh"
       "openssl@3"
       "p7zip"
       "paperkey"

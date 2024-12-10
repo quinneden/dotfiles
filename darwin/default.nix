@@ -7,15 +7,6 @@
   secrets,
   ...
 }:
-# let
-#   push-to-picache = pkgs.writeShellScriptBin ''
-#     set -eu
-#     set -f
-#     export IFS=' '
-#     echo "Uploading paths" $OUT_PATHS
-#     exec nix copy --to "http://picache.qeden.me" $OUT_PATHS
-#   '';
-# in
 {
   imports = [
     # ./aerospace.nix
@@ -23,6 +14,7 @@
     ./fonts.nix
     ./modules
     ./overlays.nix
+    ./ssh.nix
     ./system.nix
     inputs.home-manager.darwinModules.default
     inputs.mac-app-util.darwinModules.default
@@ -48,19 +40,6 @@
   security.pam.enableSudoTouchIdAuth = true;
 
   nix = {
-    # gc = {
-    #   user = "root";
-    #   automatic = true;
-    #   options = "--delete-older-than 3d";
-    #   interval = [
-    #     {
-    #       Hour = 4;
-    #       Minute = 15;
-    #       Weekday = 7;
-    #     }
-    #   ];
-    # };
-
     optimise = {
       user = "root";
       automatic = true;
@@ -152,22 +131,6 @@
           };
         };
     };
-
-    # buildMachines = [
-    #   {
-    #     hostName = "fedora-builder";
-    #     maxJobs = 8;
-    #     protocol = "ssh-ng";
-    #     speedFactor = 2;
-    #     system = "aarch64-linux";
-    #     supportedFeatures = [
-    #       "nixos-test"
-    #       "benchmark"
-    #       "big-parallel"
-    #       "kvm"
-    #     ];
-    #   }
-    # ];
   };
 
   services.nix-daemon.enable = true;
@@ -175,7 +138,7 @@
   programs.nh = {
     enable = true;
     package = inputs.nh.packages.${pkgs.system}.default;
-    flake = config.users.users.quinn.home;
+    flake = toString (config.users.users.quinn.home + "/.dotfiles");
     clean.enable = true;
     clean.extraArgs = "--keep-since 1d";
   };
