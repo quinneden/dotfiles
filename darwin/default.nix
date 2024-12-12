@@ -76,15 +76,28 @@
       extra-substituters = [
         "https://cache.lix.systems"
         "https://quinneden.cachix.org"
-        # "http://picache.qeden.me"
+        "http://picache.qeden.me"
       ];
       extra-trusted-public-keys = [
         "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
         "quinneden.cachix.org-1:1iSAVU2R8SYzxTv3Qq8j6ssSPf0Hz+26gfgXkvlcbuA="
-        # "picache.qeden.me:YbzItsTq/D/ns+o9/KzrPraH2hrnmNk/D5aclZZx+YA="
+        "picache.qeden.me:YbzItsTq/D/ns+o9/KzrPraH2hrnmNk/D5aclZZx+YA="
       ];
-      # secret-key-files = [ ../.secrets/keys/cache-secret-key.pem ];
+      secret-key-files = [ "${../.secrets/keys/cache-private-key.pem}" ];
       warn-dirty = false;
+
+      # post-build-hook =
+      #   let
+      #     picache-upload = pkgs.writeShellScript "picache-post-build-hook" ''
+      #       set -euf
+      #       if [[ -n "''${OUT_PATHS:-}" ]]; then
+      #         export TS_MAXFINISHED=1000
+      #         export TS_SLOTS=10
+      #         printf "%s" "$OUT_PATHS" | xargs ${lib.getExe pkgs.ts} nix copy --to 'http://picache.qeden.me'
+      #       fi
+      #     '';
+      #   in
+      #   picache-upload;
     };
 
     linux-builder = {
@@ -137,7 +150,6 @@
 
   programs.nh = {
     enable = true;
-    package = inputs.nh.packages.${pkgs.system}.default;
     flake = toString (config.users.users.quinn.home + "/.dotfiles");
     clean.enable = true;
     clean.extraArgs = "--keep-since 1d";

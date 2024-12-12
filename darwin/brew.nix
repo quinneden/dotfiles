@@ -92,6 +92,7 @@
       "w3m"
       "wget"
       "magic-wormhole"
+      "yarn"
       "yq"
       "zbar"
       "zlib"

@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    forkpkgs.url = "git+file:///Users/quinn/repos/forks/nixpkgs";
     hyprland.url = "github:hyprwm/hyprland";
     hyprcursor-phinger.url = "github:quinneden/hyprcursor-phinger";
     matugen.url = "github:InioX/matugen";
@@ -65,12 +66,24 @@
       ...
     }:
     let
-      secrets = {
-        cachix = builtins.fromJSON (builtins.readFile .secrets/cachix.json);
-        cloudflare = builtins.fromJSON (builtins.readFile .secrets/cloudflare.json);
-        github = builtins.fromJSON (builtins.readFile .secrets/github.json);
-        pubkeys = builtins.fromJSON (builtins.readFile .secrets/pubkeys.json);
-      };
+      # secrets = {
+      #   cachix = builtins.fromJSON (builtins.readFile .secrets/cachix.json);
+      #   cloudflare = builtins.fromJSON (builtins.readFile .secrets/cloudflare.json);
+      #   github = builtins.fromJSON (builtins.readFile .secrets/github.json);
+      #   pubkeys = builtins.fromJSON (builtins.readFile .secrets/pubkeys.json);
+      # };
+
+      secrets =
+        let
+          inherit (builtins) fromJSON readFile;
+          inherit (nixpkgs) lib;
+        in
+        lib.genAttrs [
+          "cachix"
+          "cloudflare"
+          "github"
+          "pubkeys"
+        ] (secretFile: fromJSON (readFile .secrets/${secretFile}.json));
 
       forAllSystems = inputs.nixpkgs.lib.genAttrs [
         "aarch64-darwin"

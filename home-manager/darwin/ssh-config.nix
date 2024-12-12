@@ -3,8 +3,7 @@
     Host picache
       User qeden
       Hostname 10.0.0.101
-      Hostname picache.qeden.me
       PasswordAuthentication no
-      HostbasedAuthentication yes
+      IdentityFile ${../../.secrets/keys/picache_ed25519}
   '';
 }

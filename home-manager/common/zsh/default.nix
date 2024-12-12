@@ -27,6 +27,7 @@ let
     reboot = "sudo reboot";
     sed = "gsed";
     shutdown = "sudo shutdown -h now";
+    darwin-man = "man configuration.nix";
   };
 
   linuxAliases = {

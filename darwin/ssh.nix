@@ -8,10 +8,9 @@
     knownHosts = {
       picache = {
         hostNames = [
-          "picache.qeden.me"
           "10.0.0.101"
         ];
-        publicKey = "${secrets.pubkeys.picache}";
+        publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ4ICmIWbhYqbTKTZ2qA+w33mu61RA3PTJ8q1c7R6hJl";
       };
     };
   };
