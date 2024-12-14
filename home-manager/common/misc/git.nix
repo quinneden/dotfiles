@@ -22,7 +22,6 @@ in
       { }
     else
       {
-        enable = true;
         addKeysToAgent = "yes";
       };
 }

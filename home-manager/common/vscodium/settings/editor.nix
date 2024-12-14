@@ -12,7 +12,14 @@
   "editor.scrollbar.horizontal" = "hidden";
   "terminal.integrated.cursorStyle" = "line";
   "terminal.integrated.defaultProfile.linux" = "zsh";
+  "terminal.integrated.defaultProfile.osx" = "zsh";
   "terminal.integrated.fontFamily" = "CaskcaydiaCove Nerd Font";
   "terminal.integrated.fontSize" = 14;
+  "terminal.integrated.lineHeight" = 1.1;
+  "terminal.integrated.sendKeybindingsToShell" = true;
   "terminal.integrated.shellIntegration.decorationsEnabled" = "never";
+  "terminal.integrated.gpuAcceleration" = "on";
+  "terminal.integrated.letterSpacing" = 1;
+  "terminal.integrated.persistentSessionReviveProcess" = "never";
+  "terminal.integrated.showExitAlert" = false;
 }

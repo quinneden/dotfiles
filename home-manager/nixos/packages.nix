@@ -10,7 +10,6 @@
     linux = [
       (mpv.override { scripts = [ mpvScripts.mpris ]; })
       fragments
-      inputs.nix-shell-scripts.packages.aarch64-linux.default
       nh
       nodejs
       nil

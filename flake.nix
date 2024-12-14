@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    forkpkgs.url = "git+file:///Users/quinn/repos/forks/nixpkgs";
     hyprland.url = "github:hyprwm/hyprland";
     hyprcursor-phinger.url = "github:quinneden/hyprcursor-phinger";
     matugen.url = "github:InioX/matugen";
@@ -13,6 +14,7 @@
     micro-autofmt-nix.url = "github:quinneden/micro-autofmt-nix";
     micro-colors-nix.url = "github:quinneden/micro-colors-nix";
     wezterm.url = "github:wez/wezterm?dir=nix";
+    nh.url = "github:viperml/nh";
 
     lix-module = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-2.tar.gz";
@@ -64,7 +66,25 @@
       ...
     }:
     let
-      secrets = builtins.fromJSON (builtins.readFile .secrets/common.json);
+      # secrets = {
+      #   cachix = builtins.fromJSON (builtins.readFile .secrets/cachix.json);
+      #   cloudflare = builtins.fromJSON (builtins.readFile .secrets/cloudflare.json);
+      #   github = builtins.fromJSON (builtins.readFile .secrets/github.json);
+      #   pubkeys = builtins.fromJSON (builtins.readFile .secrets/pubkeys.json);
+      # };
+
+      secrets =
+        let
+          inherit (builtins) fromJSON readFile;
+          inherit (nixpkgs) lib;
+        in
+        lib.genAttrs [
+          "cachix"
+          "cloudflare"
+          "github"
+          "pubkeys"
+        ] (secretFile: fromJSON (readFile .secrets/${secretFile}.json));
+
       forAllSystems = inputs.nixpkgs.lib.genAttrs [
         "aarch64-darwin"
         "aarch64-linux"

@@ -1,6 +1,6 @@
-{ config, ... }:
 {
   imports = [
     ./packages.nix
+    ./ssh-config.nix
   ];
 }

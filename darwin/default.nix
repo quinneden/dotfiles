@@ -7,21 +7,14 @@
   secrets,
   ...
 }:
-let
-  push-to-picache = pkgs.writeShellScriptBin ''
-    set -eu
-    set -f
-    export IFS=' '
-    echo "Uploading paths" $OUT_PATHS
-    exec nix copy --to "http://picache.qeden.me" $OUT_PATHS
-  '';
-in
 {
   imports = [
     # ./aerospace.nix
     ./brew.nix
     ./fonts.nix
+    ./modules
     ./overlays.nix
+    ./ssh.nix
     ./system.nix
     inputs.home-manager.darwinModules.default
     inputs.mac-app-util.darwinModules.default
@@ -47,19 +40,6 @@ in
   security.pam.enableSudoTouchIdAuth = true;
 
   nix = {
-    gc = {
-      user = "root";
-      automatic = true;
-      options = "--delete-older-than 3d";
-      interval = [
-        {
-          Hour = 4;
-          Minute = 15;
-          Weekday = 7;
-        }
-      ];
-    };
-
     optimise = {
       user = "root";
       automatic = true;
@@ -95,13 +75,17 @@ in
       ];
       extra-substituters = [
         "https://cache.lix.systems"
-        # "http://picache.qeden.me"
+        "https://quinneden.cachix.org"
+        "http://picache.qeden.me"
+        "nix-community.cachix.org"
       ];
       extra-trusted-public-keys = [
         "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
-        # "picache.qeden.me:YbzItsTq/D/ns+o9/KzrPraH2hrnmNk/D5aclZZx+YA="
+        "quinneden.cachix.org-1:1iSAVU2R8SYzxTv3Qq8j6ssSPf0Hz+26gfgXkvlcbuA="
+        "picache.qeden.me:YbzItsTq/D/ns+o9/KzrPraH2hrnmNk/D5aclZZx+YA="
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
-      # secret-key-files = [ ../.secrets/keys/cache-secret-key.pem ];
+      secret-key-files = [ "${../.secrets/keys/cache-private-key.pem}" ];
       warn-dirty = false;
     };
 
@@ -149,25 +133,16 @@ in
           };
         };
     };
-
-    # buildMachines = [
-    #   {
-    #     hostName = "fedora-builder";
-    #     maxJobs = 8;
-    #     protocol = "ssh-ng";
-    #     speedFactor = 2;
-    #     system = "aarch64-linux";
-    #     supportedFeatures = [
-    #       "nixos-test"
-    #       "benchmark"
-    #       "big-parallel"
-    #       "kvm"
-    #     ];
-    #   }
-    # ];
   };
 
   services.nix-daemon.enable = true;
+
+  programs.nh = {
+    enable = true;
+    flake = toString (config.users.users.quinn.home + "/.dotfiles");
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 1d";
+  };
 
   homebrew = {
     enable = true;

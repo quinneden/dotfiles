@@ -8,19 +8,29 @@
 {
   nixpkgs.overlays =
     let
-      miscOverlays =
-        _: prev:
-        let
-          inherit (prev) system;
-        in
-        {
-          deskflow-darwin = pkgs.deskflow.overrideAttrs ({
-            platforms = (prev.platforms ++ [ "aarch64-apple-darwin" ]);
-          });
+      miscOverlays = final: prev: {
+        betterdisplaycli =
+          let
+            forkpkgs = import inputs.forkpkgs { inherit (pkgs) system; };
+          in
+          forkpkgs.betterdisplaycli;
+
+        nh = prev.nh.overrideAttrs rec {
+          name = prev.name;
+          version = "4.0.0-beta.5";
+          src = pkgs.fetchGit {
+            url = "https://github.com/viperML/nh";
+            rev = "refs/tags/${version}";
+          };
         };
+      };
     in
-    [
-      # miscOverlays
-      inputs.lix-module.overlays.default
-    ];
+    ([
+      miscOverlays
+    ])
+    ++ (with inputs; [
+      lix-module.overlays.default
+      nix-shell-scripts.overlays.default
+      nh.overlays.default
+    ]);
 }
