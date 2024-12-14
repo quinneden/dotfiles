@@ -74,19 +74,9 @@
     HandleLidSwitchExternalPower=ignore
   '';
 
-  # kde connect
-  networking.firewall = rec {
-    allowedTCPPortRanges = [
-      {
-        from = 1714;
-        to = 1764;
-      }
-    ];
-    allowedUDPPortRanges = allowedTCPPortRanges;
-  };
-
   # network
   networking = {
+    hostName = "nixos-macmini";
     wireless.iwd = {
       enable = true;
       settings = {
@@ -99,20 +89,25 @@
       enable = true;
       wifi.backend = "iwd";
     };
+    firewall.enable = false;
   };
 
   # bluetooth
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = false;
-    settings.General.Experimental = true; # for gnome-bluetooth percentage
+    settings.General.Experimental = true;
   };
 
   # bootloader
   boot = {
+    m1n1CustomLogo = pkgs.fetchurl {
+      url = "https://qeden.me/bootlogo-snowflake-white.png";
+      hash = "sha256-6VpPDZSYD57m4LZRPQuOWtR7z70BQ0A2f2jZgjXDiKs=";
+    };
     tmp.cleanOnBoot = true;
     loader = {
-      timeout = 2;
+      timeout = 1;
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = false;
     };

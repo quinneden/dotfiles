@@ -32,7 +32,7 @@ let
   linuxAliases = {
     bs = "stat -c%s";
     db = "distrobox";
-    wd = "cd ~/workdir";
+    # wd = "cd ~/workdir";
   };
 
   darwinVariables = {

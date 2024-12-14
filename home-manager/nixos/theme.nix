@@ -26,7 +26,7 @@ let
   cursorTheme = {
     name = "phinger-cursors-dark";
     size = 18;
-    package = inputs.hyprcursor-phinger.packages.${pkgs.system}.default;
+    package = pkgs.phinger-cursors;
   };
   iconTheme = {
     name = "MoreWaita";

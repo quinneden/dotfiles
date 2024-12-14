@@ -13,7 +13,8 @@
     environment = {
       systemPackages = with pkgs; [
         morewaita-icon-theme
-        qogir-icon-theme
+        # qogir-icon-theme
+        phinger-cursors
         gnome-extension-manager
         wl-clipboard
       ];
@@ -58,7 +59,7 @@
             tap-to-click = true;
           };
           "org/gnome/desktop/interface" = {
-            cursor-theme = "Qogir";
+            cursor-theme = "phinger-cursors-dark";
           };
         };
       }

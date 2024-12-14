@@ -51,7 +51,8 @@
     environment.systemPackages = with pkgs; [
       morewaita-icon-theme
       adwaita-icon-theme
-      qogir-icon-theme
+      # qogir-icon-theme
+      phinger-cursors
       loupe
       nautilus
       baobab
@@ -98,8 +99,8 @@
         glib-networking.enable = true;
         gnome-keyring.enable = true;
         gnome-online-accounts.enable = true;
-        tracker-miners.enable = true;
-        tracker.enable = true;
+        localsearch.enable = true;
+        tinysparql.enable = true;
       };
     };
 
@@ -107,7 +108,7 @@
       enable = true;
       settings.default_session.command = pkgs.writeShellScript "greeter" ''
         export XKB_DEFAULT_LAYOUT=${config.services.xserver.xkb.layout}
-        export XCURSOR_THEME=Qogir
+        export XCURSOR_THEME=phinger-cursors-dark
         ${asztal}/bin/greeter
       '';
     };

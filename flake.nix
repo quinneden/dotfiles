@@ -100,7 +100,6 @@
             home-manager.nixosModules.home-manager
             inputs.lix-module.nixosModules.default
             inputs.nixos-apple-silicon.nixosModules.default
-            { networking.hostName = "nixos-macmini"; }
           ];
         };
       };
