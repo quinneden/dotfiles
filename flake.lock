@@ -273,21 +273,6 @@
         "type": "github"
       }
     },
-    "forkpkgs": {
-      "locked": {
-        "lastModified": 1734068432,
-        "narHash": "sha256-M7ibHvIcPFDcZlZlM/ST9J68XIwm/w16oyJcPqckfnI=",
-        "ref": "refs/heads/betterdisplaycli",
-        "rev": "f0d443e3c8ba2fd7dc100ecefab1d839eecd08dd",
-        "revCount": 721490,
-        "type": "git",
-        "url": "file:///Users/quinn/repos/forks/nixpkgs"
-      },
-      "original": {
-        "type": "git",
-        "url": "file:///Users/quinn/repos/forks/nixpkgs"
-      }
-    },
     "freetype2": {
       "flake": false,
       "locked": {
@@ -749,16 +734,17 @@
         "systems": "systems_6"
       },
       "locked": {
-        "lastModified": 1733831374,
-        "narHash": "sha256-zUhgF2KtoFyPgq4y/5/oS9elgt8g7jd005meitNaTac=",
+        "lastModified": 1732961546,
+        "narHash": "sha256-r1DwfCYXHhE0zFb3CgRo0fxnmkIwVn1eRCIumYzS8vo=",
         "owner": "InioX",
         "repo": "matugen",
-        "rev": "05e7ceac5d41c695a7bb1060a7c8c6eb74be3f6f",
+        "rev": "3a5e27b2eb0593d2a3e86fd76aefb79e647086a2",
         "type": "github"
       },
       "original": {
         "owner": "InioX",
         "repo": "matugen",
+        "rev": "3a5e27b2eb0593d2a3e86fd76aefb79e647086a2",
         "type": "github"
       }
     },
@@ -882,11 +868,11 @@
         "nixpkgs": "nixpkgs_11"
       },
       "locked": {
-        "lastModified": 1734055031,
-        "narHash": "sha256-i7wpHXyD9cRxhZOHPI4QLJUW69IFWWjcOQxpNokzAyE=",
+        "lastModified": 1734141176,
+        "narHash": "sha256-LWE0LrdgdP8aBRIjIKldxbrfqGb+ZiKK77QX3cLq6I8=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "6855d57a1429de885e9782b4a4b6c43730241354",
+        "rev": "ec2646a6b7566f0906122d99ffe0aba42e8f33f1",
         "type": "github"
       },
       "original": {
@@ -1193,7 +1179,6 @@
       "inputs": {
         "ags": "ags",
         "firefox-gnome-theme": "firefox-gnome-theme",
-        "forkpkgs": "forkpkgs",
         "home-manager": "home-manager",
         "hyprcursor-phinger": "hyprcursor-phinger",
         "hyprland": "hyprland",
