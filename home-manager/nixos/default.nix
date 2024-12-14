@@ -6,7 +6,6 @@
     ./dconf.nix
     ./distrobox.nix
     ./hyprland.nix
-    ./lf.nix
     # ./nvim.nix
     ./packages.nix
     # ./sh.nix

@@ -9,15 +9,11 @@
   nixpkgs.overlays =
     let
       miscOverlays = final: prev: {
-        # deskflow-darwin = pkgs.deskflow.overrideAttrs ({
-        #   platforms = (prev.platforms ++ [ "aarch64-apple-darwin" ]);
-        # });
-
-        ks =
+        betterdisplaycli =
           let
             forkpkgs = import inputs.forkpkgs { inherit (pkgs) system; };
           in
-          forkpkgs.ks;
+          forkpkgs.betterdisplaycli;
 
         nh = prev.nh.overrideAttrs rec {
           name = prev.name;

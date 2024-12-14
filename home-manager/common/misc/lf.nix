@@ -12,15 +12,6 @@
     };
   };
 
-  home.packages = with pkgs; [
-    glib
-    fzf
-    bat
-    zip
-    unzip
-    gnutar
-  ];
-
   programs.lf = {
     enable = true;
 
@@ -29,7 +20,7 @@
         trash = ''
           ''${{
             set -f
-            gio trash $fx
+            ${lib.getExe pkgs.fuck} "$fx" &>/dev/null
           }}
         '';
       in
@@ -111,7 +102,7 @@
     };
 
     settings = {
-      scrolloff = 4;
+      scrolloff = 3;
       preview = true;
       drawbox = true;
       icons = true;
