@@ -53,7 +53,7 @@ let
 
     for f ($HOME/.config/zsh/functions/*(N.)); do source $f; done
 
-    [[ $TERM_PROGRAM != 'vscode' ]] || prompt pure
+    [[ $TERM_PROGRAM != 'vscode' ]] || (autoload -U promptinit; promptinit && prompt pure)
   '';
 
   initExtraDarwin = ''[[ $PATH =~ '/nix/store' ]] || eval $(/opt/homebrew/bin/brew shellenv)'';

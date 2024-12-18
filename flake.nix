@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    forkpkgs.url = "github:quinneden/nixpkgs";
     hyprland.url = "github:hyprwm/hyprland";
     hyprcursor-phinger.url = "github:quinneden/hyprcursor-phinger";
     # matugen.url = "github:InioX/matugen";
@@ -51,8 +52,18 @@
       flake = false;
     };
 
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nur = {
+      url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -97,11 +108,15 @@
         inherit inputs;
       };
 
+      packages.aarch64-darwin = {
+        tabby-release = nixpkgs.legacyPackages.aarch64-darwin.callPackage ./drv/tabby-release.nix { };
+      };
+
       darwinConfigurations = {
         macos = nix-darwin.lib.darwinSystem {
           system = "aarch64-darwin";
           specialArgs = {
-            inherit inputs secrets;
+            inherit inputs secrets self;
             dotdir = "$HOME/.dotfiles";
           };
           modules = [ ./darwin ];

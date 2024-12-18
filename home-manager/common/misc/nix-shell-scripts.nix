@@ -30,7 +30,7 @@ in
       mi
       nish
       nix-clean
-      nix-get-sha256
+      nixhash
       readme
       rm-result
     ])

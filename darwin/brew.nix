@@ -15,6 +15,7 @@
       "macfuse"
       "utm"
       "vagrant"
+      "pearcleaner"
     ];
     brews = [
       "act"
@@ -97,8 +98,8 @@
       "zbar"
       "zlib"
     ];
-    masApps = {
-      "Adobe Lightroom" = 1451544217;
-    };
+    # masApps = {
+    #   "Adobe Lightroom" = 1451544217;
+    # };
   };
 }

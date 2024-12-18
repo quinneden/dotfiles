@@ -62,7 +62,7 @@
         style = "yellow";
       };
 
-      command_timeout = 700;
+      command_timeout = 1500;
 
       python = {
         format = "[$virtualenv]($style) ";
