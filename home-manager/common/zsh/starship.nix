@@ -16,6 +16,7 @@
         "$python"
         "$character"
       ];
+
       directory = {
         style = "blue";
       };
@@ -24,10 +25,6 @@
         when = ''! test $TERM_PROGRAM == "vscode"'';
         format = "  ";
       };
-
-      # directory.substitutions = {
-      #   "~" = "homedir";
-      # };
 
       character = {
         success_symbol = "[❯](purple)";

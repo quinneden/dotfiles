@@ -1,12 +1,12 @@
 {
   imports = [
-    ./vscodium
+    ./misc/floorp.nix
     ./misc/git.nix
     ./misc/lf.nix
     ./misc/micro.nix
-    ./misc/rclone.nix
     ./misc/nix-shell-scripts.nix
-    ./misc/floorp.nix
+    ./misc/rclone.nix
+    ./vscodium
     ./zsh
   ];
 }

@@ -15,7 +15,6 @@ let
     ll = "eza -glAh --octal-permissions --group-directories-first";
     ls = "eza -A";
     push = "git push";
-    tree = "eza -ATL3 --git-ignore";
   };
 
   darwinAliases = {
@@ -24,6 +23,7 @@ let
     "alx.sh" = "curl -sL https://alx.sh | EXPERT=1 sh";
     "qeden.systems" = "curl -sL https://qeden.systems/install | sh";
     bs = "stat -f%z";
+    "lc" = "limactl";
     reboot = "sudo reboot";
     sed = "gsed";
     shutdown = "sudo shutdown -h now";
@@ -33,7 +33,7 @@ let
   linuxAliases = {
     bs = "stat -c%s";
     db = "distrobox";
-    # wd = "cd ~/workdir";
+    tree = "eza -ATL3 --git-ignore";
   };
 
   darwinVariables = {
@@ -46,20 +46,19 @@ let
   };
 
   initExtraCommon = ''
-    HISTFILE="$ZDOTDIR/.zsh_history"; export HISTFILE
-
     if type zoxide &>/dev/null; then eval "$(zoxide init zsh)"; fi
+
     if type z &>/dev/null; then alias cd='z'; fi
 
     for f ($HOME/.config/zsh/functions/*(N.)); do source $f; done
-
-    [[ $TERM_PROGRAM != 'vscode' ]] || (autoload -U promptinit; promptinit && prompt pure)
   '';
 
   initExtraDarwin = ''[[ $PATH =~ '/nix/store' ]] || eval $(/opt/homebrew/bin/brew shellenv)'';
 in
 {
-  imports = [ ./starship.nix ];
+  imports = [ ./pure-prompt.nix ];
+
+  programs.pure-prompt.enable = true;
 
   programs.zsh = {
     enable = true;
@@ -69,6 +68,7 @@ in
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     history.path = "${config.xdg.configHome}/zsh/.zsh_history";
+
     oh-my-zsh = {
       enable = true;
       plugins = [
@@ -80,6 +80,7 @@ in
       ];
       custom = "${config.xdg.configHome}/zsh";
     };
+
     initExtraBeforeCompInit =
       ''
         fpath+=(
@@ -88,7 +89,9 @@ in
         )
       ''
       + (if pkgs.stdenv.isDarwin then ''fpath+=("/opt/homebrew/share/zsh/site-functions")'' else '''');
+
     initExtra = initExtraCommon + (if pkgs.stdenv.isDarwin then initExtraDarwin else "");
+
     sessionVariables =
       {
         compdir = "$HOME/.config/zsh/completions";

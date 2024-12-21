@@ -29,11 +29,28 @@ let
         hash = "sha256-B3PK+e717FdrQXhg53DwTPWLY458yGYsH20tYj0pgzU=";
       };
     };
+
     tabby-release = self.packages.aarch64-darwin.tabby-release;
+
+    pure-prompt = prev.pure-prompt.overrideAttrs {
+      src = pkgs.fetchFromGitHub {
+        owner = "quinneden";
+        repo = "pure";
+        rev = "refs/heads/nix3-shell-prompt";
+        hash = "sha256-y5s/qBZWLKNMnrbN7qGXNJD87yuMtw2EuvrLVvX9qmI=";
+      };
+    };
+
+    qemu = prev.qemu.overrideAttrs {
+      patches = prev.qemu.patches ++ [
+        (pkgs.fetchpatch {
+          url = "https://raw.githubusercontent.com/utmapp/UTM/acbf2ba8cd91f382a5e163c49459406af0b462b7/patches/qemu-9.1.0-utm.patch";
+          sha256 = "sha256-NNExO4lMKQoqLqsssSFkMJKHnFMXagjPzOla2DccS+g=";
+        })
+      ];
+    };
   };
 in
 {
-  nixpkgs.overlays = flakeOverlays ++ [
-    packageOverlays
-  ];
+  nixpkgs.overlays = flakeOverlays ++ [ packageOverlays ];
 }

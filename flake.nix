@@ -6,7 +6,6 @@
     forkpkgs.url = "github:quinneden/nixpkgs";
     hyprland.url = "github:hyprwm/hyprland";
     hyprcursor-phinger.url = "github:quinneden/hyprcursor-phinger";
-    # matugen.url = "github:InioX/matugen";
     matugen.url = "github:InioX/matugen/3a5e27b2eb0593d2a3e86fd76aefb79e647086a2";
     ags.url = "github:aylur/ags/v1";
     nix-shell-scripts.url = "github:quinneden/nix-shell-scripts";
@@ -30,16 +29,6 @@
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
-
-    hyprland-hyprspace = {
-      url = "github:KZDKM/Hyprspace";
-      inputs.hyprland.follows = "hyprland";
     };
 
     lf-icons = {
@@ -66,6 +55,11 @@
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-rosetta-builder = {
+      url = "github:cpick/nix-rosetta-builder";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -77,13 +71,6 @@
       ...
     }:
     let
-      # secrets = {
-      #   cachix = builtins.fromJSON (builtins.readFile .secrets/cachix.json);
-      #   cloudflare = builtins.fromJSON (builtins.readFile .secrets/cloudflare.json);
-      #   github = builtins.fromJSON (builtins.readFile .secrets/github.json);
-      #   pubkeys = builtins.fromJSON (builtins.readFile .secrets/pubkeys.json);
-      # };
-
       secrets =
         let
           inherit (builtins) fromJSON readFile;

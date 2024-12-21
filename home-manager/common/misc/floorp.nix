@@ -146,9 +146,10 @@ in
                 updateInterval = 24 * 60 * 1000;
               };
               "Bing".metaData.hidden = true;
-              "Google".metaData = {
-                hidden = true;
-              };
+              "Startpage".metaData.hidden = true;
+              # "Google".metaData = {
+              #   hidden = true;
+              # };
               "DuckDuckGo".metaData = {
                 hidden = true;
               };

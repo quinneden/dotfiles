@@ -24,6 +24,8 @@
     enableZshIntegration = true;
   };
 
+  programs.man.enable = false;
+
   programs.home-manager.enable = true;
 
   home.stateVersion = "24.11";
