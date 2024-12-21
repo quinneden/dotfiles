@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (lib) types;
+  inherit (lib) types getExe;
   inherit (lib.modules) mkIf;
   inherit (lib.options) mkOption mkEnableOption;
 
@@ -31,7 +31,7 @@ in
             {
               img,
               home ? ".local/share/distrobox/${name}",
-              packages ? "git neovim",
+              packages ? "git micro",
               init ? "true",
               flags ? "",
               path ? [ ],
@@ -83,7 +83,7 @@ in
       mkBoxAlias =
         box:
         let
-          db = "${pkgs.distrobox}/bin/distrobox";
+          db = "${getExe pkgs.distrobox}";
           exec = pkgs.writeShellScript "db-exec" ''
             data_dirs=()
             IFS=':'
@@ -96,6 +96,7 @@ in
 
             export XDG_DATA_DIRS="''${data_dirs[*]}"
             export PATH="${builtins.concatStringsSep ":" box.path}"
+            sudo dnf upgrade -y
             ${box.exec}
           '';
         in

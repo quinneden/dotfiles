@@ -9,6 +9,7 @@
   packages = with pkgs; {
     linux = [
       (mpv.override { scripts = [ mpvScripts.mpris ]; })
+      deskflow
       fragments
       nh
       nodejs

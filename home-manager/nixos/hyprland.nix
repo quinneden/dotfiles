@@ -27,7 +27,7 @@ in
       # inputs.hyprland-hyprspace.packages.${pkgs.system}.default
       # plugins.hyprexpo
       # plugins.hyprbars
-      plugins.borders-plus-plus
+      # plugins.borders-plus-plus
     ];
 
     settings = {

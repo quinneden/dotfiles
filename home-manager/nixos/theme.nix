@@ -88,7 +88,9 @@ in
 
   qt = {
     enable = true;
-    platformTheme.name = "kde";
+    platformTheme.name = "adwaita";
+    style.package = pkgs.adwaita-qt;
+    style.name = "adwaita-dark";
   };
 
   home.file.".local/share/flatpak/overrides/global".text =

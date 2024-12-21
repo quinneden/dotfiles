@@ -27,13 +27,12 @@ in
     initialPassword = username;
     shell = pkgs.zsh;
     extraGroups = [
-      "nixosvmtest"
       "networkmanager"
       "wheel"
       "audio"
       "video"
-      "libvirtd"
-      "docker"
+      "podman"
+      "i2c-dev"
     ];
   };
 
@@ -59,6 +58,7 @@ in
     "/share/zsh"
     "/share/qemu"
     "/share/edk2"
+    "share/deskflow"
   ];
 
   environment.sessionVariables = {

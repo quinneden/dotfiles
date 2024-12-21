@@ -21,6 +21,7 @@ in
 {
   home.packages =
     (with pkgs; [
+      alphabetize
       cfg
       commit
       cop
@@ -28,9 +29,9 @@ in
       fuck
       lsh
       mi
+      nixhash
       nish
       nix-clean
-      nixhash
       readme
       rm-result
     ])

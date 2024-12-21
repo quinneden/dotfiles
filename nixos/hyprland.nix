@@ -40,7 +40,10 @@
 
     xdg.portal = {
       enable = true;
-      extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-wlr
+      ];
     };
 
     security = {
@@ -64,6 +67,7 @@
       gnome-weather
       gnome-calculator
       gnome-clocks
+      gnome-remote-desktop
       gnome-software # for flatpak
       wl-gammactl
       wl-clipboard

@@ -1,4 +1,9 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 {
   imports = [ ./modules/distrobox.nix ];
 
@@ -7,22 +12,26 @@
 
     boxes =
       let
-        exec = "${pkgs.zsh}/bin/zsh";
+        exec = "${lib.getExe pkgs.zsh}";
         symlinks = [
           ".bashrc"
           ".zshenv"
           ".config/nix"
           ".config/starship.toml"
+          "/etc/profiles/per-user/quinn/bin/starship"
         ];
-        packages = config.packages.cli ++ [
-          pkgs.nix
-          pkgs.git
-        ];
+        packages =
+          config.packages.cli
+          ++ (with pkgs; [
+            nix
+            mi
+            fuck
+          ]);
       in
       {
         Fedora = {
           inherit exec symlinks;
-          packages = "nodejs npm poetry gcc python3-devel wl-clipboard rustup llvm p7zip p7zip-plugins";
+          packages = "nodejs npm poetry clang gcc python3 wl-clipboard rustup llvm p7zip p7zip-plugins";
           img = "registry.fedoraproject.org/fedora-toolbox:rawhide";
           nixPackages = packages ++ [
             (pkgs.writeShellScriptBin "pr" "poetry run $@")

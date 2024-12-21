@@ -53,6 +53,8 @@
     git
     wget
     micro
+    ddcutil
+    powerdevil
   ];
 
   security.sudo.wheelNeedsPassword = false;
@@ -67,16 +69,19 @@
     openssh.enable = true;
   };
 
+  # services.udev.extraRules = ''
+  #   KERNEL=="i2c-[0-9]*", TAG+="uaccess"
+  # '';
+
   # logind
   services.logind.extraConfig = ''
     HandlePowerKey=ignore
-    HandleLidSwitch=suspend
-    HandleLidSwitchExternalPower=ignore
   '';
 
   # network
   networking = {
     hostName = "nixos-macmini";
+
     wireless.iwd = {
       enable = true;
       settings = {
@@ -85,10 +90,12 @@
         General.EnableNetworkConfiguration = true;
       };
     };
+
     networkmanager = {
       enable = true;
       wifi.backend = "iwd";
     };
+
     firewall.enable = false;
   };
 
@@ -101,17 +108,29 @@
 
   # bootloader
   boot = {
+    # kernelModules = [
+    #   "i2c-dev"
+    #   "ddcci_backlight"
+    # ];
+
     m1n1CustomLogo = pkgs.fetchurl {
       url = "https://qeden.me/bootlogo-snowflake-white.png";
       hash = "sha256-6VpPDZSYD57m4LZRPQuOWtR7z70BQ0A2f2jZgjXDiKs=";
     };
+
     tmp.cleanOnBoot = true;
+
     loader = {
       timeout = 1;
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = false;
     };
   };
+
+  # hardware.i2c = {
+  #   enable = true;
+  #   group = "";
+  # };
 
   hardware.asahi = {
     enable = true;
