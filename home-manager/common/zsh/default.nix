@@ -86,6 +86,7 @@ in
         fpath+=(
           "${pkgs.lix}/share/zsh/site-functions"
           "/etc/profiles/per-user/quinn/share/zsh/site-functions"
+          "${config.xdg.configHome}/zsh/completions"
         )
       ''
       + (if pkgs.stdenv.isDarwin then ''fpath+=("/opt/homebrew/share/zsh/site-functions")'' else '''');
