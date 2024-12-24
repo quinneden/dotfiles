@@ -49,6 +49,10 @@ let
         })
       ];
     };
+
+    ungoogled-chromium = prev.ungoogled-chromium.overrideAttrs {
+      meta.platforms = prev.platforms ++ lib.platforms.darwin;
+    };
   };
 in
 {

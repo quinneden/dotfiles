@@ -1,7 +1,7 @@
 {
+  inputs,
   lib,
   pkgs,
-  inputs,
   theme,
   ...
 }:
@@ -9,6 +9,10 @@
 {
   programs.vscode =
     let
+      extensions = [ ] ++ (import ./extensions/general.nix { inherit inputs pkgs; });
+
+      keybindings = [ ] ++ (import ./settings/keybindings.nix);
+
       userSettings =
         { }
         // (import ./settings/four-tabs-langs.nix { inherit lib; })
@@ -17,22 +21,15 @@
         // (import ./settings/window.nix)
         // (import ./settings/misc.nix)
         // (import ./settings/lsp.nix { inherit lib pkgs; });
-
-      keybindings = [ ] ++ (import ./settings/keybindings.nix);
-
-      extensions =
-        [ ]
-        ++ (import ./extensions/general.nix { inherit inputs pkgs; })
-        ++ (import ./extensions/generated.nix { inherit pkgs; });
     in
     {
       enable = true;
       package = pkgs.vscodium;
 
       inherit
-        userSettings
-        keybindings
         extensions
+        keybindings
+        userSettings
         ;
     };
 }

@@ -15,5 +15,7 @@
     nixfmt-rfc-style
     zoxide
     tabby-release
+    devpod
+    mosh
   ];
 }
