@@ -23,7 +23,7 @@
 
     nixos-apple-silicon = {
       # url = "github:tpwrules/nixos-apple-silicon";
-      url = "github:zzywysm/nixos-asahi";
+      url = "github:zzywysm/nixos-asahi?ref=supreme-asahi-6.12";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -126,5 +126,62 @@
           ];
         };
       };
+
+      apps = forAllSystems (
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+          inherit (pkgs) lib writeShellApplication;
+
+          deploySystem = writeShellApplication {
+            name = "deploy-dotfiles";
+            runtimeInputs = [ pkgs.nixos-rebuild ];
+            text = ''
+              get_arg() {
+                echo "''${2:-''${1#*=}}"
+              }
+
+              while [[ $# -gt 1 ]]; do
+                case "$1" in
+                  install)
+                    FIRST_BUILD=true
+                    shift
+                    target=$(get_arg "$@")
+                    shift 2
+                    ;;
+                  switch | rebuild)
+                    FIRST_BUILD=false;
+                    shift
+                    target=$(get_arg "$@")
+                    shift 2
+                    ;;
+                  # *)
+                  #   echo "error: specify command" >&2
+                  #   exit 1
+                  #   ;;
+                esac
+              done
+
+              if [[ $FIRST_BUILD ]]; then
+                nixos-install --show-trace \
+                  --target-host "root@$target" \
+                  --flake .
+              else
+                nixos-rebuild switch --show-trace \
+                  --target-host "root@$target" \
+                  --flake .
+              fi
+            '';
+          };
+        in
+        rec {
+          default = deploy;
+
+          deploy = {
+            type = "app";
+            program = lib.getExe deploySystem;
+          };
+        }
+      );
     };
 }
