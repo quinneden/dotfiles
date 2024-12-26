@@ -7,7 +7,7 @@
     hyprland.url = "github:hyprwm/hyprland";
     hyprcursor-phinger.url = "github:quinneden/hyprcursor-phinger";
     matugen.url = "github:InioX/matugen/3a5e27b2eb0593d2a3e86fd76aefb79e647086a2";
-    ags.url = "github:aylur/ags/v1";
+    ags.url = "github:quinneden/ags";
     nix-shell-scripts.url = "github:quinneden/nix-shell-scripts";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     mac-app-util.url = "github:hraban/mac-app-util";
@@ -15,6 +15,16 @@
     micro-colors-nix.url = "github:quinneden/micro-colors-nix";
     wezterm.url = "github:wez/wezterm?dir=nix";
     nh.url = "github:viperml/nh";
+
+    hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
+    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
+    stylix.url = "github:danth/stylix";
+    apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
+    zen-browser.url = "git+https://git.sr.ht/~canasta/zen-browser-flake/";
+    nixy-wallpapers = {
+      url = "github:anotherhadi/nixy-wallpapers";
+      flake = false;
+    };
 
     lix-module = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-2.tar.gz";
@@ -92,10 +102,6 @@
     {
       formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
 
-      packages.aarch64-linux.default = nixpkgs.legacyPackages.aarch64-linux.callPackage ./nixos/ags {
-        inherit inputs;
-      };
-
       packages.aarch64-darwin = {
         tabby-release = nixpkgs.legacyPackages.aarch64-darwin.callPackage ./drv/tabby-release.nix { };
       };
@@ -116,13 +122,13 @@
           system = "aarch64-linux";
           specialArgs = {
             inherit inputs secrets;
-            asztal = self.packages.aarch64-linux.default;
           };
           modules = [
-            ./nixos
+            ./hosts/nixos-macmini/configuration.nix
             home-manager.nixosModules.home-manager
             inputs.lix-module.nixosModules.default
             inputs.nixos-apple-silicon.nixosModules.default
+            inputs.stylix.nixosModules.stylix
           ];
         };
       };
