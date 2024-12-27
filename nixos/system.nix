@@ -61,17 +61,14 @@
 
   # services
   services = {
-    # xserver = {
-    #   enable = true;
-    #   excludePackages = [ pkgs.xterm ];
-    # };
+    xserver = {
+      enable = true;
+      excludePackages = [ pkgs.xterm ];
+    };
     flatpak.enable = true;
     openssh.enable = true;
+    vscode-server.enable = true;
   };
-
-  # services.udev.extraRules = ''
-  #   KERNEL=="i2c-[0-9]*", TAG+="uaccess"
-  # '';
 
   # logind
   services.logind.extraConfig = ''
@@ -121,15 +118,6 @@
       efi.canTouchEfiVariables = false;
     };
   };
-
-  # fileSystems = {
-  #   "/".options = [ "compress=zstd" ];
-  #   "/home".options = [ "compress=zstd" ];
-  #   "/nix".options = [
-  #     "compress=zstd"
-  #     "noatime"
-  #   ];
-  # };
 
   hardware.asahi = {
     enable = true;

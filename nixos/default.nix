@@ -7,6 +7,13 @@
 }:
 let
   username = "quinn";
+
+  flakeInputs = with inputs; [
+    home-manager.nixosModules.home-manager
+    lix-module.nixosModules.default
+    nixos-apple-silicon.nixosModules.default
+    vscode-server.nixosModules.default
+  ];
 in
 {
   imports = [
@@ -18,7 +25,7 @@ in
     ./hyprland.nix
     ./gnome.nix
     ./overlays.nix
-  ];
+  ] ++ flakeInputs;
 
   hyprland.enable = true;
 

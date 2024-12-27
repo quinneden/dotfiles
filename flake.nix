@@ -35,10 +35,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # firefox-addons = {
-    #   url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    firefox-gnome-theme = {
+      url = "github:rafaelmardojai/firefox-gnome-theme";
+      flake = false;
+    };
 
     ags.url = "github:aylur/ags/v1";
     hyprcursor-phinger.url = "github:quinneden/hyprcursor-phinger";
@@ -51,6 +56,7 @@
     nix-shell-scripts.url = "github:quinneden/nix-shell-scripts";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     sops-nix.url = "github:Mic92/sops-nix";
+    vscode-server.url = "github:nix-community/nixos-vscode-server";
   };
 
   outputs =
@@ -108,12 +114,7 @@
             inherit inputs secrets;
             asztal = self.packages.aarch64-linux.default;
           };
-          modules = [
-            ./nixos
-            home-manager.nixosModules.home-manager
-            inputs.lix-module.nixosModules.default
-            inputs.nixos-apple-silicon.nixosModules.default
-          ];
+          modules = [ ./nixos ];
         };
       };
 
