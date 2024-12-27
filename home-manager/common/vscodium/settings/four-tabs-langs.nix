@@ -27,11 +27,8 @@ lib.fold
     in
     [
       (mk "rust" "undefined")
-      (mk "cpp" "xaver.clang-format")
-      (mk "c" "xaver.clang-format")
       (mk "python" "ms-python.black-formatter")
       (mk "java" "undefined")
-      (mk "php" "undefined")
       (mk "zig" "undefined")
     ]
   )

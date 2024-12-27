@@ -20,6 +20,7 @@ let
 
   normal = with pkgs.vscode-extensions; [
     bbenoist.nix
+    dracula-theme.theme-dracula
   ];
 
   marketplace = inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace;
@@ -36,7 +37,8 @@ let
       jnoortheen.nix-ide
       miguelsolorio.symbols
       devpod-containers
-      obstinate.vesper-pp
+      lancewilhelm.horizon-extended
+      hermitter.oh-lucy-vscode
     ])
     ++ (with marketplace-release; [
       github.copilot

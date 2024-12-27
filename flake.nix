@@ -4,26 +4,9 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     forkpkgs.url = "github:quinneden/nixpkgs";
-    hyprland.url = "github:hyprwm/hyprland";
-    hyprcursor-phinger.url = "github:quinneden/hyprcursor-phinger";
-    matugen.url = "github:InioX/matugen/3a5e27b2eb0593d2a3e86fd76aefb79e647086a2";
-    ags.url = "github:aylur/ags/v1";
-    nix-shell-scripts.url = "github:quinneden/nix-shell-scripts";
-    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
-    mac-app-util.url = "github:hraban/mac-app-util";
-    micro-autofmt-nix.url = "github:quinneden/micro-autofmt-nix";
-    micro-colors-nix.url = "github:quinneden/micro-colors-nix";
-    wezterm.url = "github:wez/wezterm?dir=nix";
-    nh.url = "github:viperml/nh";
 
     lix-module = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-2.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nixos-apple-silicon = {
-      # url = "github:tpwrules/nixos-apple-silicon";
-      url = "github:zzywysm/nixos-asahi?ref=supreme-asahi-6.12";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -32,18 +15,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    lf-icons = {
-      url = "github:gokcehan/lf";
-      flake = false;
-    };
-
-    firefox-gnome-theme = {
-      url = "github:rafaelmardojai/firefox-gnome-theme";
-      flake = false;
-    };
-
-    firefox-addons = {
-      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+    nixos-apple-silicon = {
+      url = "github:zzywysm/nixos-asahi?ref=supreme-asahi-6.12";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -61,6 +34,23 @@
       url = "github:cpick/nix-rosetta-builder";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # firefox-addons = {
+    #   url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
+    ags.url = "github:aylur/ags/v1";
+    hyprcursor-phinger.url = "github:quinneden/hyprcursor-phinger";
+    hyprland.url = "github:hyprwm/hyprland";
+    mac-app-util.url = "github:hraban/mac-app-util";
+    matugen.url = "github:InioX/matugen/3a5e27b2eb0593d2a3e86fd76aefb79e647086a2";
+    micro-autofmt-nix.url = "github:quinneden/micro-autofmt-nix";
+    micro-colors-nix.url = "github:quinneden/micro-colors-nix";
+    nh.url = "github:viperml/nh";
+    nix-shell-scripts.url = "github:quinneden/nix-shell-scripts";
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+    sops-nix.url = "github:Mic92/sops-nix";
   };
 
   outputs =
@@ -72,17 +62,17 @@
       ...
     }:
     let
-      secrets =
-        let
-          inherit (builtins) fromJSON readFile;
-          inherit (nixpkgs) lib;
-        in
-        lib.genAttrs [
-          "cachix"
-          "cloudflare"
-          "github"
-          "pubkeys"
-        ] (secretFile: fromJSON (readFile .secrets/${secretFile}.json));
+      # secrets =
+      #   let
+      #     inherit (builtins) fromJSON readFile;
+      #     inherit (nixpkgs) lib;
+      #   in
+      #   lib.genAttrs [
+      #     "cachix"
+      #     "cloudflare"
+      #     "github"
+      #     "pubkeys"
+      #   ] (secretFile: fromJSON (readFile .secrets/${secretFile}.json));
 
       forAllSystems = inputs.nixpkgs.lib.genAttrs [
         "aarch64-darwin"

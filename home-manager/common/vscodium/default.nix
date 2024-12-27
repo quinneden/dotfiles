@@ -5,11 +5,10 @@
   theme,
   ...
 }:
-
 {
   programs.vscode =
     let
-      extensions = [ ] ++ (import ./extensions/general.nix { inherit inputs pkgs; });
+      extensions = [ ] ++ (import ./extensions.nix { inherit inputs pkgs; });
 
       keybindings = [ ] ++ (import ./settings/keybindings.nix);
 
