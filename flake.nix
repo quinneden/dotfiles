@@ -62,17 +62,17 @@
       ...
     }:
     let
-      # secrets =
-      #   let
-      #     inherit (builtins) fromJSON readFile;
-      #     inherit (nixpkgs) lib;
-      #   in
-      #   lib.genAttrs [
-      #     "cachix"
-      #     "cloudflare"
-      #     "github"
-      #     "pubkeys"
-      #   ] (secretFile: fromJSON (readFile .secrets/${secretFile}.json));
+      secrets =
+        let
+          inherit (builtins) fromJSON readFile;
+          inherit (nixpkgs) lib;
+        in
+        lib.genAttrs [
+          "cachix"
+          "cloudflare"
+          "github"
+          "pubkeys"
+        ] (secretFile: fromJSON (readFile .secrets/${secretFile}.json));
 
       forAllSystems = inputs.nixpkgs.lib.genAttrs [
         "aarch64-darwin"
