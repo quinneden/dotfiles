@@ -20,8 +20,6 @@ let
 
   normal = with pkgs.vscode-extensions; [
     bbenoist.nix
-    xaver.clang-format
-    ziglang.vscode-zig
   ];
 
   marketplace = inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace;
@@ -37,8 +35,8 @@ let
       ms-python.black-formatter
       jnoortheen.nix-ide
       miguelsolorio.symbols
-      phosphor-icons.phosphor-theme
       devpod-containers
+      obstinate.vesper-pp
     ])
     ++ (with marketplace-release; [
       github.copilot

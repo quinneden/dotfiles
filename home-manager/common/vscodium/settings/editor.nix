@@ -5,7 +5,7 @@
   "editor.fontWeight" = "500";
   "editor.formatOnPaste" = false;
   "editor.formatOnSave" = true;
-  "editor.guides.indentation" = false;
+  "editor.guides.indentation" = true;
   "editor.minimap.enabled" = false;
   "editor.scrollbar.horizontal" = "hidden";
   "editor.scrollbar.vertical" = "hidden";
