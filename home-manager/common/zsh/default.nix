@@ -106,4 +106,13 @@ in
       // (if pkgs.stdenv.isDarwin then darwinVariables else { })
       // (if pkgs.stdenv.isLinux then linuxVariables else { });
   };
+
+  programs.bash = {
+    enableCompletion = true;
+
+    profileExtra = ''
+      PS1="\[\e[32m\]\u@\h\[\e[0m\]:\[\e[34m\]\w\[\e[0m\] \$ "
+      export PS1
+    '';
+  };
 }
