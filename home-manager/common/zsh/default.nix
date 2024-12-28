@@ -39,6 +39,7 @@ let
   darwinVariables = {
     PATH = "/run/current-system/sw/bin:/etc/profiles/per-user/quinn/bin:/Users/quinn/.local/bin:\${PATH:+$PATH}";
     TMPDIR = "/tmp";
+    PAGER = "most";
   };
 
   linuxVariables = {
@@ -101,7 +102,6 @@ in
         LANG = "en_US.UTF-8";
         LC_ALL = "en_US.UTF-8";
         MICRO_TRUECOLOR = "1";
-        PAGER = "bat --style=grid,numbers --wrap=never";
       }
       // (if pkgs.stdenv.isDarwin then darwinVariables else { })
       // (if pkgs.stdenv.isLinux then linuxVariables else { });

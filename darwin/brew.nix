@@ -68,6 +68,7 @@
       "mas"
       "meson"
       "micro"
+      "most"
       "ncdu"
       "node"
       "openssl@3"
