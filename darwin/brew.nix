@@ -5,7 +5,6 @@
       "homebrew/bundle"
       "homebrew/services"
       "deskflow/homebrew-tap"
-      "akihirosuda/core" # qemu patch for M4.
     ];
     casks = [
       "betterdisplay"
@@ -82,7 +81,7 @@
       "pure"
       "pv"
       "pygments"
-      "akihirosuda/core/qemu"
+      "qemu"
       "qrencode"
       "rbenv"
       "rclone"
