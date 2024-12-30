@@ -61,6 +61,8 @@ in
     };
   };
 
+  stylix.targets.gtk.flatpakSupport.enable = false;
+
   home.file = {
     ".local/share/themes/FlatColor" = {
       recursive = true;
