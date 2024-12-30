@@ -1,7 +1,7 @@
 {
   "workbench.activityBar.location" = "bottom";
-  "workbench.colorTheme" = "Panda Syntax";
+  "workbench.colorTheme" = "oh-lucy";
   "workbench.editor.labelFormat" = "short";
-  "workbench.iconTheme" = "phosphor";
+  "workbench.iconTheme" = "symbols";
   "workbench.layoutControl.enabled" = false;
 }

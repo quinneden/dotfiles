@@ -9,7 +9,6 @@
 }:
 {
   imports = [
-    # ./aerospace.nix
     ./brew.nix
     ./fonts.nix
     ./modules

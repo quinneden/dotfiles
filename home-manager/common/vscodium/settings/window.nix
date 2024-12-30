@@ -1,5 +1,5 @@
 {
-  "window.commandCenter" = false;
+  "window.commandCenter" = true;
   "window.customMenuBarAltFocus" = false;
   "window.menuBarVisibility" = "compact";
   "window.restoreFullscreen" = true;
