@@ -9,7 +9,6 @@
 }:
 {
   imports = [
-    # ./aerospace.nix
     ./brew.nix
     ./fonts.nix
     ./modules
@@ -18,7 +17,7 @@
     ./system.nix
     inputs.home-manager.darwinModules.default
     inputs.mac-app-util.darwinModules.default
-    # inputs.nix-rosetta-builder.darwinModules.default
+    inputs.nix-rosetta-builder.darwinModules.default
   ];
 
   users.users.quinn = {

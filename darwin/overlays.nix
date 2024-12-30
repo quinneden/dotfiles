@@ -41,14 +41,14 @@ let
       };
     };
 
-    # qemu = prev.qemu.overrideAttrs {
-    #   patches = prev.qemu.patches ++ [
-    #     (pkgs.fetchpatch {
-    #       url = "https://raw.githubusercontent.com/utmapp/UTM/acbf2ba8cd91f382a5e163c49459406af0b462b7/patches/qemu-9.1.0-utm.patch";
-    #       sha256 = "sha256-S7DJSFD7EAzNxyQvePAo5ZZyanFrwQqQ6f2/hJkTJGA=";
-    #     })
-    #   ];
-    # };
+    qemu = prev.qemu.overrideAttrs {
+      patches = prev.qemu.patches ++ [
+        (pkgs.fetchpatch {
+          url = "https://raw.githubusercontent.com/utmapp/UTM/acbf2ba8cd91f382a5e163c49459406af0b462b7/patches/qemu-9.1.0-utm.patch";
+          sha256 = "sha256-S7DJSFD7EAzNxyQvePAo5ZZyanFrwQqQ6f2/hJkTJGA=";
+        })
+      ];
+    };
 
     nerd-font-patcher = prev.nerd-font-patcher.overrideAttrs rec {
       version = "3.3.0";
@@ -62,6 +62,23 @@ let
     ungoogled-chromium = prev.ungoogled-chromium.overrideAttrs {
       meta.platforms = prev.platforms ++ lib.platforms.darwin;
     };
+
+    palera1n = pkgs.stdenv.mkDerivation (finalAttrs: rec {
+      pname = "palera1n";
+      version = "2.1-beta.1";
+      src = pkgs.fetchurl {
+        url = "https://github.com/${pname}/${pname}/releases/download/v${finalAttrs.version}/${pname}-macos-arm64";
+        hash = "sha256-hRoCAaTwpoza2RnWNtDPSbOHJwhiuHh+5KTXWxUbfhM=";
+      };
+      dontUnpack = true;
+      dontBuild = true;
+      installPhase = ''
+        runHook preInstall
+        mkdir -p "$out/bin"
+        install -Dm 755 $src "$out"/bin/palera1n
+        runHook postInstall
+      '';
+    });
   };
 in
 {
