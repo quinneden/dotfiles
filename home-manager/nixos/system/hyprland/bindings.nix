@@ -5,7 +5,7 @@
       [
         "$mod,RETURN, exec, ${pkgs.kitty}/bin/kitty" # Kitty
         "$mod,E, exec, ${pkgs.xfce.thunar}/bin/thunar" # Thunar
-        "$mod,W, exec, zen" # Qutebrowser
+        "$mod,W, exec, firefox" # Firefox
         "$mod,K, exec, ${pkgs.bitwarden}/bin/bitwarden" # Bitwarden
         "$mod,L, exec, ${pkgs.hyprlock}/bin/hyprlock" # Lock
         "$mod,ESCAPE, exec, powermenu" # Powermenu

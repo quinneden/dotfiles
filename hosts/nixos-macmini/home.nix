@@ -20,7 +20,7 @@
     ../../home-manager/nixos/programs/thunar
     ../../home-manager/nixos/programs/lazygit
     ../../home-manager/nixos/programs/nh
-    ../../home-manager/nixos/programs/zen
+    # ../../home-manager/nixos/programs/zen
     # Scripts
     ../../home-manager/nixos/scripts # All scripts
 
@@ -43,7 +43,7 @@
 
     packages = with pkgs; [
       # Apps
-      discord # Chat
+      # discord # Chat
       bitwarden # Password manager
       vlc # Video player
 

@@ -63,7 +63,7 @@
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
     stylix.url = "github:danth/stylix";
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
-    zen-browser.url = "git+https://git.sr.ht/~canasta/zen-browser-flake/";
+    # zen-browser.url = "git+https://git.sr.ht/~canasta/zen-browser-flake/";
     nixy-wallpapers = {
       url = "github:anotherhadi/nixy-wallpapers";
       flake = false;
@@ -89,19 +89,15 @@
           "cloudflare"
           "github"
           "pubkeys"
-        ] (secretFile: fromJSON (readFile .secrets/${secretFile}.json));
+        ] (s: fromJSON (readFile .secrets/${s}.json));
 
-      forAllSystems = inputs.nixpkgs.lib.genAttrs [
+      forEachSystem = inputs.nixpkgs.lib.genAttrs [
         "aarch64-darwin"
         "aarch64-linux"
       ];
     in
     {
-      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
-
-      packages.aarch64-darwin = {
-        tabby-release = nixpkgs.legacyPackages.aarch64-darwin.callPackage ./drv/tabby-release.nix { };
-      };
+      formatter = forEachSystem (system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
 
       darwinConfigurations = {
         macos = nix-darwin.lib.darwinSystem {
@@ -130,7 +126,7 @@
         };
       };
 
-      apps = forAllSystems (
+      apps = forEachSystem (
         system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
@@ -152,16 +148,12 @@
                     target=$(get_arg "$@")
                     shift 2
                     ;;
-                  switch | rebuild)
+                  *)
                     FIRST_BUILD=false;
                     shift
                     target=$(get_arg "$@")
                     shift 2
                     ;;
-                  # *)
-                  #   echo "error: specify command" >&2
-                  #   exit 1
-                  #   ;;
                 esac
               done
 

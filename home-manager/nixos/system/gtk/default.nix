@@ -28,6 +28,35 @@ let
   c14 = "#${config.lib.stylix.colors.base0C}";
   c15 = "#${config.lib.stylix.colors.base07}";
 
+  FlatColorPkg = pkgs.stdenv.mkDerivation {
+    name = "FlatColor";
+
+    src = pkgs.fetchFromGitHub {
+      owner = "jasperro";
+      repo = "FlatColor";
+      rev = "0a56c50e8c5e2ad35f6174c19a00e01b30874074";
+      hash = "sha256-P8RnYTk9Z1rCBEEMLTVRrNr5tUM/Pc9dsdMtpHd1Y18=";
+    };
+
+    buildPhase = ''
+      mkdir -p $out
+      # delete the default gtk-color-scheme:
+      file="./gtk-2.0/gtkrc"
+      sed -i '3,29d' $file
+      sed -i '3i include "../colors2"' $file
+
+      file="./gtk-3.0/gtk.css"
+      sed -i '2,10d' $file
+      sed -i '2i @import url("../colors3");' $file
+
+      file="./gtk-3.20/gtk.css"
+      sed -i '2,26d' $file
+      sed -i '2i @import url("../colors3");' $file
+
+      cp -r . $out 
+    '';
+  };
+
 in
 {
 
@@ -40,7 +69,10 @@ in
   gtk = {
     enable = true;
 
-    theme = lib.mkForce { name = "FlatColor"; };
+    theme = lib.mkForce {
+      name = "FlatColor";
+      package = FlatColorPkg;
+    };
 
     iconTheme = {
       package = pkgs.kora-icon-theme;
@@ -63,34 +95,7 @@ in
   home.file = {
     ".local/share/themes/FlatColor" = {
       recursive = true;
-      source = pkgs.stdenv.mkDerivation {
-        name = "FlatColor";
-
-        src = pkgs.fetchFromGitHub {
-          owner = "jasperro";
-          repo = "FlatColor";
-          rev = "0a56c50e8c5e2ad35f6174c19a00e01b30874074";
-          hash = "sha256-P8RnYTk9Z1rCBEEMLTVRrNr5tUM/Pc9dsdMtpHd1Y18=";
-        };
-
-        buildPhase = ''
-          mkdir -p $out
-          # delete the default gtk-color-scheme:
-          file="./gtk-2.0/gtkrc"
-          sed -i '3,29d' $file
-          sed -i '3i include "../colors2"' $file
-
-          file="./gtk-3.0/gtk.css"
-          sed -i '2,10d' $file
-          sed -i '2i @import url("../colors3");' $file
-
-          file="./gtk-3.20/gtk.css"
-          sed -i '2,26d' $file
-          sed -i '2i @import url("../colors3");' $file
-
-          cp -r . $out 
-        '';
-      };
+      source = FlatColorPkg;
     };
 
     ".local/share/themes/FlatColor/colors2".text = ''

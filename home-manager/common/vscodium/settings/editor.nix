@@ -1,7 +1,9 @@
+{ lib }:
+with lib;
 {
-  "editor.fontFamily" = "CaskaydiaCoveNFM-SemiLight";
+  "editor.fontFamily" = mkForce "CaskaydiaCoveNFM-SemiLight";
   "editor.fontLigatures" = true;
-  "editor.fontSize" = 15;
+  "editor.fontSize" = mkForce 15;
   "editor.fontWeight" = "500";
   "editor.formatOnPaste" = false;
   "editor.formatOnSave" = true;
@@ -13,9 +15,9 @@
   "terminal.integrated.cursorStyle" = "line";
   "terminal.integrated.defaultProfile.linux" = "zsh";
   "terminal.integrated.defaultProfile.osx" = "zsh";
-  "terminal.integrated.fontFamily" = "CaskaydiaCoveNFM-SemiLight";
+  "terminal.integrated.fontFamily" = mkForce "CaskaydiaCoveNFM-SemiLight";
   "terminal.integrated.fontLigatures" = true;
-  "terminal.integrated.fontSize" = 15;
+  "terminal.integrated.fontSize" = mkForce 15;
   "terminal.integrated.fontWeightBold" = 500;
   "terminal.integrated.gpuAcceleration" = "auto";
   "terminal.integrated.letterSpacing" = 0.5;
