@@ -134,46 +134,42 @@
 
           deploySystem = writeShellApplication {
             name = "deploy-dotfiles";
-            runtimeInputs = with pkgs; [
-              nixos-rebuild
-              nixos-install
-            ];
+            runtimeInputs = with pkgs; [ nixos-rebuild ];
             text = ''
-              get_arg() {
-                echo "''${2:-''${1#*=}}"
-              }
+              # get_arg() {
+              #   echo "''${2:-''${1#*=}}"
+              # }
 
-              while [[ $# -gt 0 ]]; do
-                case "$1" in
-                  -i | --install)
-                    FIRST_BUILD=true
-                    shift
-                    ;;
-                  boot | switch)
-                    subcommand="$1"
-                    shift
-                    ;;
-                  *)
-                    target="$1"
-                    shift
-                    ;;
-                esac
-              done
+              # while [[ $# -gt 0 ]]; do
+              #   case "$1" in
+              #     -i | --install)
+              #       FIRST_BUILD=true
+              #       shift
+              #       ;;
+              #     boot | switch)
+              #       subcommand="$1"
+              #       shift
+              #       ;;
+              #     *)
+              #       target="$1"
+              #       shift
+              #       ;;
+              #   esac
+              # done
 
-              FIRST_BUILD="''${FIRST_BUILD:-false}"
-              subcommand="''${subcommand:-switch}"
-              target="''${target:-nixos-macmini}"
+              # FIRST_BUILD="''${FIRST_BUILD:-false}"
+              # subcommand="''${subcommand:-switch}"
+              # target="''${target:-nixos-macmini}"
 
-              if [[ $FIRST_BUILD == true ]]; then
-                nixos-install --show-trace \
-                  --target-host "root@$target" \
-                  --flake .
-              else
-                nixos-rebuild "$subcommand" --fast --show-trace \
-                  --target-host "root@$target" \
-                  --flake .#nixos-macmini \
-                  -j1
-              fi
+              # if [[ $FIRST_BUILD == true ]]; then
+              #   nixos-install --show-trace \
+              #     --target-host "root@$target" \
+              #     --flake .
+              # else
+                nixos-rebuild boot --fast --show-trace \
+                  --target-host "root@nixos-macmini" \
+                  --flake .#nixos-macmini
+              # fi
             '';
           };
         in
