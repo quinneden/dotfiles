@@ -4,7 +4,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "tuigreet --remember --asterisks --container-padding 2 --time --time-format '%I:%M %p | %a • %h | %F' --cmd systemd-cat -t uwsm_start uwsm start default";
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --remember --asterisks --container-padding 2 --time --time-format '%I:%M %p | %a • %h | %F' --cmd 'systemd-cat -t uwsm_start uwsm start default'";
         user = "greeter";
       };
     };
