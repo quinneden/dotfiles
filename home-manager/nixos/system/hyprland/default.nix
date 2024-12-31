@@ -53,7 +53,6 @@ in
     xwayland.enable = true;
     systemd.enable = false;
     package = inputs.hyprland.packages."${pkgs.system}".hyprland;
-    portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
 
     settings = {
       "$mod" = "SUPER";
