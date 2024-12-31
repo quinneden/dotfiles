@@ -17,6 +17,7 @@
     ../../nixos/variables-config.nix
     ../../nixos/xdg-portal.nix
     ../../nixos/uwsm.nix
+    ../../nixos/hyprland.nix
 
     # Choose your theme here
     ../../themes/stylix/pinky.nix
