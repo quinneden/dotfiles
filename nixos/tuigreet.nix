@@ -1,18 +1,10 @@
-{ pkgs, lib, ... }:
-with lib;
-let
-  uwsmStart = pkgs.writeShellScript ''
-    if uwsm check may-start; then
-    	exec systemd-cat -t uwsm_start uwsm start hyprland-hm
-    fi
-  '';
-in
+{ pkgs, ... }:
 {
   services.greetd = {
     enable = true;
     settings = {
       default_session = {
-        command = "tuigreet --remember --asterisks --container-padding 2 --time --time-format '%I:%M %p | %a • %h | %F' --cmd ${getExe uwsmStart}";
+        command = "tuigreet --remember --asterisks --container-padding 2 --time --time-format '%I:%M %p | %a • %h | %F' --cmd systemd-cat -t uwsm_start uwsm start default";
         user = "greeter";
       };
     };
