@@ -17,7 +17,7 @@
     ./system.nix
     inputs.home-manager.darwinModules.default
     inputs.mac-app-util.darwinModules.default
-    inputs.nix-rosetta-builder.darwinModules.default
+    # inputs.nix-rosetta-builder.darwinModules.default
   ];
 
   users.users.quinn = {
@@ -91,48 +91,38 @@
 
     linux-builder = {
       enable = true;
-      #   ephemeral = true;
-      #   config =
-      #     { pkgs, ... }:
-      #     {
-      #       imports = [
-      #         (
-      #           let
-      #             module = fetchTarball {
-      #               name = "source";
-      #               url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-2.tar.gz";
-      #               sha256 = "sha256-DN5/166jhiiAW0Uw6nueXaGTueVxhfZISAkoxasmz/g=";
-      #             };
-      #             lixSrc = fetchTarball {
-      #               name = "source";
-      #               url = "https://git.lix.systems/lix-project/lix/archive/2.91.1.tar.gz";
-      #               sha256 = "sha256-hiGtfzxFkDc9TSYsb96Whg0vnqBVV7CUxyscZNhed0U=";
-      #             };
-      #           in
-      #           import "${module}/module.nix" { lix = lixSrc; }
-      #         )
-      #       ];
-      #       nix = {
-      #         settings = {
-      #           max-jobs = 8;
-      #           access-tokens = [ "github=${secrets.github.token}" ];
-      #           extra-substituters = [
-      #             "https://cache.lix.systems"
-      #           ];
-      #           extra-trusted-public-keys = [
-      #             "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
-      #           ];
-      #         };
-      #       };
-      #       services.openssh.enable = true;
-      #       virtualisation = {
-      #         cores = 8;
-      #         darwin-builder = {
-      #           diskSize = 100 * 1024;
-      #           memorySize = 8 * 1024;
-      #         };
-      #       };
-      #     };
+      ephemeral = true;
+      config =
+        { pkgs, ... }:
+        {
+          nix = {
+            package = pkgs.lix;
+            settings = {
+              max-jobs = 8;
+              access-tokens = [ "github=${secrets.github.token}" ];
+              extra-substituters = [
+                "https://cache.lix.systems"
+                "https://quinneden.cachix.org"
+                "http://picache.qeden.me"
+                "https://nix-community.cachix.org"
+              ];
+              extra-trusted-public-keys = [
+                "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
+                "quinneden.cachix.org-1:1iSAVU2R8SYzxTv3Qq8j6ssSPf0Hz+26gfgXkvlcbuA="
+                "picache.qeden.me-1:QMyXTH8r6XY39bR7IF6UtpaxtkjFcIc1bf4N+7DRxvY="
+                "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+              ];
+            };
+          };
+          # services.openssh.enable = true;
+          virtualisation = {
+            cores = 8;
+            darwin-builder = {
+              diskSize = 100 * 1024;
+              memorySize = 8 * 1024;
+            };
+          };
+        };
     };
   };
 
