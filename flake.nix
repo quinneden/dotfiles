@@ -134,37 +134,45 @@
 
           deploySystem = writeShellApplication {
             name = "deploy-dotfiles";
-            runtimeInputs = [ pkgs.nixos-rebuild ];
+            runtimeInputs = with pkgs; [
+              nixos-rebuild
+              nixos-install
+            ];
             text = ''
               get_arg() {
                 echo "''${2:-''${1#*=}}"
               }
 
-              while [[ $# -gt 1 ]]; do
+              while [[ $# -gt 0 ]]; do
                 case "$1" in
-                  install)
+                  -i | --install)
                     FIRST_BUILD=true
                     shift
-                    target=$(get_arg "$@")
-                    shift 2
+                    ;;
+                  boot | switch)
+                    subcommand="$1"
+                    shift
                     ;;
                   *)
-                    FIRST_BUILD=false;
+                    target="$1"
                     shift
-                    target=$(get_arg "$@")
-                    shift 2
                     ;;
                 esac
               done
 
-              if [[ $FIRST_BUILD ]]; then
+              FIRST_BUILD="''${FIRST_BUILD:-false}"
+              subcommand="''${subcommand:-switch}"
+              target="''${target:-nixos-macmini}"
+
+              if [[ $FIRST_BUILD == true ]]; then
                 nixos-install --show-trace \
                   --target-host "root@$target" \
                   --flake .
               else
-                nixos-rebuild switch --show-trace \
+                nixos-rebuild "$subcommand" --fast --show-trace \
                   --target-host "root@$target" \
-                  --flake .
+                  --flake .#nixos-macmini \
+                  -j1
               fi
             '';
           };
