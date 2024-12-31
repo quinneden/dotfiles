@@ -20,6 +20,7 @@ in
     ./animations.nix
     ./bindings.nix
     ./polkitagent.nix
+    ./uwsm-env.nix
     # ./hyprspace.nix
   ];
 
@@ -48,54 +49,47 @@ in
 
   wayland.windowManager.hyprland = {
     enable = true;
+    withUWSM = true;
     xwayland.enable = true;
-    systemd.enable = true;
-    # package = inputs.hyprland.packages."${pkgs.system}".hyprland;
-    package = pkgs.hyprland;
+    systemd.enable = false;
+    package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+    portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
 
     settings = {
       "$mod" = "SUPER";
       "$shiftMod" = "SUPER_SHIFT";
 
       exec-once = [
-        "${pkgs.bitwarden}/bin/bitwarden"
+        # "${pkgs.bitwarden}/bin/bitwarden"
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
       ];
 
       monitor = [
-        "HDMI-A-1,2560x1440@144,auto,1"
-        # ",prefered,auto,1"
+        # "HDMI-A-1,2560x1440@144,auto,1"
+        ",prefered,auto,1"
       ];
 
-      env = [
-        "XDG_SESSION_TYPE,wayland"
-        "XDG_CURRENT_DESKTOP,Hyprland"
-        "MOZ_ENABLE_WAYLAND,1"
-        "ANKI_WAYLAND,1"
-        "DISABLE_QT5_COMPAT,0"
-        # "NIXOS_OZONE_WL,1"
-        "XDG_SESSION_TYPE,wayland"
-        "XDG_SESSION_DESKTOP,Hyprland"
-        "QT_AUTO_SCREEN_SCALE_FACTOR,1"
-        "QT_QPA_PLATFORM=wayland,xcb"
-        "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
-        "ELECTRON_OZONE_PLATFORM_HINT,auto"
-        "GTK_THEME,FlatColor:dark"
-        "GTK2_RC_FILES,/home/hadi/.local/share/themes/FlatColor/gtk-2.0/gtkrc"
-        # "__GL_GSYNC_ALLOWED,0"
-        # "__GL_VRR_ALLOWED,0"
-        "DISABLE_QT5_COMPAT,0"
-        "DIRENV_LOG_FORMAT,"
-        # "WLR_DRM_NO_ATOMIC,1"
-        # "WLR_BACKEND,vulkan"
-        # "WLR_RENDERER,vulkan"
-        "WLR_NO_HARDWARE_CURSORS,1"
-        "XDG_SESSION_TYPE,wayland"
-        "SDL_VIDEODRIVER,wayland"
-        "CLUTTER_BACKEND,wayland"
-        "AQ_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0"
-        "GSK_RENDERER,ngl"
-      ];
+      # env = [
+      #   "XDG_CURRENT_DESKTOP,Hyprland"
+      #   "XDG_SESSION_TYPE,wayland"
+      #   "XDG_SESSION_DESKTOP,Hyprland"
+      #   "MOZ_ENABLE_WAYLAND,1"
+      #   "ANKI_WAYLAND,1"
+      #   "DISABLE_QT5_COMPAT,0"
+      #   "QT_AUTO_SCREEN_SCALE_FACTOR,1"
+      #   "QT_QPA_PLATFORM=wayland,xcb"
+      #   "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
+      #   "ELECTRON_OZONE_PLATFORM_HINT,auto"
+      #   "GTK_THEME,FlatColor:dark"
+      #   "GTK2_RC_FILES,/home/hadi/.local/share/themes/FlatColor/gtk-2.0/gtkrc"
+      #   "DISABLE_QT5_COMPAT,0"
+      #   "DIRENV_LOG_FORMAT,"
+      #   "GDK_BACKEND,wayland"
+      #   "SDL_VIDEODRIVER,wayland"
+      #   "CLUTTER_BACKEND,wayland"
+      #   "AQ_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0"
+      #   "GSK_RENDERER,ngl"
+      # ];
 
       cursor = {
         no_hardware_cursors = true;

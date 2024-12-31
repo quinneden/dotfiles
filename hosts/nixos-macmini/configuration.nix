@@ -16,6 +16,7 @@
     ../../nixos/utils.nix
     ../../nixos/variables-config.nix
     ../../nixos/xdg-portal.nix
+    ../../nixos/uwsm.nix
 
     # Choose your theme here
     ../../themes/stylix/pinky.nix
