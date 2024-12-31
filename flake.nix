@@ -119,7 +119,7 @@
           modules = [
             ./hosts/nixos-macmini/configuration.nix
             home-manager.nixosModules.home-manager
-            inputs.lix-module.nixosModules.default
+            inputs.lix-module.nixosModules.lixFromNixpkgs
             inputs.nixos-apple-silicon.nixosModules.default
             inputs.stylix.nixosModules.stylix
           ];
