@@ -89,51 +89,51 @@
       warn-dirty = false;
     };
 
-    # linux-builder = {
-    # enable = true;
-    #   ephemeral = true;
-    #   config =
-    #     { pkgs, ... }:
-    #     {
-    #       imports = [
-    #         (
-    #           let
-    #             module = fetchTarball {
-    #               name = "source";
-    #               url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-2.tar.gz";
-    #               sha256 = "sha256-DN5/166jhiiAW0Uw6nueXaGTueVxhfZISAkoxasmz/g=";
-    #             };
-    #             lixSrc = fetchTarball {
-    #               name = "source";
-    #               url = "https://git.lix.systems/lix-project/lix/archive/2.91.1.tar.gz";
-    #               sha256 = "sha256-hiGtfzxFkDc9TSYsb96Whg0vnqBVV7CUxyscZNhed0U=";
-    #             };
-    #           in
-    #           import "${module}/module.nix" { lix = lixSrc; }
-    #         )
-    #       ];
-    #       nix = {
-    #         settings = {
-    #           max-jobs = 8;
-    #           access-tokens = [ "github=${secrets.github.token}" ];
-    #           extra-substituters = [
-    #             "https://cache.lix.systems"
-    #           ];
-    #           extra-trusted-public-keys = [
-    #             "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
-    #           ];
-    #         };
-    #       };
-    #       services.openssh.enable = true;
-    #       virtualisation = {
-    #         cores = 8;
-    #         darwin-builder = {
-    #           diskSize = 100 * 1024;
-    #           memorySize = 8 * 1024;
-    #         };
-    #       };
-    #     };
-    # };
+    linux-builder = {
+      enable = true;
+      #   ephemeral = true;
+      #   config =
+      #     { pkgs, ... }:
+      #     {
+      #       imports = [
+      #         (
+      #           let
+      #             module = fetchTarball {
+      #               name = "source";
+      #               url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-2.tar.gz";
+      #               sha256 = "sha256-DN5/166jhiiAW0Uw6nueXaGTueVxhfZISAkoxasmz/g=";
+      #             };
+      #             lixSrc = fetchTarball {
+      #               name = "source";
+      #               url = "https://git.lix.systems/lix-project/lix/archive/2.91.1.tar.gz";
+      #               sha256 = "sha256-hiGtfzxFkDc9TSYsb96Whg0vnqBVV7CUxyscZNhed0U=";
+      #             };
+      #           in
+      #           import "${module}/module.nix" { lix = lixSrc; }
+      #         )
+      #       ];
+      #       nix = {
+      #         settings = {
+      #           max-jobs = 8;
+      #           access-tokens = [ "github=${secrets.github.token}" ];
+      #           extra-substituters = [
+      #             "https://cache.lix.systems"
+      #           ];
+      #           extra-trusted-public-keys = [
+      #             "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
+      #           ];
+      #         };
+      #       };
+      #       services.openssh.enable = true;
+      #       virtualisation = {
+      #         cores = 8;
+      #         darwin-builder = {
+      #           diskSize = 100 * 1024;
+      #           memorySize = 8 * 1024;
+      #         };
+      #       };
+      #     };
+    };
   };
 
   services.nix-daemon.enable = true;
