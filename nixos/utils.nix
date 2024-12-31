@@ -14,6 +14,7 @@ in
       xkb.variant = "";
     };
     gnome.gnome-keyring.enable = true;
+    openssh.enable = true;
   };
   console.keyMap = keyboardLayout;
 
