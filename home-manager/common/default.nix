@@ -1,6 +1,6 @@
 {
   imports = [
-    # ./misc/floorp.nix
+    ./misc/floorp.nix
     # ./misc/git.nix
     # ./misc/lf.nix
     ./misc/micro.nix

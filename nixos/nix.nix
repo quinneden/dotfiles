@@ -8,6 +8,8 @@ let
   autoGarbageCollector = config.var.autoGarbageCollector;
 in
 {
+  nixpkgs.config.allowUnfree = true;
+
   nix = {
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
     channel.enable = false;

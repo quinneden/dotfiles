@@ -20,7 +20,7 @@
     ../../nixos/hyprland.nix
 
     # Choose your theme here
-    ../../themes/stylix/pinky.nix
+    ../../themes/stylix/nixy.nix
 
     ./hardware-configuration.nix
     ./variables.nix
