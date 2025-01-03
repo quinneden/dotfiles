@@ -13,6 +13,7 @@
     cachix
     eza
     nixfmt-rfc-style
+    nix-prefetch-github
     zoxide
     tabby-release
     devpod

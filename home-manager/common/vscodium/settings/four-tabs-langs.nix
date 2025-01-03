@@ -26,9 +26,10 @@ lib.fold
       mk = name: formatter: { inherit name formatter; };
     in
     [
-      (mk "rust" "undefined")
-      (mk "python" "ms-python.black-formatter")
       (mk "java" "undefined")
+      (mk "json" "undefined")
+      (mk "python" "ms-python.black-formatter")
+      (mk "rust" "undefined")
       (mk "zig" "undefined")
     ]
   )

@@ -2,19 +2,24 @@
   lib,
   pkgs,
 }:
+with lib;
 {
-  "black-formatter.path" = [ (lib.getExe pkgs.black) ];
+  "black-formatter.path" = [ (getExe pkgs.black) ];
+
   "nix.enableLanguageServer" = true;
-  "nix.serverPath" = lib.getExe pkgs.nil;
-  "nix.formatterPath" = lib.getExe pkgs.nixfmt-rfc-style;
+
+  "nix.serverPath" = getExe pkgs.nil;
+
+  "nix.formatterPath" = getExe pkgs.nixfmt-rfc-style;
+
   "nix.serverSettings" = {
     "nil" = {
       "formatting" = {
         "command" = [ "nixfmt" ];
       };
-      "diagnostics" = {
-        "ignored" = [ "unused_binding" ];
-      };
+      # "diagnostics" = {
+      #   "ignored" = [ "unused_binding" ];
+      # };
     };
   };
 }

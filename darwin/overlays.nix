@@ -21,12 +21,11 @@ let
       forkpkgs.betterdisplaycli;
 
     nh = prev.nh.overrideAttrs rec {
-      version = "4.0.0-beta.5";
       src = pkgs.fetchFromGitHub {
         owner = "viperML";
         repo = "nh";
-        tag = "v${version}";
-        hash = "sha256-B3PK+e717FdrQXhg53DwTPWLY458yGYsH20tYj0pgzU=";
+        rev = "6a69a145b0c7dbd5616bbded512b8bf8b5d2f8a4";
+        hash = "sha256-I3ubew5jt8YZ27AOtIodRAYo0aew6wxY8UkWCSqz6B4=";
       };
     };
 

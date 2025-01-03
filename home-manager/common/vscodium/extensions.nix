@@ -20,19 +20,17 @@ let
     dontUnpack = true;
   };
 
-  normal = with pkgs.vscode-extensions; [
-    bbenoist.nix
-    dracula-theme.theme-dracula
-  ];
-
   marketplace = with vscode-marketplace; [
+    bbenoist.nix
+    timonwong.shellcheck
     ms-python.python
     ms-python.black-formatter
     jnoortheen.nix-ide
     miguelsolorio.symbols
-    devpod-containers
-    lancewilhelm.horizon-extended
+    # devpod-containers
     hermitter.oh-lucy-vscode
+    shd101wyy.markdown-preview-enhanced
+    bierner.github-markdown-preview
   ];
 
   marketplace-release = with vscode-marketplace-release; [
@@ -42,7 +40,7 @@ let
 
   openvsx = with open-vsx; [
     pr1sm8.theme-panda
-    jeanp413.open-remote-ssh
+    # jeanp413.open-remote-ssh
   ];
 in
-[ ] ++ normal ++ marketplace ++ marketplace-release ++ openvsx
+[ ] ++ marketplace ++ marketplace-release ++ openvsx
