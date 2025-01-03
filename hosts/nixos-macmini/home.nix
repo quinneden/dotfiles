@@ -12,15 +12,16 @@
     # Programs
     ../../home-manager/common
     ../../home-manager/nixos/programs/kitty
-    ../../home-manager/nixos/programs/qutebrowser
+    ../../home-manager/nixos/programs/firefox
     ../../home-manager/nixos/programs/fetch
     ../../home-manager/nixos/programs/git
-    ../../home-manager/nixos/programs/yazi
+    # ../../home-manager/nixos/programs/yazi
     ../../home-manager/nixos/programs/markdown
     ../../home-manager/nixos/programs/thunar
     ../../home-manager/nixos/programs/lazygit
     ../../home-manager/nixos/programs/nh
     # ../../home-manager/nixos/programs/zen
+
     # Scripts
     ../../home-manager/nixos/scripts # All scripts
 
@@ -30,7 +31,7 @@
     ../../home-manager/nixos/system/hyprlock
     ../../home-manager/nixos/system/hyprpanel
     ../../home-manager/nixos/system/hyprpaper
-    ../../home-manager/nixos/system/gtk
+    # ../../home-manager/nixos/system/gtk
     ../../home-manager/nixos/system/wofi
     ../../home-manager/nixos/system/zathura
     ../../home-manager/nixos/system/mime
@@ -93,7 +94,7 @@
     };
 
     # Don't touch this
-    stateVersion = "25.05";
+    stateVersion = "24.05";
   };
 
   programs.home-manager.enable = true;

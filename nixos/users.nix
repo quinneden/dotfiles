@@ -8,7 +8,7 @@ in
     defaultUserShell = pkgs.zsh;
     users.${username} = {
       isNormalUser = true;
-      description = "${username} account";
+      description = "Quinn Edenfield";
       extraGroups = [
         "networkmanager"
         "wheel"

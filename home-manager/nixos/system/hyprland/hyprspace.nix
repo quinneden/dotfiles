@@ -12,7 +12,6 @@
 
       bind = [
         "$mod,TAB, overview:toggle" # Overview
-
       ];
     };
   };

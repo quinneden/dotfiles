@@ -3,6 +3,7 @@
   imports = [
     ../../nixos/asahi.nix
     ../../nixos/auto-upgrade.nix
+    ../../nixos/bluetooth.nix
     ../../nixos/fonts.nix
     ../../nixos/home-manager.nix
     ../../nixos/network-manager.nix
@@ -20,7 +21,7 @@
     ../../nixos/hyprland.nix
 
     # Choose your theme here
-    ../../themes/stylix/nixy.nix
+    ../../themes/stylix/quinn.nix
 
     ./hardware-configuration.nix
     ./variables.nix
@@ -34,5 +35,5 @@
   home-manager.users."${config.var.username}" = import ./home.nix;
 
   # Don't touch this
-  system.stateVersion = "25.05";
+  system.stateVersion = "24.05";
 }

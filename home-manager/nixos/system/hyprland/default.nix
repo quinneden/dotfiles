@@ -63,8 +63,8 @@ in
       ];
 
       monitor = [
-        # "HDMI-A-1,2560x1440@144,auto,1"
-        ",prefered,auto,1"
+        "HDMI-A-1,2560x1440@144,auto,1"
+        # ",prefered,auto,1"
       ];
 
       # env = [
@@ -152,9 +152,9 @@ in
 
         kb_options = "caps:escape";
         follow_mouse = 1;
-        sensitivity = 0.5;
-        repeat_delay = 300;
-        repeat_rate = 50;
+        sensitivity = 0.1;
+        repeat_delay = 250;
+        repeat_rate = 40;
         numlock_by_default = true;
 
         touchpad = {
@@ -165,5 +165,5 @@ in
 
     };
   };
-  systemd.user.targets.hyprland-session.Unit.Wants = [ "xdg-desktop-autostart.target" ];
+  # systemd.user.targets.hyprland-session.Unit.Wants = [ "xdg-desktop-autostart.target" ];
 }

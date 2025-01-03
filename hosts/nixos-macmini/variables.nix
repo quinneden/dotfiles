@@ -22,6 +22,6 @@
     autoUpgrade = false;
     autoGarbageCollector = false;
 
-    theme = import ../../themes/var/pinky.nix;
+    theme = import ../../themes/var/quinn.nix;
   };
 }
