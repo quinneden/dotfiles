@@ -70,6 +70,7 @@
       "most"
       "ncdu"
       "node"
+      "oci-cli"
       "openssl@3"
       "p7zip"
       "paperkey"

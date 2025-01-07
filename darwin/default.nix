@@ -77,7 +77,7 @@
         "https://cache.lix.systems"
         "https://quinneden.cachix.org"
         "http://picache.qeden.me"
-        "nix-community.cachix.org"
+        "https://nix-community.cachix.org"
       ];
       extra-trusted-public-keys = [
         "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
@@ -111,6 +111,12 @@
                 "quinneden.cachix.org-1:1iSAVU2R8SYzxTv3Qq8j6ssSPf0Hz+26gfgXkvlcbuA="
                 "picache.qeden.me-1:QMyXTH8r6XY39bR7IF6UtpaxtkjFcIc1bf4N+7DRxvY="
                 "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+              ];
+              system-features = [
+                "benchmark"
+                "big-parallel"
+                "nixos-test"
+                "kvm"
               ];
             };
           };
