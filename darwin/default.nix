@@ -17,8 +17,13 @@
     ./system.nix
     inputs.home-manager.darwinModules.default
     inputs.mac-app-util.darwinModules.default
-    # inputs.nix-rosetta-builder.darwinModules.default
+    inputs.nix-rosetta-builder.darwinModules.default
   ];
+
+  nix-rosetta-builder = {
+    enable = true;
+    onDemand = true;
+  };
 
   users.users.quinn = {
     description = "Quinn Edenfield";

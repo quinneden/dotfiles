@@ -14,11 +14,11 @@ let
   ];
 
   packageOverlays = final: prev: {
-    betterdisplaycli =
-      let
-        forkpkgs = import inputs.forkpkgs { inherit (pkgs) system; };
-      in
-      forkpkgs.betterdisplaycli;
+    # betterdisplaycli =
+    #   let
+    #     forkpkgs = import inputs.forkpkgs { inherit (pkgs) system; };
+    #   in
+    #   forkpkgs.betterdisplaycli;
 
     nh = prev.nh.overrideAttrs rec {
       src = pkgs.fetchFromGitHub {
@@ -40,14 +40,14 @@ let
       };
     };
 
-    qemu = prev.qemu.overrideAttrs {
-      patches = prev.qemu.patches ++ [
-        (pkgs.fetchpatch {
-          url = "https://raw.githubusercontent.com/utmapp/UTM/acbf2ba8cd91f382a5e163c49459406af0b462b7/patches/qemu-9.1.0-utm.patch";
-          sha256 = "sha256-S7DJSFD7EAzNxyQvePAo5ZZyanFrwQqQ6f2/hJkTJGA=";
-        })
-      ];
-    };
+    # qemu = prev.qemu.overrideAttrs {
+    #   patches = prev.qemu.patches ++ [
+    #     (pkgs.fetchpatch {
+    #       url = "https://raw.githubusercontent.com/utmapp/UTM/acbf2ba8cd91f382a5e163c49459406af0b462b7/patches/qemu-9.1.0-utm.patch";
+    #       sha256 = "sha256-S7DJSFD7EAzNxyQvePAo5ZZyanFrwQqQ6f2/hJkTJGA=";
+    #     })
+    #   ];
+    # };
 
     nerd-font-patcher = prev.nerd-font-patcher.overrideAttrs rec {
       version = "3.3.0";
@@ -58,9 +58,9 @@ let
       };
     };
 
-    ungoogled-chromium = prev.ungoogled-chromium.overrideAttrs {
-      meta.platforms = prev.platforms ++ lib.platforms.darwin;
-    };
+    # ungoogled-chromium = prev.ungoogled-chromium.overrideAttrs {
+    #   meta.platforms = prev.platforms ++ lib.platforms.darwin;
+    # };
 
     palera1n = pkgs.stdenv.mkDerivation (finalAttrs: rec {
       pname = "palera1n";
