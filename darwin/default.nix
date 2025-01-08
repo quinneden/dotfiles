@@ -94,47 +94,46 @@
       warn-dirty = false;
     };
 
-    linux-builder = {
-      enable = true;
-      ephemeral = true;
-      config =
-        { pkgs, ... }:
-        {
-          nix = {
-            package = pkgs.lix;
-            settings = {
-              max-jobs = 8;
-              access-tokens = [ "github=${secrets.github.token}" ];
-              extra-substituters = [
-                "https://cache.lix.systems"
-                "https://quinneden.cachix.org"
-                "http://picache.qeden.me"
-                "https://nix-community.cachix.org"
-              ];
-              extra-trusted-public-keys = [
-                "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
-                "quinneden.cachix.org-1:1iSAVU2R8SYzxTv3Qq8j6ssSPf0Hz+26gfgXkvlcbuA="
-                "picache.qeden.me-1:QMyXTH8r6XY39bR7IF6UtpaxtkjFcIc1bf4N+7DRxvY="
-                "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-              ];
-              system-features = [
-                "benchmark"
-                "big-parallel"
-                "nixos-test"
-                "kvm"
-              ];
-            };
-          };
-          # services.openssh.enable = true;
-          virtualisation = {
-            cores = 8;
-            darwin-builder = {
-              diskSize = 100 * 1024;
-              memorySize = 8 * 1024;
-            };
-          };
-        };
-    };
+    # linux-builder = {
+    #   enable = true;
+    #   ephemeral = true;
+    #   config =
+    #     { pkgs, ... }:
+    #     {
+    #       nix = {
+    #         package = pkgs.lix;
+    #         settings = {
+    #           max-jobs = 8;
+    #           access-tokens = [ "github=${secrets.github.token}" ];
+    #           extra-substituters = [
+    #             "https://cache.lix.systems"
+    #             "https://quinneden.cachix.org"
+    #             "http://picache.qeden.me"
+    #             "https://nix-community.cachix.org"
+    #           ];
+    #           extra-trusted-public-keys = [
+    #             "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
+    #             "quinneden.cachix.org-1:1iSAVU2R8SYzxTv3Qq8j6ssSPf0Hz+26gfgXkvlcbuA="
+    #             "picache.qeden.me-1:QMyXTH8r6XY39bR7IF6UtpaxtkjFcIc1bf4N+7DRxvY="
+    #             "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    #           ];
+    #           system-features = [
+    #             "benchmark"
+    #             "big-parallel"
+    #             "nixos-test"
+    #             "kvm"
+    #           ];
+    #         };
+    #       };
+    #       virtualisation = {
+    #         cores = 8;
+    #         darwin-builder = {
+    #           diskSize = 100 * 1024;
+    #           memorySize = 8 * 1024;
+    #         };
+    #       };
+    #     };
+    # };
   };
 
   services.nix-daemon.enable = true;
