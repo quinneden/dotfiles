@@ -2,8 +2,6 @@
   config,
   dotdir,
   inputs,
-  lib,
-  pkgs,
   secrets,
   ...
 }:

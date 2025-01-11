@@ -34,6 +34,7 @@
       "cython"
       "eza"
       "fd"
+      "ffmpeg"
       "flex"
       "fzf"
       "gcc"

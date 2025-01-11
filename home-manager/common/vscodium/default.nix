@@ -2,7 +2,6 @@
   inputs,
   lib,
   pkgs,
-  theme,
   ...
 }:
 {
@@ -19,7 +18,7 @@
         // (import ./settings/workbench.nix)
         // (import ./settings/window.nix)
         // (import ./settings/misc.nix { inherit pkgs; })
-        // (import ./settings/lsp.nix { inherit lib pkgs; });
+        // (import ./settings/lsp.nix { inherit pkgs lib; });
     in
     {
       enable = true;

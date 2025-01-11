@@ -14,12 +14,6 @@ let
   ];
 
   packageOverlays = final: prev: {
-    # betterdisplaycli =
-    #   let
-    #     forkpkgs = import inputs.forkpkgs { inherit (pkgs) system; };
-    #   in
-    #   forkpkgs.betterdisplaycli;
-
     nh = prev.nh.overrideAttrs rec {
       src = pkgs.fetchFromGitHub {
         owner = "viperML";
@@ -58,17 +52,15 @@ let
       };
     };
 
-    # ungoogled-chromium = prev.ungoogled-chromium.overrideAttrs {
-    #   meta.platforms = prev.platforms ++ lib.platforms.darwin;
-    # };
-
     palera1n = pkgs.stdenv.mkDerivation (finalAttrs: rec {
       pname = "palera1n";
       version = "2.1-beta.1";
+
       src = pkgs.fetchurl {
         url = "https://github.com/${pname}/${pname}/releases/download/v${finalAttrs.version}/${pname}-macos-arm64";
         hash = "sha256-hRoCAaTwpoza2RnWNtDPSbOHJwhiuHh+5KTXWxUbfhM=";
       };
+
       dontUnpack = true;
       dontBuild = true;
       installPhase = ''

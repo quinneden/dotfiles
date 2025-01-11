@@ -1,13 +1,9 @@
-{
-  inputs,
-  config,
-  pkgs,
-  ...
-}:
+{ inputs, ... }:
 {
   imports = [
     ../home-manager/common
     ../home-manager/darwin
+    ./modules/micro.nix
     inputs.mac-app-util.homeManagerModules.default
   ];
 

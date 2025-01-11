@@ -70,4 +70,9 @@
     target = "${config.xdg.configHome}/micro/colorschemes";
     source = inputs.micro-colors-nix.packages.${pkgs.system}.default;
   };
+
+  home.file."micro-syntax-nix.yaml" = {
+    target = "${config.xdg.configHome}/micro/syntax/nix.yaml";
+    source = ./nix.yaml;
+  };
 }

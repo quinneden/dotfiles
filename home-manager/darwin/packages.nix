@@ -1,11 +1,10 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 {
   home.packages = with pkgs; [
     aria2
     gawk
     gnutar
     ks
-    xz
     zip
     zstd
     nil
@@ -18,5 +17,6 @@
     tabby-release
     devpod
     mosh
+    xz
   ];
 }

@@ -113,6 +113,11 @@ in
     shellAliases = commonAliases // (if pkgs.stdenv.isDarwin then darwinAliases else linuxAliases);
     bashrcExtra = ''
       PS1="\[\e[32m\]\u@\h\[\e[0m\]:\[\e[34m\]\w\[\e[0m\] \$ "
+      HISTCONTROL=ignoredups:erasedups
+      shopt -s histappend
+      PROMPT_COMMAND='history -a; history -n'
+      bind '"\e[A": history-search-backward' # Search history with Up arrow
+      bind '"\e[B": history-search-forward'  # Search history with Down arrow
     '';
   };
 }
