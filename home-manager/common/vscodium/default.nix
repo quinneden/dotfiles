@@ -31,8 +31,8 @@ in
       userSettings =
         { }
         // (import ./settings/four-tabs-langs.nix { inherit lib; })
-        // (import ./settings/editor.nix)
-        // (import ./settings/workbench.nix)
+        // (import ./settings/editor.nix { inherit lib; })
+        // (import ./settings/workbench.nix { inherit lib; })
         // (import ./settings/window.nix)
         // (import ./settings/misc.nix { inherit pkgs; })
         // (import ./settings/lsp.nix { inherit pkgs lib; });

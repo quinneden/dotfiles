@@ -58,6 +58,16 @@
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     sops-nix.url = "github:Mic92/sops-nix";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
+
+    hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
+    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
+    stylix.url = "github:danth/stylix";
+    apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
+    # zen-browser.url = "git+https://git.sr.ht/~canasta/zen-browser-flake/";
+    nixy-wallpapers = {
+      url = "github:anotherhadi/nixy-wallpapers";
+      flake = false;
+    };
   };
 
   outputs =
@@ -79,23 +89,15 @@
           "cloudflare"
           "github"
           "pubkeys"
-        ] (secretFile: fromJSON (readFile .secrets/${secretFile}.json));
+        ] (s: fromJSON (readFile .secrets/${s}.json));
 
-      forAllSystems = inputs.nixpkgs.lib.genAttrs [
+      forEachSystem = inputs.nixpkgs.lib.genAttrs [
         "aarch64-darwin"
         "aarch64-linux"
       ];
     in
     {
-      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
-
-      packages.aarch64-linux.default = nixpkgs.legacyPackages.aarch64-linux.callPackage ./nixos/ags {
-        inherit inputs;
-      };
-
-      packages.aarch64-darwin = {
-        tabby-release = nixpkgs.legacyPackages.aarch64-darwin.callPackage ./drv/tabby-release.nix { };
-      };
+      formatter = forEachSystem (system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
 
       darwinConfigurations = {
         macos = nix-darwin.lib.darwinSystem {
@@ -113,13 +115,18 @@
           system = "aarch64-linux";
           specialArgs = {
             inherit inputs secrets;
-            asztal = self.packages.aarch64-linux.default;
           };
-          modules = [ ./nixos ];
+          modules = [
+            ./hosts/nixos-macmini/configuration.nix
+            home-manager.nixosModules.home-manager
+            inputs.lix-module.nixosModules.lixFromNixpkgs
+            inputs.nixos-apple-silicon.nixosModules.default
+            inputs.stylix.nixosModules.stylix
+          ];
         };
       };
 
-      apps = forAllSystems (
+      apps = forEachSystem (
         system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
@@ -127,42 +134,42 @@
 
           deploySystem = writeShellApplication {
             name = "deploy-dotfiles";
-            runtimeInputs = [ pkgs.nixos-rebuild ];
+            runtimeInputs = with pkgs; [ nixos-rebuild ];
             text = ''
-              get_arg() {
-                echo "''${2:-''${1#*=}}"
-              }
+              # get_arg() {
+              #   echo "''${2:-''${1#*=}}"
+              # }
 
-              while [[ $# -gt 1 ]]; do
-                case "$1" in
-                  install)
-                    FIRST_BUILD=true
-                    shift
-                    target=$(get_arg "$@")
-                    shift 2
-                    ;;
-                  switch | rebuild)
-                    FIRST_BUILD=false;
-                    shift
-                    target=$(get_arg "$@")
-                    shift 2
-                    ;;
-                  # *)
-                  #   echo "error: specify command" >&2
-                  #   exit 1
-                  #   ;;
-                esac
-              done
+              # while [[ $# -gt 0 ]]; do
+              #   case "$1" in
+              #     -i | --install)
+              #       FIRST_BUILD=true
+              #       shift
+              #       ;;
+              #     boot | switch)
+              #       subcommand="$1"
+              #       shift
+              #       ;;
+              #     *)
+              #       target="$1"
+              #       shift
+              #       ;;
+              #   esac
+              # done
 
-              if [[ $FIRST_BUILD ]]; then
-                nixos-install --show-trace \
-                  --target-host "root@$target" \
-                  --flake .
-              else
-                nixos-rebuild switch --show-trace \
-                  --target-host "root@$target" \
-                  --flake .
-              fi
+              # FIRST_BUILD="''${FIRST_BUILD:-false}"
+              # subcommand="''${subcommand:-switch}"
+              # target="''${target:-nixos-macmini}"
+
+              # if [[ $FIRST_BUILD == true ]]; then
+              #   nixos-install --show-trace \
+              #     --target-host "root@$target" \
+              #     --flake .
+              # else
+                nixos-rebuild boot --fast --show-trace \
+                  --target-host "root@nixos-macmini" \
+                  --flake .#nixos-macmini
+              # fi
             '';
           };
         in

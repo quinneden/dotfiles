@@ -1,3 +1,4 @@
+{ lib }:
 {
   "workbench.activityBar.location" = "bottom";
 

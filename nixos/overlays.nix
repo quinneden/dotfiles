@@ -26,5 +26,7 @@
     ])
     ++ (with inputs; [
       nix-shell-scripts.overlays.default
+      hyprpanel.overlay
+      nur.overlays.default
     ]);
 }
