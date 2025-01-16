@@ -23,39 +23,40 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/f4346f4f-a810-4166-86ba-f9f6f068fc84";
+    device = "/dev/disk/by-uuid/d066dc4d-0e04-4d23-83a5-e1780983d6ec";
     fsType = "btrfs";
     options = [
-      "subvol=root"
-      "compress=zstd"
-    ];
-  };
-
-  fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/f4346f4f-a810-4166-86ba-f9f6f068fc84";
-    fsType = "btrfs";
-    options = [
-      "subvol=nix"
+      "subvol=@"
       "compress=zstd"
       "noatime"
     ];
   };
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/2B3D-150A";
-    fsType = "vfat";
+  fileSystems."/nix" = {
+    device = "/dev/disk/by-uuid/d066dc4d-0e04-4d23-83a5-e1780983d6ec";
+    fsType = "btrfs";
     options = [
-      "fmask=0022"
-      "dmask=0022"
+      "subvol=@nix"
+      "compress=zstd"
+      "noatime"
     ];
   };
 
   fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/f4346f4f-a810-4166-86ba-f9f6f068fc84";
+    device = "/dev/disk/by-uuid/d066dc4d-0e04-4d23-83a5-e1780983d6ec";
     fsType = "btrfs";
     options = [
-      "subvol=home"
+      "subvol=@home"
       "compress=zstd"
+    ];
+  };
+
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/28A0-1618";
+    fsType = "vfat";
+    options = [
+      "fmask=0022"
+      "dmask=0022"
     ];
   };
 
@@ -65,9 +66,9 @@
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
+  networking.useDHCP = lib.mkDefault false;
   # networking.interfaces.end0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlan0.useDHCP = lib.mkDefault true;
+  networking.interfaces.wlan0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
 }

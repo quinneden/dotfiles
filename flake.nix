@@ -16,7 +16,7 @@
     };
 
     nixos-apple-silicon = {
-      url = "github:zzywysm/nixos-asahi?ref=supreme-asahi-6.12";
+      url = "github:zzywysm/nixos-asahi";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -53,8 +53,7 @@
     micro-autofmt-nix.url = "github:quinneden/micro-autofmt-nix";
     micro-colors-nix.url = "github:quinneden/micro-colors-nix";
     nh.url = "github:viperml/nh";
-    # nix-shell-scripts.url = "github:quinneden/nix-shell-scripts";
-    nix-shell-scripts.url = "git+file:///Users/quinn/repos/personal/nix-shell-scripts";
+    nix-shell-scripts.url = "github:quinneden/nix-shell-scripts";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     sops-nix.url = "github:Mic92/sops-nix";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
