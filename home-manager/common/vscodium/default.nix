@@ -30,10 +30,10 @@ in
         { }
         // (import ./settings/four-tabs-langs.nix { inherit lib; })
         // (import ./settings/editor.nix { inherit lib; })
-        // (import ./settings/workbench.nix { inherit lib; })
+        // (import ./settings/workbench.nix { inherit lib pkgs; })
         // (import ./settings/window.nix)
-        // (import ./settings/misc.nix { inherit pkgs; })
-        // (import ./settings/lsp.nix { inherit pkgs lib; });
+        // (import ./settings/misc.nix { inherit lib pkgs; })
+        // (import ./settings/lsp.nix { inherit lib pkgs; });
     in
     {
       enable = true;

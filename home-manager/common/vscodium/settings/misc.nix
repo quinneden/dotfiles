@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 let
   github-dark-css = pkgs.fetchurl {
     url = "https://raw.githubusercontent.com/sindresorhus/github-markdown-css/refs/heads/main/github-markdown-dark.css";
@@ -25,7 +25,7 @@ in
     "useLanguageServer" = true;
   };
 
-  "markdown.preview.fontSize" = 14;
+  "markdown.preview.fontSize" = lib.mkForce 14;
 
   "markdown-preview-enhanced.automaticallyShowPreviewOfMarkdownBeingEdited" = true;
   "markdown-preview-enhanced.previewTheme" = "github-dark.css";

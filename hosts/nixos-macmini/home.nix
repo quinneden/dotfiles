@@ -72,7 +72,7 @@
       pnpm
 
       nil
-      deskflow
+      # deskflow
       bat
       eza
       fzf

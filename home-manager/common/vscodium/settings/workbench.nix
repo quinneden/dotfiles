@@ -1,8 +1,12 @@
-{ lib }:
+{ lib, pkgs }:
+let
+  inherit (pkgs.stdenv) isDarwin;
+in
+with lib;
 {
   "workbench.activityBar.location" = "bottom";
 
-  "workbench.colorTheme" = "Panda Syntax";
+  "workbench.colorTheme" = mkIf isDarwin "Panda Syntax";
 
   "workbench.editor.labelFormat" = "short";
 

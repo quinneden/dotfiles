@@ -6,7 +6,7 @@ in
   programs.git = {
     enable = true;
     extraConfig = {
-      color.ui = true;
+      # color.ui = true;
       core.editor = "micro";
       credential.helper = "store";
       github.user = username;
