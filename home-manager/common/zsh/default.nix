@@ -90,7 +90,12 @@ in
           "${config.xdg.configHome}/zsh/completions"
         )
       ''
-      + (if pkgs.stdenv.isDarwin then ''fpath+=("/opt/homebrew/share/zsh/site-functions")'' else '''');
+      + (lib.optionalString pkgs.stdenv.isDarwin ''
+        fpath+=(
+          "/opt/homebrew/share/zsh/site-functions"
+          "/opt/vagrant/embedded/gems/gems/vagrant-2.4.3/contrib/zsh $fpath"
+        )
+      '');
 
     initExtra = initExtraCommon + (if pkgs.stdenv.isDarwin then initExtraDarwin else "");
 

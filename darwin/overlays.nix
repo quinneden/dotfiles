@@ -14,14 +14,14 @@ let
   ];
 
   packageOverlays = final: prev: {
-    nh = prev.nh.overrideAttrs rec {
-      src = pkgs.fetchFromGitHub {
-        owner = "viperML";
-        repo = "nh";
-        rev = "6a69a145b0c7dbd5616bbded512b8bf8b5d2f8a4";
-        hash = "sha256-I3ubew5jt8YZ27AOtIodRAYo0aew6wxY8UkWCSqz6B4=";
-      };
-    };
+    # nh = prev.nh.overrideAttrs rec {
+    #   src = pkgs.fetchFromGitHub {
+    #     owner = "viperML";
+    #     repo = "nh";
+    #     rev = "6a69a145b0c7dbd5616bbded512b8bf8b5d2f8a4";
+    #     hash = "sha256-I3ubew5jt8YZ27AOtIodRAYo0aew6wxY8UkWCSqz6B4=";
+    #   };
+    # };
 
     tabby-release = self.packages.aarch64-darwin.tabby-release;
 

@@ -7,30 +7,17 @@ let
     open-vsx
     ;
 
-  devpod-containers = buildVscodeMarketplaceExtension {
-    mktplcRef = {
-      name = "devpod-containers";
-      publisher = "3timeslazy";
-      version = "0.0.17";
-    };
-    vsix = builtins.fetchurl {
-      url = "https://open-vsx.org/api/3timeslazy/vscodium-devpodcontainers/0.0.17/file/3timeslazy.vscodium-devpodcontainers-0.0.17.vsix";
-      sha256 = "sha256-8I7Uocj4Aom+GgoMmqBNyA5wQUdF6EnS27BIuumemF8=";
-    };
-    dontUnpack = true;
-  };
-
   marketplace = with vscode-marketplace; [
-    bbenoist.nix
-    timonwong.shellcheck
-    ms-python.python
-    ms-python.black-formatter
+    # bbenoist.nix
+    hermitter.oh-lucy-vscode
     jnoortheen.nix-ide
     miguelsolorio.symbols
-    # devpod-containers
-    hermitter.oh-lucy-vscode
+    ms-python.black-formatter
+    ms-python.python
     shd101wyy.markdown-preview-enhanced
-    bierner.github-markdown-preview
+    timonwong.shellcheck
+    tinkertrain.theme-panda
+    vue.volar
   ];
 
   marketplace-release = with vscode-marketplace-release; [
@@ -39,8 +26,7 @@ let
   ];
 
   openvsx = with open-vsx; [
-    pr1sm8.theme-panda
-    # jeanp413.open-remote-ssh
+    jeanp413.open-remote-ssh
   ];
 in
 [ ] ++ marketplace ++ marketplace-release ++ openvsx

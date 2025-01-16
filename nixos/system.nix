@@ -106,7 +106,7 @@
   # bootloader
   boot = {
     m1n1CustomLogo = pkgs.fetchurl {
-      url = "https://qeden.me/bootlogo-snowflake-white.png";
+      url = "https://f.qeden.me/bootlogo-snowflake-white.png";
       hash = "sha256-6VpPDZSYD57m4LZRPQuOWtR7z70BQ0A2f2jZgjXDiKs=";
     };
 
@@ -125,9 +125,9 @@
     useExperimentalGPUDriver = true;
     experimentalGPUInstallMode = "replace";
     extractPeripheralFirmware = true;
-    peripheralFirmwareDirectory = builtins.fetchTarball {
-      url = "https://qeden.me/fw/asahi-firmware-20241024.tar.gz";
-      sha256 = "sha256-KOBXP/nA3R1+/8ELTwsmmZ2MkX3lyfp4UTWeEpajWD8=";
+    peripheralFirmwareDirectory = pkgs.fetchzip {
+      url = "https://f.qeden.me/fw/asahi_fw_2025-1-15.tgz";
+      hash = "sha256-5FdsoUJZqHLSecJpst95418kFTouaxo4wmC5rEXskMk=";
     };
   };
 

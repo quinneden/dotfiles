@@ -8,9 +8,7 @@ in
 {
   "extensions.ignoreRecommendations" = true;
 
-  "breadcrums.enabled" = true;
-
-  "html.autoCreateQuotes" = false;
+  "breadcrums.enabled" = false;
 
   "explorer.compactFolders" = false;
 
