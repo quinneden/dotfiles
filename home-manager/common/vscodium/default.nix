@@ -5,9 +5,7 @@
   ...
 }:
 let
-  # inherit (builtins) readFile fromJSON;
-  # inherit (pkgs) fetchurl;
-  # inherit (lib) mkIf;
+  inherit (pkgs.stdenv) isDarwin;
 
   nullPkg = pkgs.emptyDirectory.overrideAttrs {
     inherit (pkgs.vscodium)
@@ -39,7 +37,7 @@ in
     in
     {
       enable = true;
-      package = nullPkg;
+      package = if isDarwin then nullPkg else pkgs.vscodium;
 
       inherit
         extensions
