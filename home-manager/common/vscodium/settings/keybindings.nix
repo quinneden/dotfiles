@@ -75,6 +75,21 @@ in
     command = "copilot-chat.focus";
     key = "ctrl+shift+i";
   }
+  {
+    "key" = "cmd+n";
+    "command" = "explorer.newFile";
+    "when" = "explorerViewletFocus";
+  }
+  {
+    "key" = "cmd+shift+n";
+    "command" = "explorer.newFolder";
+    "when" = "explorerViewletFocus";
+  }
+  {
+    "key" = "cmd+ctrl+p";
+    "command" = "workbench.action.tasks.runTask";
+    "args" = "Simple Browser";
+  }
 ]
 ++ map (n: {
   key = "cmd+${toString n}";

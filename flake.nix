@@ -90,21 +90,25 @@
           "pubkeys"
         ] (s: fromJSON (readFile .secrets/${s}.json));
 
-      forEachSystem = inputs.nixpkgs.lib.genAttrs [
-        "aarch64-darwin"
-        "aarch64-linux"
-      ];
+      forEachSystem =
+        f:
+        inputs.nixpkgs.lib.genAttrs [
+          "aarch64-darwin"
+          "aarch64-linux"
+        ] (system: f { pkgs = import nixpkgs { inherit system; }; });
     in
     {
-      formatter = forEachSystem (system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
+      formatter = forEachSystem (pkgs: pkgs.nixfmt-rfc-style);
 
       darwinConfigurations = {
         macos = nix-darwin.lib.darwinSystem {
           system = "aarch64-darwin";
+
           specialArgs = {
             inherit inputs secrets self;
             dotdir = "$HOME/.dotfiles";
           };
+
           modules = [ ./darwin ];
         };
       };
@@ -112,9 +116,11 @@
       nixosConfigurations = {
         nixos-macmini = nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
+
           specialArgs = {
             inherit inputs secrets;
           };
+
           modules = [
             ./hosts/nixos-macmini/configuration.nix
             home-manager.nixosModules.home-manager
@@ -124,62 +130,5 @@
           ];
         };
       };
-
-      apps = forEachSystem (
-        system:
-        let
-          pkgs = nixpkgs.legacyPackages.${system};
-          inherit (pkgs) lib writeShellApplication;
-
-          deploySystem = writeShellApplication {
-            name = "deploy-dotfiles";
-            runtimeInputs = with pkgs; [ nixos-rebuild ];
-            text = ''
-              # get_arg() {
-              #   echo "''${2:-''${1#*=}}"
-              # }
-
-              # while [[ $# -gt 0 ]]; do
-              #   case "$1" in
-              #     -i | --install)
-              #       FIRST_BUILD=true
-              #       shift
-              #       ;;
-              #     boot | switch)
-              #       subcommand="$1"
-              #       shift
-              #       ;;
-              #     *)
-              #       target="$1"
-              #       shift
-              #       ;;
-              #   esac
-              # done
-
-              # FIRST_BUILD="''${FIRST_BUILD:-false}"
-              # subcommand="''${subcommand:-switch}"
-              # target="''${target:-nixos-macmini}"
-
-              # if [[ $FIRST_BUILD == true ]]; then
-              #   nixos-install --show-trace \
-              #     --target-host "root@$target" \
-              #     --flake .
-              # else
-                nixos-rebuild boot --fast --show-trace \
-                  --target-host "root@nixos-macmini" \
-                  --flake .#nixos-macmini
-              # fi
-            '';
-          };
-        in
-        rec {
-          default = deploy;
-
-          deploy = {
-            type = "app";
-            program = lib.getExe deploySystem;
-          };
-        }
-      );
     };
 }

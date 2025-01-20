@@ -1,41 +1,53 @@
 { pkgs, ... }:
 {
   homebrew = {
+    enable = true;
+    caskArgs.language = "en-US.UTF-8";
+    global.brewfile = true;
+
+    onActivation = {
+      autoUpdate = true;
+      cleanup = "zap";
+      upgrade = true;
+      extraFlags = [ "--quiet" ];
+    };
+
     taps = [
       "homebrew/bundle"
       "homebrew/services"
       "deskflow/homebrew-tap"
       "tinted-theming/tinted"
+      "slp/krun"
     ];
+
     casks = [
       "betterdisplay"
       "deskflow"
+      "devpod"
+      "ghostty"
       "iterm2"
       "macfuse"
       "utm"
       "vagrant"
       "vscodium"
       "pearcleaner"
+      "podman-desktop"
     ];
+
     brews = [
       "act"
-      # "automake"
       "awscli"
-      "sqlite"
       "aria2"
       "bat"
-      # "bison"
       "black"
       "bzip2"
-      "cask"
       "chroma"
       "cmake"
+      "coreutils"
       "curl"
-      # "cython"
       "eza"
       "fd"
       "ffmpeg"
-      # "flex"
       "fzf"
       "gcc"
       "gh"
@@ -48,6 +60,7 @@
       "gnupg"
       "go"
       "gum"
+      "krunvm"
       "pkg-config"
       "gobject-introspection"
       "gptfdisk"
@@ -70,31 +83,29 @@
       "micro"
       "most"
       "ncdu"
-      # "node"
+      "node"
       "oci-cli"
       "openssl@3"
       "p7zip"
-      # "paperkey"
       "perl"
       "pipenv"
       "pipx"
-      # "pnpm"
+      "pnpm"
       "podman"
+      "podman-tui"
+      "podman-compose"
       "pure"
       "pv"
-      # "pygments"
       "qemu"
-      # "qrencode"
-      # "rbenv"
       "rclone"
       "ripgrep"
       "rsync"
-      "rust"
       "rustup"
       "shc"
       "shellcheck"
       "tinty"
       "tree"
+      "vercel-cli"
       "w3m"
       "wget"
       "yq"

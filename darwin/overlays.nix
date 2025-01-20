@@ -14,17 +14,6 @@ let
   ];
 
   packageOverlays = final: prev: {
-    # nh = prev.nh.overrideAttrs rec {
-    #   src = pkgs.fetchFromGitHub {
-    #     owner = "viperML";
-    #     repo = "nh";
-    #     rev = "6a69a145b0c7dbd5616bbded512b8bf8b5d2f8a4";
-    #     hash = "sha256-I3ubew5jt8YZ27AOtIodRAYo0aew6wxY8UkWCSqz6B4=";
-    #   };
-    # };
-
-    tabby-release = self.packages.aarch64-darwin.tabby-release;
-
     pure-prompt = prev.pure-prompt.overrideAttrs {
       src = pkgs.fetchFromGitHub {
         owner = "quinneden";
@@ -33,15 +22,6 @@ let
         hash = "sha256-y5s/qBZWLKNMnrbN7qGXNJD87yuMtw2EuvrLVvX9qmI=";
       };
     };
-
-    # qemu = prev.qemu.overrideAttrs {
-    #   patches = prev.qemu.patches ++ [
-    #     (pkgs.fetchpatch {
-    #       url = "https://raw.githubusercontent.com/utmapp/UTM/acbf2ba8cd91f382a5e163c49459406af0b462b7/patches/qemu-9.1.0-utm.patch";
-    #       sha256 = "sha256-S7DJSFD7EAzNxyQvePAo5ZZyanFrwQqQ6f2/hJkTJGA=";
-    #     })
-    #   ];
-    # };
 
     nerd-font-patcher = prev.nerd-font-patcher.overrideAttrs rec {
       version = "3.3.0";

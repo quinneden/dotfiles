@@ -14,8 +14,6 @@
     nixfmt-rfc-style
     nix-prefetch-github
     zoxide
-    tabby-release
-    devpod
     mosh
     xz
   ];

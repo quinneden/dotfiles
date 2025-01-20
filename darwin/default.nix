@@ -15,7 +15,7 @@
     ./system.nix
     inputs.home-manager.darwinModules.default
     inputs.mac-app-util.darwinModules.default
-    # inputs.nix-rosetta-builder.darwinModules.default
+    inputs.nix-rosetta-builder.darwinModules.default
   ];
 
   nix-rosetta-builder = {
@@ -41,6 +41,15 @@
   };
 
   security.pam.enableSudoTouchIdAuth = true;
+
+  services.nix-daemon.enable = true;
+
+  programs.nh = {
+    enable = true;
+    flake = toString (config.users.users.quinn.home + "/.dotfiles");
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 3d";
+  };
 
   nix = {
     optimise = {
@@ -88,7 +97,7 @@
         "picache.qeden.me:YbzItsTq/D/ns+o9/KzrPraH2hrnmNk/D5aclZZx+YA="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
-      # secret-key-files = [ "${../.secrets/keys/cache-private-key.pem}" ];
+      secret-key-files = [ "${../.secrets/keys/cache-private-key.pem}" ];
       warn-dirty = false;
     };
 
@@ -132,27 +141,6 @@
     #       };
     #     };
     # };
-  };
-
-  services.nix-daemon.enable = true;
-
-  programs.nh = {
-    enable = true;
-    flake = toString (config.users.users.quinn.home + "/.dotfiles");
-    clean.enable = true;
-    clean.extraArgs = "--keep-since 1d";
-  };
-
-  homebrew = {
-    enable = true;
-    onActivation = {
-      autoUpdate = true;
-      cleanup = "zap";
-      extraFlags = [ "--quiet" ];
-      upgrade = true;
-    };
-    global.brewfile = true;
-    caskArgs.language = "en-US";
   };
 
   system.stateVersion = 5;

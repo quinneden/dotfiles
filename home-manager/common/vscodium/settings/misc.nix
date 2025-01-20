@@ -25,6 +25,8 @@ in
     "useLanguageServer" = true;
   };
 
+  "git.openRepositoryInParentFolders" = "always";
+
   "markdown.preview.fontSize" = lib.mkForce 14;
 
   "markdown-preview-enhanced.automaticallyShowPreviewOfMarkdownBeingEdited" = true;
