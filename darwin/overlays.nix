@@ -1,10 +1,4 @@
-{
-  lib,
-  pkgs,
-  self,
-  inputs,
-  ...
-}:
+{ inputs, ... }:
 let
   flakeOverlays = with inputs; [
     lix-module.overlays.default
@@ -15,7 +9,7 @@ let
 
   packageOverlays = final: prev: {
     pure-prompt = prev.pure-prompt.overrideAttrs {
-      src = pkgs.fetchFromGitHub {
+      src = prev.fetchFromGitHub {
         owner = "quinneden";
         repo = "pure";
         rev = "refs/heads/nix3-shell-prompt";
@@ -23,20 +17,29 @@ let
       };
     };
 
+    # qemu = prev.qemu.overrideAttrs {
+    #   patches = prev.qemu.patches ++ [
+    #     (prev.fetchpatch {
+    #       url = "https://raw.githubusercontent.com/utmapp/UTM/acbf2ba8cd91f382a5e163c49459406af0b462b7/patches/qemu-9.1.0-utm.patch";
+    #       sha256 = "sha256-S7DJSFD7EAzNxyQvePAo5ZZyanFrwQqQ6f2/hJkTJGA=";
+    #     })
+    #   ];
+    # };
+
     nerd-font-patcher = prev.nerd-font-patcher.overrideAttrs rec {
       version = "3.3.0";
-      src = pkgs.fetchzip {
+      src = prev.fetchzip {
         url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v${version}/FontPatcher.zip";
         sha256 = "sha256-/LbO8+ZPLFIUjtZHeyh6bQuplqRfR6SZRu9qPfVZ0Mw=";
         stripRoot = false;
       };
     };
 
-    palera1n = pkgs.stdenv.mkDerivation (finalAttrs: rec {
+    palera1n = prev.stdenv.mkDerivation (finalAttrs: rec {
       pname = "palera1n";
       version = "2.1-beta.1";
 
-      src = pkgs.fetchurl {
+      src = prev.fetchurl {
         url = "https://github.com/${pname}/${pname}/releases/download/v${finalAttrs.version}/${pname}-macos-arm64";
         hash = "sha256-hRoCAaTwpoza2RnWNtDPSbOHJwhiuHh+5KTXWxUbfhM=";
       };

@@ -1,4 +1,3 @@
-{ pkgs, ... }:
 {
   homebrew = {
     enable = true;
@@ -17,6 +16,7 @@
       "homebrew/services"
       "deskflow/homebrew-tap"
       "tinted-theming/tinted"
+      # "akihirosuda/core"
       "slp/krun"
     ];
 
@@ -24,7 +24,7 @@
       "betterdisplay"
       "deskflow"
       "devpod"
-      "ghostty"
+      "ghostty@tip"
       "iterm2"
       "macfuse"
       "utm"
@@ -108,6 +108,7 @@
       "vercel-cli"
       "w3m"
       "wget"
+      "yazi"
       "yq"
       "zbar"
       "zlib"

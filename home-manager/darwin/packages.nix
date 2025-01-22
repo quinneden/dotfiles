@@ -2,19 +2,19 @@
 {
   home.packages = with pkgs; [
     aria2
+    cachix
+    eza
     gawk
     gnutar
     ks
-    zip
-    zstd
-    nil
-    nix-tree
-    cachix
-    eza
-    nixfmt-rfc-style
-    nix-prefetch-github
-    zoxide
     mosh
+    nil
+    nix-prefetch-github
+    nix-tree
+    nixfmt-rfc-style
     xz
+    zip
+    zoxide
+    zstd
   ];
 }

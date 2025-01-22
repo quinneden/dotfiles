@@ -46,7 +46,7 @@
 
   programs.nh = {
     enable = true;
-    flake = toString (config.users.users.quinn.home + "/.dotfiles");
+    flake = config.users.users.quinn.home + "/.dotfiles";
     clean.enable = true;
     clean.extraArgs = "--keep-since 3d";
   };
