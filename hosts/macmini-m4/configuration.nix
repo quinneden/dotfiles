@@ -22,21 +22,23 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = { inherit inputs secrets; };
+    extraSpecialArgs = {
+      inherit inputs secrets;
+    };
     users.quinn = {
       programs.home-manager.enable = true;
       home.stateVersion = "25.05";
       imports = [
         inputs.mac-app-util.homeManagerModules.default
-        ../../modules/hm/common/files.nix
-        ../../modules/hm/common/git.nix
-        ../../modules/hm/common/micro
-        ../../modules/hm/common/packages.nix
-        ../../modules/hm/common/vscodium
-        ../../modules/hm/common/zsh
-        ../../modules/hm/darwin/packages.nix
-        ../../modules/hm/darwin/programs.nix
-        ../../modules/hm/darwin/ssh.nix
+        ../../modules/home-manager/common/files.nix
+        ../../modules/home-manager/common/git.nix
+        ../../modules/home-manager/common/micro
+        ../../modules/home-manager/common/packages.nix
+        ../../modules/home-manager/common/vscodium
+        ../../modules/home-manager/common/zsh
+        ../../modules/home-manager/darwin/packages.nix
+        ../../modules/home-manager/darwin/programs.nix
+        ../../modules/home-manager/darwin/ssh.nix
       ];
     };
   };

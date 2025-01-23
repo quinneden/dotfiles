@@ -15,7 +15,8 @@
       "homebrew/bundle"
       "homebrew/services"
       "deskflow/homebrew-tap"
-      # "tinted-theming/tinted"
+      "tinted-theming/tinted"
+      "slp/krunkit"
       "slp/krun"
     ];
 

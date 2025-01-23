@@ -32,6 +32,7 @@ let
     tinkertrain.theme-panda
     vue.volar
     # ms-vscode-remote.remote-containers
+    tintedtheming.base16-tinted-themes
   ];
 
   marketplace-release = with vscode-marketplace-release; [
