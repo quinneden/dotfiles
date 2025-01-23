@@ -1,5 +1,0 @@
-{
-  imports = [
-    ./nh-darwin.nix
-  ];
-}
