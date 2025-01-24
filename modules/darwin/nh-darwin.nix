@@ -6,17 +6,19 @@
 }:
 let
   cfg = config.programs.nh;
+  inherit (pkgs) runCommand;
 in
+with lib;
 {
-  meta.maintainers = [ lib.maintainers.viperML ];
+  meta.maintainers = [ maintainers.quinneden ];
 
   options.programs.nh = {
-    enable = lib.mkEnableOption "nh, yet another Nix CLI helper";
+    enable = mkEnableOption "nh, yet another Nix CLI helper";
 
-    package = lib.mkPackageOption pkgs "nh" { };
+    package = mkPackageOption pkgs "nh" { };
 
-    flake = lib.mkOption {
-      type = lib.types.nullOr lib.types.path;
+    flake = mkOption {
+      type = types.nullOr types.path;
       default = null;
       description = ''
         The path that will be used for the `NH_FLAKE` environment variable.
@@ -26,10 +28,10 @@ in
     };
 
     clean = {
-      enable = lib.mkEnableOption "periodic garbage collection with nh clean all";
+      enable = mkEnableOption "periodic garbage collection with nh clean all";
 
-      # dates = lib.mkOption {
-      #   type = lib.types.submodule;
+      # dates = mkOption {
+      #   type = types.submodule;
       #   default = {
       #     StartCalendarInterval = {
       #       Weekday = 1;
@@ -43,8 +45,8 @@ in
       #   '';
       # };
 
-      extraArgs = lib.mkOption {
-        type = lib.types.singleLineStr;
+      extraArgs = mkOption {
+        type = types.singleLineStr;
         default = "";
         example = "--keep 5 --keep-since 3d";
         description = ''
@@ -72,24 +74,30 @@ in
       }
 
       {
-        assertion = (cfg.flake != null) -> !(lib.hasSuffix ".nix" cfg.flake);
+        assertion = (cfg.flake != null) -> !(hasSuffix ".nix" cfg.flake);
         message = "nh.flake must be a directory, not a nix file";
       }
     ];
 
-    environment = lib.mkIf cfg.enable {
+    environment = mkIf cfg.enable {
       systemPackages = [ cfg.package ];
-      variables = lib.mkIf (cfg.flake != null) {
-        NH_FLAKE = cfg.flake;
-      };
+      variables.NH_FLAKE =
+        if (cfg.flake != null) then
+          cfg.flake
+        else
+          readFile (runCommand "hostname" { } "printf $(/bin/hostname -s) > $out");
     };
 
-    launchd = lib.mkIf cfg.clean.enable {
+    launchd = mkIf cfg.clean.enable {
       daemons = {
         "nh-clean" = {
-          command = "${lib.getExe cfg.package} clean all ${cfg.clean.extraArgs}";
-          environment = lib.mkIf (cfg.flake != null) {
-            NH_FLAKE = cfg.flake;
+          command = "${getExe cfg.package} clean all ${cfg.clean.extraArgs}";
+          environment = mkIf (cfg.flake != null) {
+            NH_FLAKE =
+              if (cfg.flake != null) then
+                cfg.flake
+              else
+                readFile (runCommand "hostname" { } "printf $(/bin/hostname -s) > $out");
           };
           serviceConfig.RunAtLoad = false;
           serviceConfig.StartCalendarInterval = [

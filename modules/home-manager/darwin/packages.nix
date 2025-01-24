@@ -13,6 +13,7 @@
     nix-shell-scripts.wipe-linux
     nix-tree
     nixfmt-rfc-style
+    qemu
     zoxide
   ];
 }

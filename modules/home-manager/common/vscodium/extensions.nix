@@ -40,10 +40,12 @@ let
     github.copilot-chat
   ];
 
-  openvsx =
-    (with open-vsx; [
+  openvsx = (
+    with open-vsx;
+    [
       jeanp413.open-remote-ssh
-    ])
-    ++ (with open-vsx."3timeslazy"; [ vscodium-devpodcontainers ]);
+    ]
+  );
 in
+# ++ (with open-vsx."3timeslazy"; [ vscodium-devpodcontainers ]);
 [ ] ++ marketplace ++ marketplace-release ++ openvsx
