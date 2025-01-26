@@ -55,7 +55,7 @@
             inherit inputs secrets;
           };
           modules = [
-            ./hosts/nixos-macmini/configuration.nix
+            ./hosts/macmini-m1/configuration.nix
             home-manager.nixosModules.home-manager
             inputs.lix-module.nixosModules.default
             inputs.nixos-apple-silicon.nixosModules.default
@@ -74,8 +74,13 @@
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0.tar.gz";
+    anyrun = {
+      url = "github:anyrun-org/anyrun";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -84,8 +89,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-apple-silicon = {
-      url = "github:zzywysm/nixos-asahi";
+    lix-module = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -94,18 +99,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nur = {
-      url = "github:nix-community/NUR";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nix-rosetta-builder = {
       url = "github:quinneden/nix-rosetta-builder";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    firefox-addons = {
-      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+    nixos-apple-silicon = {
+      url = "github:zzywysm/nixos-asahi";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nur = {
+      url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

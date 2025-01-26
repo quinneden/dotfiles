@@ -90,9 +90,7 @@ in
       mkIf (cfg.plugins != null) (
         mapAttrs (name: plug: {
           recursive = true;
-
           target = ".config/micro/plug/" + name;
-
           source = fetchgit {
             url = plug.url;
             hash = plug.hash;
