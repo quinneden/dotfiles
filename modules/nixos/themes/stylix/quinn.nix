@@ -1,9 +1,10 @@
 { pkgs, inputs, ... }:
 {
+  config.targets.micro.enable = false;
+  config.targets.vscode.enable = false;
+
   stylix = {
     enable = true;
-    targets.micro.enable = false;
-    targets.vscode.enable = false;
 
     # Edited catppuccin
     base16Scheme = {
