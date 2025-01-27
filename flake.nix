@@ -69,6 +69,7 @@
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
     hyprland.url = "github:hyprwm/hyprland";
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
+    hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
     mac-app-util.url = "github:hraban/mac-app-util";
     micro-autofmt-nix.url = "github:quinneden/micro-autofmt-nix";
     micro-colors-nix.url = "github:quinneden/micro-colors-nix";
