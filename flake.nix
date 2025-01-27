@@ -111,6 +111,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixy-wallpapers = {
+      url = "github:anotherhadi/nixy-wallpapers";
+      flake = false;
+    };
+
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
