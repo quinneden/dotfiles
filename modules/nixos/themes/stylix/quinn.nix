@@ -1,8 +1,5 @@
 { pkgs, inputs, ... }:
 {
-  config.targets.micro.enable = false;
-  config.targets.vscode.enable = false;
-
   stylix = {
     enable = true;
 
