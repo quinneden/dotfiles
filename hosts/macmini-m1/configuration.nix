@@ -7,6 +7,14 @@
   imports = [
     ./hardware.nix
 
+    ../modules/nixos/bluetooth
+    ../modules/nixos/fonts
+    ../modules/nixos/nix
+    ../modules/nixos/programs
+    ../modules/nixos/security
+    ../modules/nixos/services
+    ../modules/nixos/system
+    ../modules/nixos/window-managers/hyprland
     ./programs/dconf.nix
     ./programs/gnupg.nix
     ./programs/thunar.nix
@@ -15,13 +23,8 @@
     ./services/gnome-keyring.nix
     ./services/greetd.nix
     ./services/gvfs.nix
-    ./services/pipewire.nix
     ./virtualisation/containers.nix
-    ./virtualisation/docker.nix
     ./virtualisation/podman.nix
-    ../modules/nixos/fonts
-    ../modules/nixos/bluetooth
-    ../modules/nixos/window-managers/hyprland
   ];
 
   services = {
