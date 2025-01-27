@@ -5,18 +5,10 @@
   ...
 }:
 let
-  inherit (lib)
-    mkOption
-    mkEnableOption
-    mkPackageOption
-    mkIf
-    ;
-
-  cfg = config.programs.pure-prompt;
+  cfg = config.programs.zsh.pure-prompt;
 in
+with lib;
 {
-  meta.maintainers = [ lib.maintainers.quinneden ];
-
   options.programs.pure-prompt = {
     enable = mkEnableOption "Pretty, minimal and fast ZSH prompt";
 
@@ -28,7 +20,6 @@ in
 
     programs.zsh.initExtra = ''
       fpath+=(${cfg.package}/share/zsh/site-functions)
-
       autoload -U promptinit; promptinit
       prompt pure
     '';

@@ -5,6 +5,8 @@
   ...
 }:
 let
+  inherit (pkgs.stdenv) isLinux isDarwin;
+
   commonAliases = {
     cddf = "cd $dotdir";
     cddl = "cd ~/Downloads";
@@ -56,19 +58,29 @@ let
 
   initExtraDarwin = ''[[ $PATH =~ '/nix/store' ]] || eval $(/opt/homebrew/bin/brew shellenv)'';
 in
+with lib;
 {
-  imports = [ ./pure-prompt.nix ];
-
-  programs.pure-prompt.enable = true;
+  imports = [
+    ./programs
+  ] ++ (optional isLinux ./pure-prompt.nix);
 
   programs.zsh = {
     enable = true;
     dotDir = ".config/zsh";
-    shellAliases = commonAliases // (if pkgs.stdenv.isDarwin then darwinAliases else linuxAliases);
+    pure-prompt.enable = true;
+    shellAliases = commonAliases // (if isDarwin then darwinAliases else linuxAliases);
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     history.path = "${config.xdg.configHome}/zsh/.zsh_history";
+
+    plugins = with pkgs; [
+      {
+        name = "zsh-nix-shell";
+        src = zsh-nix-shell;
+        file = "share/zsh-nix-shell/nix-shell.plugin.zsh";
+      }
+    ];
 
     oh-my-zsh = {
       enable = true;
@@ -77,7 +89,7 @@ in
         "eza"
         "zoxide"
         "direnv"
-        "${if pkgs.stdenv.isDarwin then "iterm2" else ""}"
+        "${if isDarwin then "iterm2" else ""}"
       ];
       custom = "${config.xdg.configHome}/zsh";
     };
@@ -90,7 +102,7 @@ in
           "${config.xdg.configHome}/zsh/completions"
         )
       ''
-      + (lib.optionalString pkgs.stdenv.isDarwin ''
+      + (optionalString isDarwin ''
         fpath+=(
           "/opt/homebrew/share/zsh/site-functions"
           "/opt/vagrant/embedded/gems/gems/vagrant-2.4.3/contrib/zsh $fpath"
@@ -108,14 +120,14 @@ in
         LC_ALL = "en_US.UTF-8";
         MICRO_TRUECOLOR = "1";
       }
-      // (if pkgs.stdenv.isDarwin then darwinVariables else { })
-      // (if pkgs.stdenv.isLinux then linuxVariables else { });
+      // (if isDarwin then darwinVariables else { })
+      // (if isLinux then linuxVariables else { });
   };
 
   programs.bash = {
     enable = true;
     enableCompletion = true;
-    shellAliases = commonAliases // (if pkgs.stdenv.isDarwin then darwinAliases else linuxAliases);
+    shellAliases = commonAliases // (if isDarwin then darwinAliases else linuxAliases);
     bashrcExtra = ''
       PS1="\[\e[32m\]\u@\h\[\e[0m\]:\[\e[34m\]\w\[\e[0m\] \$ "
       HISTCONTROL=ignoredups:erasedups

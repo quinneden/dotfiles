@@ -31,11 +31,11 @@
       imports = [
         inputs.mac-app-util.homeManagerModules.default
         ../../modules/home-manager/common/files.nix
-        ../../modules/home-manager/common/git.nix
         ../../modules/home-manager/common/micro
         ../../modules/home-manager/common/packages.nix
         ../../modules/home-manager/common/vscodium
         ../../modules/home-manager/common/zsh
+        ../../modules/home-manager/darwin/git.nix
         ../../modules/home-manager/darwin/packages.nix
         ../../modules/home-manager/darwin/programs.nix
         ../../modules/home-manager/darwin/ssh.nix

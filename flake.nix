@@ -10,12 +10,12 @@
       ...
     }:
     let
+      inherit (nixpkgs.lib) genAttrs;
       secrets =
         let
           inherit (builtins) fromJSON readFile;
-          inherit (nixpkgs) lib;
         in
-        lib.genAttrs [
+        genAttrs [
           "cachix"
           "cloudflare"
           "github"
@@ -23,14 +23,14 @@
         ] (s: fromJSON (readFile .secrets/${s}.json));
 
       forEachSystem =
-        f:
-        inputs.nixpkgs.lib.genAttrs [
+        function:
+        genAttrs [
           "aarch64-darwin"
           "aarch64-linux"
-        ] (system: f { pkgs = import nixpkgs { inherit system; }; });
+        ] (system: function { pkgs = import nixpkgs { inherit system; }; });
     in
     {
-      formatter = forEachSystem (pkgs: pkgs.nixfmt-rfc-style);
+      formatter = forEachSystem ({ pkgs }: pkgs.nixfmt-rfc-style);
 
       darwinConfigurations = {
         macmini-m4 = nix-darwin.lib.darwinSystem {

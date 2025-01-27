@@ -1,0 +1,70 @@
+{
+  pkgs,
+  ...
+}:
+let
+  networkctl = pkgs.callPackage ./networkctl { };
+  volumectl = pkgs.callPackage ./volumectl { };
+in
+{
+  imports = [
+    ./dev
+  ];
+
+  home.packages = with pkgs; [
+    networkctl
+    volumectl
+
+    act
+    amberol
+    asahi-bless
+    bc
+    brave
+    celluloid
+    fd
+    ffmpeg-full
+    ffmpegthumbnailer
+    file
+    foliate
+    gcc
+    genact
+    gnumake
+    grim
+    grimblast
+    hoppscotch
+    imagemagick
+    imv
+    jaq
+    jq
+    just
+    killall
+    lefthook
+    libnotify
+    loupe
+    micro
+    nodejs
+    openssl
+    ouch
+    p7zip
+    pnpm
+    podman-compose
+    pre-commit
+    prettierd
+    procs
+    psmisc
+    psutils
+    pwvucontrol
+    ripgrep
+    rsync
+    trash-cli
+    tree
+    unrar
+    unzip
+    watchexec
+    wget
+    wf-recorder
+    wl-clipboard
+    yq
+    zip
+  ];
+}
