@@ -9,7 +9,6 @@
     ../../modules/nixos/networking.nix
     ../../modules/nixos/nix.nix
     ../../modules/nixos/overlays.nix
-    ../../modules/nixos/podman.nix
     ../../modules/nixos/systemd-boot.nix
     ../../modules/nixos/timezone.nix
     ../../modules/nixos/tuigreet.nix
