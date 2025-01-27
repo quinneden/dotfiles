@@ -8,27 +8,27 @@
     ./variables.nix
 
     # Programs
-    ../../home-manager/common
-    ../../home-manager/nixos/programs/fetch
-    ../../home-manager/nixos/programs/firefox
-    ../../home-manager/nixos/programs/git
-    ../../home-manager/nixos/programs/kitty
-    ../../home-manager/nixos/programs/lazygit
-    ../../home-manager/nixos/programs/markdown
-    ../../home-manager/nixos/programs/nh
-    ../../home-manager/nixos/programs/thunar
-    ../../home-manager/nixos/scripts
-    ../../home-manager/nixos/system/clipman
-    ../../home-manager/nixos/system/hypridle
-    ../../home-manager/nixos/system/hyprland
-    ../../home-manager/nixos/system/hyprlock
-    ../../home-manager/nixos/system/hyprpanel
-    ../../home-manager/nixos/system/hyprpaper
-    ../../home-manager/nixos/system/mime
-    ../../home-manager/nixos/system/ssh
-    ../../home-manager/nixos/system/udiskie
-    ../../home-manager/nixos/system/wofi
-    ../../home-manager/nixos/system/zathura
+    ../../modules/home-manager/common
+    ../../modules/home-manager/nixos/programs/fetch
+    ../../modules/home-manager/nixos/programs/firefox
+    ../../modules/home-manager/nixos/programs/git
+    ../../modules/home-manager/nixos/programs/kitty
+    ../../modules/home-manager/nixos/programs/lazygit
+    ../../modules/home-manager/nixos/programs/markdown
+    ../../modules/home-manager/nixos/programs/nh
+    ../../modules/home-manager/nixos/programs/thunar
+    ../../modules/home-manager/nixos/scripts
+    ../../modules/home-manager/nixos/system/clipman
+    ../../modules/home-manager/nixos/system/hypridle
+    ../../modules/home-manager/nixos/system/hyprland
+    ../../modules/home-manager/nixos/system/hyprlock
+    ../../modules/home-manager/nixos/system/hyprpanel
+    ../../modules/home-manager/nixos/system/hyprpaper
+    ../../modules/home-manager/nixos/system/mime
+    ../../modules/home-manager/nixos/system/ssh
+    ../../modules/home-manager/nixos/system/udiskie
+    ../../modules/home-manager/nixos/system/wofi
+    ../../modules/home-manager/nixos/system/zathura
   ];
 
   home = {
