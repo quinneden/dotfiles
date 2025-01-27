@@ -11,7 +11,6 @@
     ../../modules/home-manager/common
     ../../modules/home-manager/nixos/programs/fetch
     ../../modules/home-manager/nixos/programs/firefox
-    ../../modules/home-manager/nixos/programs/git
     ../../modules/home-manager/nixos/programs/kitty
     ../../modules/home-manager/nixos/programs/lazygit
     ../../modules/home-manager/nixos/programs/markdown
