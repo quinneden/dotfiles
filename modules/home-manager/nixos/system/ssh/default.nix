@@ -13,7 +13,7 @@
       "picache" = {
         hostname = "10.0.0.101";
         user = "qeden";
-        identityFile = "${../../../.secrets/keys/picache_ed25519}";
+        identityFile = "${../../../../.secrets/keys/picache_ed25519}";
       };
 
       "macmini-m4".hostname = "10.0.0.53";
