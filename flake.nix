@@ -65,6 +65,7 @@
     };
 
   inputs = {
+    apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
     hyprland.url = "github:hyprwm/hyprland";
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
     mac-app-util.url = "github:hraban/mac-app-util";
