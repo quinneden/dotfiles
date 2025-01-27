@@ -20,7 +20,6 @@
     ../../modules/nixos/uwsm.nix
     ../../modules/nixos/hyprland.nix
 
-    # Choose your theme here
     ../../modules/nixos/themes/stylix/quinn.nix
 
     ./hardware.nix
