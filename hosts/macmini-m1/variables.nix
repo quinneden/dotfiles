@@ -22,6 +22,6 @@
     autoUpgrade = false;
     autoGarbageCollector = false;
 
-    theme = import ../../themes/var/quinn.nix;
+    theme = import ../../modules/nixos/themes/var/quinn.nix;
   };
 }
