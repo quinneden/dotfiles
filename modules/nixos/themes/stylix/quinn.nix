@@ -2,6 +2,8 @@
 {
   stylix = {
     enable = true;
+    targets.micro.enable = false;
+    targets.vscode.enable = false;
 
     # Edited catppuccin
     base16Scheme = {
