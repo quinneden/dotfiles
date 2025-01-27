@@ -59,6 +59,7 @@
             home-manager.nixosModules.home-manager
             inputs.lix-module.nixosModules.default
             inputs.nixos-apple-silicon.nixosModules.default
+            inputs.stylix.nixosModules.stylix
           ];
         };
       };
@@ -75,6 +76,7 @@
     nix-shell-scripts.url = "github:quinneden/nix-shell-scripts";
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    stylix.url = "github:danth/stylix";
 
     anyrun = {
       url = "github:anyrun-org/anyrun";
