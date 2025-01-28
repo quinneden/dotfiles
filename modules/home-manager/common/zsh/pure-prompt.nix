@@ -12,12 +12,10 @@ let
     mkIf
     ;
 
-  cfg = config.programs.pure-prompt;
+  cfg = config.programs.zsh.pure-prompt;
 in
 {
-  meta.maintainers = [ lib.maintainers.quinneden ];
-
-  options.programs.pure-prompt = {
+  options.programs.zsh.pure-prompt = {
     enable = mkEnableOption "Pretty, minimal and fast ZSH prompt";
 
     package = mkPackageOption pkgs "pure-prompt" { };
