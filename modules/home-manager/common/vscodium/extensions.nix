@@ -21,6 +21,7 @@ let
   # };
 
   marketplace = with vscode-marketplace; [
+    astro-build.astro-vscode
     # bbenoist.nix
     hermitter.oh-lucy-vscode
     jnoortheen.nix-ide

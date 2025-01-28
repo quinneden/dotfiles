@@ -12,8 +12,6 @@ with lib;
 {
   imports = [ ./micro.nix ];
 
-  stylix.targets.micro.enable = mkIf isLinux false;
-
   programs.micro = {
     enable = true;
 

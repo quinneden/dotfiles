@@ -5,9 +5,9 @@
     setupAsahiSound = true;
     useExperimentalGPUDriver = true;
     extractPeripheralFirmware = true;
-    peripheralFirmwareDirectory = builtins.fetchTarball {
-      url = "https://f.qeden.me/fw/firmware-2024-12-21.tar.gz";
-      sha256 = "sha256-zQejBrdZ98nb/HZOX3jFuH9vM+y/782yxUVbe26LSys=";
+    peripheralFirmwareDirectory = pkgs.fetchzip {
+      url = "https://f.qeden.me/fw/asahi_fw_2025-1-15.tgz";
+      hash = "sha256-5FdsoUJZqHLSecJpst95418kFTouaxo4wmC5rEXskMk=";
     };
   };
 
