@@ -6,7 +6,6 @@
 #- - `powermenu` - Open power dropdown menu. (wofi)
 #- - `lock` - Lock the screen. (hyprlock)
 { pkgs, ... }:
-
 let
   menu =
     pkgs.writeShellScriptBin "menu"
@@ -108,7 +107,6 @@ let
       ''
         ${pkgs.hyprlock}/bin/hyprlock
       '';
-
 in
 {
   home.packages = [

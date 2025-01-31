@@ -4,11 +4,8 @@
   pkgs,
   ...
 }:
-
 with lib;
-
 let
-
   cfg = config.programs.micro;
 
   jsonFormat = pkgs.formats.json { };

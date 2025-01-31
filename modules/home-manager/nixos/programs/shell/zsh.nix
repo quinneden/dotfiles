@@ -9,7 +9,6 @@ let
   fetch = config.var.theme.fetch; # neofetch, nerdfetch, pfetch
 in
 {
-
   home.packages = with pkgs; [
     bat
     ripgrep

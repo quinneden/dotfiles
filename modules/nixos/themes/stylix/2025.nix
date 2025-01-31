@@ -1,4 +1,8 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  ...
+}:
 {
   stylix = {
     enable = true;
@@ -60,6 +64,5 @@
         "https://github.com/anotherhadi/nixy-wallpapers/blob/main/wallpapers/" + "3.png" + "?raw=true";
       sha256 = "sha256-fT2ah18IAxoy3hzlLl9SkqhchzfVvZneUrZWzntMo40=";
     };
-
   };
 }

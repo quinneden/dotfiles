@@ -12,7 +12,6 @@
   ...
 }:
 let
-
   configDirectory = config.var.configDirectory;
   hostname = config.var.hostname;
 
@@ -71,7 +70,7 @@ let
         elif [[ $1 == "loop" ]];then
           while true; do
             nixy
-            echo "Press enter to continue, e to exit" 
+            echo "Press enter to continue, e to exit"
             read -n 1 REPLY
             clear
             [[ $REPLY == "e" ]] && exit 0
@@ -80,7 +79,6 @@ let
           echo "Unknown argument"
         fi
       '';
-
 in
 {
   home.packages = [ nixy ];

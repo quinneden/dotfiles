@@ -1,4 +1,8 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  ...
+}:
 {
   stylix = {
     enable = true;
@@ -63,5 +67,4 @@
     polarity = "dark";
     image = inputs.nixy-wallpapers + "/wallpapers/zywgxy.png";
   };
-
 }

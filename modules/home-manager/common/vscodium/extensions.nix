@@ -1,28 +1,16 @@
-{ inputs, pkgs }:
+{
+  inputs,
+  pkgs,
+}:
 let
-  # inherit (pkgs.vscode-utils) buildVscodeMarketplaceExtension;
   inherit (inputs.nix-vscode-extensions.extensions.${pkgs.system})
     vscode-marketplace
     vscode-marketplace-release
     open-vsx
     ;
 
-  # _3timeslazy.vscodium-devpodcontainers = buildVscodeMarketplaceExtension {
-  #   mktplcRef = {
-  #     name = "devpod-containers";
-  #     publisher = "3timeslazy";
-  #     version = "0.0.17";
-  #   };
-  #   vsix = builtins.fetchurl {
-  #     url = "https://open-vsx.org/api/3timeslazy/vscodium-devpodcontainers/0.0.17/file/3timeslazy.vscodium-devpodcontainers-0.0.17.vsix";
-  #     sha256 = "sha256-8I7Uocj4Aom+GgoMmqBNyA5wQUdF6EnS27BIuumemF8=";
-  #   };
-  #   dontUnpack = true;
-  # };
-
   marketplace = with vscode-marketplace; [
     astro-build.astro-vscode
-    # bbenoist.nix
     hermitter.oh-lucy-vscode
     jnoortheen.nix-ide
     miguelsolorio.symbols
@@ -32,7 +20,6 @@ let
     timonwong.shellcheck
     tinkertrain.theme-panda
     vue.volar
-    # ms-vscode-remote.remote-containers
     tintedtheming.base16-tinted-themes
   ];
 

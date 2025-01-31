@@ -1,4 +1,5 @@
-{ lib } : {
+{ lib }:
+{
   "editor.fontFamily" = lib.mkForce "CaskaydiaCoveNFM-SemiLight";
 
   "editor.fontLigatures" = true;

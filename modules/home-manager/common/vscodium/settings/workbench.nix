@@ -1,4 +1,7 @@
-{ lib, pkgs }:
+{
+  lib,
+  pkgs,
+}:
 let
   inherit (pkgs.stdenv) isDarwin;
 in
@@ -29,5 +32,4 @@ with lib;
   "zenMode.hideLineNumbers" = false;
 
   "zenMode.restore" = false;
-
 }

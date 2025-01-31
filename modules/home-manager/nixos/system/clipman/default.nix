@@ -8,7 +8,6 @@ let
   clipboard = pkgs.writeShellScriptBin "clipboard" ''
     clipman pick --tool=wofi
   '';
-
 in
 {
   wayland.windowManager.hyprland.settings.exec-once = [

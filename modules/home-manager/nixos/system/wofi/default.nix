@@ -15,7 +15,6 @@ let
   font-size = config.stylix.fonts.sizes.popups;
 in
 {
-
   home.packages = with pkgs; [ wofi-emoji ];
 
   programs.wofi = {

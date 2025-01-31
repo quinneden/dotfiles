@@ -10,6 +10,7 @@
     ../../modules/darwin/fonts.nix
     ../../modules/darwin/nh-darwin.nix
     ../../modules/darwin/overlays.nix
+    # ../../modules/overlays
     ./system.nix
   ];
 
@@ -47,7 +48,28 @@
 
   nix-rosetta-builder = {
     enable = true;
+    enableRosetta = true;
+    debug = true;
+
+    cores = 8;
+    memory = "6GiB";
+    diskSize = "100GiB";
+
     onDemand = true;
+
+    config =
+      { pkgs, ... }:
+      {
+        nix = {
+          settings = {
+            access-tokens = [ "github=${secrets.github.token}" ];
+            extra-substituters = [ "https://quinneden.cachix.org" ];
+            extra-trusted-public-keys = [
+              "quinneden.cachix.org-1:1iSAVU2R8SYzxTv3Qq8j6ssSPf0Hz+26gfgXkvlcbuA="
+            ];
+          };
+        };
+      };
   };
 
   nix = {
@@ -71,7 +93,7 @@
 
     settings = {
       accept-flake-config = true;
-      access-tokens = [ ("github=" + secrets.github.token) ];
+      access-tokens = [ "github=${secrets.github.token}" ];
       builders-use-substitutes = true;
       experimental-features = [
         "nix-command"

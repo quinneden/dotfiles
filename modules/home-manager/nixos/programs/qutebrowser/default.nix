@@ -1,6 +1,10 @@
 # Qutebrowser is a keyboard-focused browser with a minimal GUI.
 # My homepage is generated using https://github.com/anotherhadi/homepage
-{ pkgs, config, ... }:
+{
+  pkgs,
+  config,
+  ...
+}:
 let
   accent = "#${config.lib.stylix.colors.base0D}";
   background = "#${config.lib.stylix.colors.base00}";
@@ -75,10 +79,8 @@ let
       homepage = "https://github.com/anotherhadi/homepage";
     };
   };
-
 in
 {
-
   imports = [ ./duckduckgo-colorscheme.nix ];
 
   programs.qutebrowser = {

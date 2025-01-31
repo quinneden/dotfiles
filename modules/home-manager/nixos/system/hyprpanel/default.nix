@@ -1,4 +1,8 @@
-{ inputs, config, ... }:
+{
+  inputs,
+  config,
+  ...
+}:
 let
   transparentButtons = config.var.theme.bar.transparentButtons;
 
@@ -23,7 +27,6 @@ let
   location = config.var.location;
 in
 {
-
   imports = [ inputs.hyprpanel.homeManagerModules.hyprpanel ];
 
   programs.hyprpanel = {

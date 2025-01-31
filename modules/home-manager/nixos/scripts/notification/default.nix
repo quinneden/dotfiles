@@ -2,6 +2,7 @@
 let
   notif =
     pkgs.writeShellScriptBin "notif" # bash
+
       ''
         # Shell script to send custom notifications
         # Usage: notif "sender_id" "message" ["description"]
@@ -23,7 +24,6 @@ let
         "$description" \
         > "$NOTIF_FOLDER/$sender_id"
       '';
-
 in
 {
   home.packages = [

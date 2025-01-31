@@ -18,6 +18,7 @@
     ../../modules/nixos/xdg-portal.nix
     ../../modules/nixos/uwsm.nix
     ../../modules/nixos/hyprland.nix
+    # ../../modules/overlays
 
     ../../modules/nixos/themes/stylix/quinn.nix
 

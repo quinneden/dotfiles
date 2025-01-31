@@ -1,5 +1,9 @@
 # Hyprlock is a lockscreen for Hyprland
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  ...
+}:
 let
   foreground = "rgba(216, 222, 233, 0.70)";
   imageStr = toString config.stylix.image;

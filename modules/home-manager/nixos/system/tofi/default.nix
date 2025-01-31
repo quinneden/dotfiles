@@ -1,5 +1,9 @@
 # Tofi is a dmeny-like application launcher
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  ...
+}:
 let
   background = "#${config.lib.stylix.colors.base00}70";
   accent = "#${config.lib.stylix.colors.base0D}";

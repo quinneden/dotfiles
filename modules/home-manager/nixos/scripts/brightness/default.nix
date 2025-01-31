@@ -6,9 +6,7 @@
 #- - `brightness-down` decreases the brightness by 5%.
 #- - `brightness-set [value]` sets the brightness to the given value.
 #- - `brightness-change [up|down] [value]` increases or decreases the brightness by the given value.
-
 { pkgs, ... }:
-
 let
   increments = "5";
 
@@ -28,7 +26,6 @@ let
   brightness-down = pkgs.writeShellScriptBin "brightness-down" ''
     brightness-change down ${increments}
   '';
-
 in
 {
   home.packages = [

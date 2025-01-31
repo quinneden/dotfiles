@@ -1,9 +1,5 @@
+{ pkgs, ... }:
 {
-  pkgs,
-  ...
-}:
-{
-
   imports = [
     ./variables.nix
 

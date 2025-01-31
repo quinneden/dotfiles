@@ -1,5 +1,9 @@
 # Not using this file anymore, but keeping it for reference
-{ pkgs, config, ... }:
+{
+  pkgs,
+  config,
+  ...
+}:
 let
   accent = "#${config.lib.stylix.colors.base0D}";
   background = "#${config.lib.stylix.colors.base00}";
@@ -33,38 +37,31 @@ let
       }
     }
   '';
-
-  # homepage = pkgs.buildNpmPackage {
-  #   pname = "homepage";
-  #   version = "0.0.0";
-
-  #   src = pkgs.fetchFromGitHub {
-  #     owner = "anotherhadi";
-  #     repo = "homepage";
-  #     rev = "b77d35ed3596eb451bd2ec78063d7cc6e73c773d";
-  #     hash = "sha256-j/40922kfAh6zqJ4IRYpr66YXNNYsxuXwZ0aiJFJea0=";
-  #   };
-
-  #   # npmDepsHash = lib.fakeHash;
-  #   npmDepsHash = "sha256-bG+CHTq2Rst3JMxsjAC81KhK+G7WwsTVD1eyP87g0z4=";
-
-  #   buildPhase = ''
-  #     npm install
-  #     cp ${pkgs.writeText "src/routes/config.json" settings} src/routes/config.json
-  #     npm run build
-  #     mkdir $out
-  #     mv build $out
-  #   '';
-
-  #   meta = {
-  #     description = "homepage";
-  #     homepage = "https://github.com/anotherhadi/homepage";
-  #   };
-  # };
-
 in
+# homepage = pkgs.buildNpmPackage {
+#   pname = "homepage";
+#   version = "0.0.0";
+#   src = pkgs.fetchFromGitHub {
+#     owner = "anotherhadi";
+#     repo = "homepage";
+#     rev = "b77d35ed3596eb451bd2ec78063d7cc6e73c773d";
+#     hash = "sha256-j/40922kfAh6zqJ4IRYpr66YXNNYsxuXwZ0aiJFJea0=";
+#   };
+#   # npmDepsHash = lib.fakeHash;
+#   npmDepsHash = "sha256-bG+CHTq2Rst3JMxsjAC81KhK+G7WwsTVD1eyP87g0z4=";
+#   buildPhase = ''
+#     npm install
+#     cp ${pkgs.writeText "src/routes/config.json" settings} src/routes/config.json
+#     npm run build
+#     mkdir $out
+#     mv build $out
+#   '';
+#   meta = {
+#     description = "homepage";
+#     homepage = "https://github.com/anotherhadi/homepage";
+#   };
+# };
 {
-
   # home.file."homepage" = {
   #   source = "${homepage}/build";
   #   recursive = true;
@@ -206,7 +203,6 @@ in
           "Google".metaData.alias = "@g"; # builtin engines only support specifying one additional alias
         };
         default = "Google";
-
       };
 
       userChrome = ''

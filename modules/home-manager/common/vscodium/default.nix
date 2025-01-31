@@ -7,17 +7,21 @@
 let
   inherit (pkgs.stdenv) isDarwin;
 
-  nullPkg = pkgs.emptyDirectory.overrideAttrs {
-    inherit (pkgs.vscodium)
-      passthru
-      pname
-      version
-      ;
-    buildCommand = "mkdir -p $out/bin; printf 'echo \"dummy vscodium package for home-manager.\"' > $out/bin/codium";
-    meta = {
-      mainProgram = null;
-    } // pkgs.vscodium.meta;
-  };
+  vscodiumDummy =
+    pkgs.runCommand "vscodium-dummy"
+      {
+        inherit (pkgs.vscodium)
+          passthru
+          pname
+          version
+          meta
+          ;
+      }
+      ''
+        mkdir -p "$out/bin"
+        echo "true" > "$out/bin/codium"
+        chmod +x "$out/bin/codium"
+      '';
 in
 {
   programs.vscode =
@@ -37,7 +41,7 @@ in
     in
     {
       enable = true;
-      package = if isDarwin then nullPkg else pkgs.vscodium;
+      package = if isDarwin then vscodiumDummy else pkgs.vscodium;
 
       inherit
         extensions

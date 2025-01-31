@@ -20,9 +20,9 @@
         );
       };
     in
-    ([
+    [
       miscOverlays
-    ])
+    ]
     ++ (with inputs; [
       nix-shell-scripts.overlays.default
       hyprpanel.overlay

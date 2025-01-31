@@ -69,6 +69,5 @@
       ",XF86MonBrightnessUp, exec, brightness-up" # Brightness Up
       ",XF86MonBrightnessDown, exec, brightness-down" # Brightness Down
     ];
-
   };
 }

@@ -1,6 +1,9 @@
-{ pkgs, inputs, ... }:
 {
-
+  pkgs,
+  inputs,
+  ...
+}:
+{
   fonts = {
     packages =
       (with pkgs; [

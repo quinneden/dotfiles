@@ -1,4 +1,8 @@
-{ inputs, pkgs, ... }:
+{
+  inputs,
+  pkgs,
+  ...
+}:
 {
   home.packages = [ inputs.hyprpolkitagent.packages."${pkgs.system}".hyprpolkitagent ];
 

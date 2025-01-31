@@ -30,7 +30,7 @@
         ] (system: f { pkgs = import nixpkgs { inherit system; }; });
     in
     {
-      formatter = forEachSystem (pkgs: pkgs.nixfmt-rfc-style);
+      formatter = forEachSystem ({ pkgs }: pkgs.nixfmt-rfc-style);
 
       darwinConfigurations = {
         macmini-m4 = nix-darwin.lib.darwinSystem {
@@ -105,7 +105,8 @@
     };
 
     nix-rosetta-builder = {
-      url = "github:quinneden/nix-rosetta-builder";
+      # url = "github:quinneden/nix-rosetta-builder";
+      url = "git+file:///Users/quinn/repos/forks/nix-rosetta-builder";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

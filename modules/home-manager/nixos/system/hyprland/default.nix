@@ -15,13 +15,11 @@ let
   keyboardLayout = config.var.keyboardLayout;
 in
 {
-
   imports = [
     ./animations.nix
     ./bindings.nix
     ./polkitagent.nix
     ./uwsm-env.nix
-    # ./hyprspace.nix
   ];
 
   home.packages = with pkgs; [
@@ -162,7 +160,6 @@ in
           # clickfinger_behavior = true;
         };
       };
-
     };
   };
   # systemd.user.targets.hyprland-session.Unit.Wants = [ "xdg-desktop-autostart.target" ];
