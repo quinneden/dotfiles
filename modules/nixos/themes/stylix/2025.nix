@@ -36,7 +36,7 @@
     fonts = {
       monospace = {
         package = pkgs.nerd-fonts.jetbrains-mono;
-        name = "JetBrains Mono Nerd Font";
+        name = "CaskaydiaCove Nerd Font Mono";
       };
       sansSerif = {
         package = inputs.apple-fonts.packages.${pkgs.system}.sf-pro-nerd;
@@ -54,7 +54,7 @@
         applications = 13;
         desktop = 13;
         popups = 13;
-        terminal = 13;
+        terminal = 14;
       };
     };
 

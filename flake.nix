@@ -105,8 +105,7 @@
     };
 
     nix-rosetta-builder = {
-      # url = "github:quinneden/nix-rosetta-builder";
-      url = "git+file:///Users/quinn/repos/forks/nix-rosetta-builder";
+      url = "github:quinneden/nix-rosetta-builder";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

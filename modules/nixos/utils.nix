@@ -52,6 +52,7 @@ in
     xdg-utils
     wget
     curl
+    nix-shell-scripts.nix-switch
   ];
 
   services.logind.extraConfig = ''

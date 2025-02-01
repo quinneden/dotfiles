@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (pkgs.stdenv) isDarwin;
+  inherit (pkgs.stdenv) isDarwin isLinux;
 
   vscodiumDummy =
     pkgs.runCommand "vscodium-dummy"
@@ -23,12 +23,13 @@ let
         chmod +x "$out/bin/codium"
       '';
 in
+with lib;
 {
   programs.vscode =
     let
       extensions = [ ] ++ (import ./extensions.nix { inherit inputs pkgs; });
 
-      keybindings = [ ] ++ (import ./settings/keybindings.nix { inherit lib; });
+      keybindings = [ ] ++ (import ./settings/keybindings.nix { inherit lib pkgs; });
 
       userSettings =
         { }
@@ -49,4 +50,8 @@ in
         userSettings
         ;
     };
+
+  stylix = mkIf isLinux {
+    targets.vscode.enable = false;
+  };
 }

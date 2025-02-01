@@ -1,6 +1,6 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 let
-  inherit (builtins) elemAt;
+  inherit (pkgs.stdenv) isDarwin;
 
   intPairs = {
     "1" = "First";
@@ -14,6 +14,7 @@ let
     "9" = "Last";
   };
 in
+with lib;
 [
   {
     command = "editor.action.commentLine";
@@ -42,17 +43,17 @@ in
     key = "meta+shift+w";
     when = "terminal.active";
   }
-  {
+  (mkIf isDarwin {
     command = "";
     key = "ctrl+w";
-  }
+  })
   {
     command = "editor.action.duplicateSelection";
     key = "ctrl+d";
   }
   {
     command = "editor.action.duplicateSelection";
-    key = "cmd+d";
+    key = "meta+d";
   }
   {
     command = "workbench.view.explorer";
@@ -65,37 +66,32 @@ in
   }
   {
     command = "workbench.action.focusPreviousGroup";
-    key = "cmd+left";
+    key = "meta+left";
   }
   {
     command = "workbench.action.focusNextGroup";
-    key = "cmd+right";
+    key = "meta+right";
   }
   {
     command = "copilot-chat.focus";
     key = "ctrl+shift+i";
   }
   {
-    "key" = "cmd+n";
-    "command" = "explorer.newFile";
-    "when" = "explorerViewletFocus";
+    command = "explorer.newFile";
+    key = "meta+n";
+    when = "explorerViewletFocus";
   }
   {
-    "key" = "cmd+shift+n";
-    "command" = "explorer.newFolder";
-    "when" = "explorerViewletFocus";
-  }
-  {
-    "key" = "cmd+ctrl+p";
-    "command" = "workbench.action.tasks.runTask";
-    "args" = "Simple Browser";
+    command = "explorer.newFolder";
+    key = "meta+shift+n";
+    when = "explorerViewletFocus";
   }
 ]
 ++ map (n: {
-  key = "cmd+${toString n}";
+  key = "meta+${toString n}";
   command = "workbench.action.openEditorAtIndex${toString n}";
-}) (lib.range 1 9 ++ [ 0 ])
-++ lib.mapAttrsToList (n: o: {
+}) (range 1 9 ++ [ 0 ])
+++ mapAttrsToList (n: o: {
   key = "ctrl+${n}";
   command = "workbench.action.focus${o}EditorGroup";
 }) intPairs

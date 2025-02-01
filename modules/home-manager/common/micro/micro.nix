@@ -4,7 +4,6 @@
   pkgs,
   ...
 }:
-with lib;
 let
   cfg = config.programs.micro;
 
@@ -12,12 +11,15 @@ let
 
   inherit (pkgs) fetchgit;
 in
+
+with lib;
+
 {
   options = {
     programs.micro = {
       extraSyntax = mkOption {
         type = types.attrs;
-        default = [ ];
+        default = { };
       };
 
       keybindings = mkOption {
@@ -30,34 +32,34 @@ in
           }
         '';
         description = ''
-          Configuration written to
-          {file}`$XDG_CONFIG_HOME/micro/settings.json`. See
-          <https://github.com/zyedidia/micro/blob/master/runtime/help/options.md>
-          for supported values.
+          Keybindings configuration written to
+          {file}`$XDG_CONFIG_HOME/micro/bindings.json`. See
+          <https://github.com/zyedidia/micro/blob/master/runtime/help/keybindings.md>
+          for more information.
         '';
       };
 
-      plugins = mkOption {
-        type =
-          with types;
-          nullOr (
-            attrsOf (submodule {
-              options = {
-                url = mkOption { type = str; };
-                hash = mkOption { type = str; };
-              };
-            })
-          );
+      # plugins = mkOption {
+      #   type =
+      #     with types;
+      #     nullOr (
+      #       attrsOf (submodule {
+      #         options = {
+      #           url = mkOption { type = str; };
+      #           hash = mkOption { type = str; };
+      #         };
+      #       })
+      #     );
 
-        default = null;
-        description = "Additional plugins to fetch and extract into ~/.config/micro/plug/<plugin-name>.";
-        example = literalExpression ''
-          micro-autofmt = {
-            url = "https://github.com/quinneden/micro-autofmt";
-            rev = "refs/heads/main";
-          };
-        '';
-      };
+      #   default = null;
+      #   description = "Specify plugins to install into {file}`~/.config/micro/plug/<plugin-name>.`";
+      #   example = literalExpression ''
+      #     micro-autofmt = {
+      #       url = "https://github.com/quinneden/micro-autofmt";
+      #       rev = "refs/heads/main";
+      #     };
+      #   '';
+      # };
     };
 
     # colors = mkOption {

@@ -5,25 +5,20 @@
   lib,
   ...
 }:
+with lib;
 let
   inherit (pkgs.stdenv) isLinux;
 in
-with lib;
 {
   imports = [ ./micro.nix ];
+
+  stylix = mkIf isLinux { targets.micro.enable = false; };
 
   programs.micro = {
     enable = true;
 
     extraSyntax = {
       nix = ./syntax/nix.yaml;
-    };
-
-    plugins = {
-      micro-autofmt = {
-        url = "https://github.com/quinneden/micro-autofmt";
-        hash = "sha256-9SggIGWb718yKN5PvebbwYH1EIT/Weu4DkpRJntw5B8=";
-      };
     };
 
     settings = {
@@ -37,7 +32,6 @@ with lib;
       linter = true;
       literate = true;
       pluginrepos = [
-        "https://github.com/quinneden/micro-autofmt/raw/refs/heads/main/repo.json"
         "https://github.com/sparques/micro-quoter/raw/refs/heads/master/repo.json"
         "https://github.com/AndCake/micro-plugin-lsp/raw/refs/heads/master/repo.json"
       ];
@@ -53,7 +47,13 @@ with lib;
 
   home.file."micro-colors" = {
     recursive = true;
-    target = "${config.xdg.configHome}/micro/colorschemes";
+    target = config.xdg.configHome + "/micro/colorschemes";
     source = inputs.micro-colors-nix.packages.${pkgs.system}.default;
+  };
+
+  home.file."micro-autofmt" = {
+    recursive = true;
+    target = config.xdg.configHome + "/micro/plug/autofmt";
+    source = pkgs.callPackage ./autofmt.nix { inherit pkgs lib; };
   };
 }
