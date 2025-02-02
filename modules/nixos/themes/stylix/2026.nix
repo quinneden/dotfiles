@@ -3,15 +3,22 @@
   pkgs,
   ...
 }:
+let
+  base16-schemes = pkgs.base16-schemes.overrideAttrs {
+    version = "spec-0.11";
+    src = pkgs.fetchFromGitHub {
+      owner = "tinted-theming";
+      repo = "schemes";
+      rev = "refs/heads/spec-0.11";
+      hash = "sha256-W4BfjOLksRbHGDluyHntxFacBL2ZAjXAC6RRQWTDsAo=";
+    };
+  };
+in
 {
-  imports = [
-    ../colors.nix
-  ];
-
-  colors.palette = "oxocarbon-dark";
-
   stylix = {
     enable = true;
+
+    base16Scheme = base16-schemes + "share/themes/gigavolt.yaml";
 
     cursor = {
       package = pkgs.phinger-cursors;
