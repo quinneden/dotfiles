@@ -67,6 +67,7 @@
 
   inputs = {
     apple-fonts.url = "github:Lyndeno/apple-fonts.nix";
+    hyprcursor-phinger.url = "github:jappie3/hyprcursor-phinger";
     hyprland.url = "github:hyprwm/hyprland";
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
     hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
@@ -78,11 +79,6 @@
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     stylix.url = "github:danth/stylix";
-
-    anyrun = {
-      url = "github:anyrun-org/anyrun";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";

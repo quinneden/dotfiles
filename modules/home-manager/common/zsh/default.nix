@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (pkgs.stdenv) isDarwin isLinux;
+  inherit (pkgs.stdenv) isDarwin;
 
   commonAliases = {
     cddf = "cd $dotdir";
@@ -42,6 +42,7 @@ let
 
   linuxVariables = {
     NIXOS_CONFIG = "$HOME/.dotfiles";
+    NH_FLAKE = "$HOME/.dotfiles";
   };
 
   initExtraDarwin = ''[[ $PATH =~ '/nix/store' ]] || eval $(/opt/homebrew/bin/brew shellenv)'';

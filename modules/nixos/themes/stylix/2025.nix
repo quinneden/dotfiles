@@ -35,7 +35,7 @@
 
     fonts = {
       monospace = {
-        package = pkgs.nerd-fonts.jetbrains-mono;
+        package = pkgs.nerd-fonts.caskaydia-cove;
         name = "CaskaydiaCove Nerd Font Mono";
       };
       sansSerif = {

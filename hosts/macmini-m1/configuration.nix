@@ -20,7 +20,7 @@
     ../../modules/nixos/hyprland.nix
     # ../../modules/overlays
 
-    ../../modules/nixos/themes/stylix/quinn.nix
+    ../../modules/nixos/themes/stylix/2026.nix
 
     ./hardware.nix
     ./variables.nix

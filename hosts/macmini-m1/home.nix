@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 {
   imports = [
     ./variables.nix
@@ -24,6 +24,8 @@
     ../../modules/home-manager/nixos/system/udiskie
     ../../modules/home-manager/nixos/system/wofi
     ../../modules/home-manager/nixos/system/zathura
+
+    inputs.hyprcursor-phinger.homeManagerModules.default
   ];
 
   home = {
@@ -71,6 +73,8 @@
 
     stateVersion = "25.05";
   };
+
+  programs.hyprcursor-phinger.enable = true;
 
   programs.home-manager.enable = true;
 }

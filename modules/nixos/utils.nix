@@ -48,6 +48,7 @@ in
     fd
     bc
     gcc
+    gh
     git-ignore
     xdg-utils
     wget
