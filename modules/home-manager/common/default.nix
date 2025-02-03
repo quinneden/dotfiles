@@ -5,6 +5,7 @@
     ./micro
     ./packages.nix
     ./vscodium
+    ./zed-editor
     ./zsh
   ];
 }
