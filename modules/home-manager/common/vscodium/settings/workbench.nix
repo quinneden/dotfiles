@@ -9,7 +9,7 @@ with lib;
 {
   "workbench.activityBar.location" = "bottom";
 
-  "workbench.colorTheme" = mkIf isDarwin "Panda Syntax";
+  "workbench.colorTheme" = "Panda Syntax";
 
   "workbench.editor.labelFormat" = "short";
 

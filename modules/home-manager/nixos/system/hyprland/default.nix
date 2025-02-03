@@ -61,8 +61,8 @@ in
       ];
 
       monitor = [
-        "HDMI-A-1,2560x1440@144,auto,1"
-        # ",prefered,auto,1"
+        # "HDMI-A-1,2560x1440@144,auto,1"
+        ",prefered,auto,1"
       ];
 
       # env = [
@@ -89,7 +89,7 @@ in
 
       cursor = {
         no_hardware_cursors = true;
-        default_monitor = "HDMI-A-1";
+        # default_monitor = "HDMI-A-1";
       };
 
       general = {

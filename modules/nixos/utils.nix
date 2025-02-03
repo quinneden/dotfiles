@@ -48,10 +48,12 @@ in
     fd
     bc
     gcc
+    gh
     git-ignore
     xdg-utils
     wget
     curl
+    nix-shell-scripts.nix-switch
   ];
 
   services.logind.extraConfig = ''
