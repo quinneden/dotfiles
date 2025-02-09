@@ -2,7 +2,9 @@
   lib,
   pkgs,
 }:
+
 with lib;
+
 {
   "black-formatter.path" = [ (getExe pkgs.black) ];
 

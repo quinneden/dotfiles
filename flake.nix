@@ -101,18 +101,13 @@
     };
 
     nix-rosetta-builder = {
-      url = "github:quinneden/nix-rosetta-builder";
+      url = "github:quinneden/nix-rosetta-builder?ref=opinionated";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixos-apple-silicon = {
       url = "github:tpwrules/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nixy-wallpapers = {
-      url = "github:anotherhadi/nixy-wallpapers";
-      flake = false;
     };
 
     nur = {

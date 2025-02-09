@@ -1,3 +1,5 @@
+{ pkgs, ... }:
+
 {
   "window.commandCenter" = true;
 
@@ -9,9 +11,7 @@
 
   "window.titleBarStyle" = "custom";
 
-  "window.zoomLevel" = 0.3;
-
-  "workbench.tree.indent" = 10;
+  "window.zoomLevel" = if pkgs.stdenv.isDarwin then 0.3 else 0.4;
 
   "workbench.view.showQuietly" = {
     "workbench.panel.output" = true;

@@ -12,7 +12,7 @@ in
 {
   imports = [ ./micro.nix ];
 
-  stylix = mkIf isLinux { targets.micro.enable = false; };
+  # stylix = mkIf isLinux { targets.micro.enable = false; };
 
   programs.micro = {
     enable = true;

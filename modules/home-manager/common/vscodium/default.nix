@@ -36,7 +36,7 @@ with lib;
         // (import ./settings/four-tabs-langs.nix { inherit lib; })
         // (import ./settings/editor.nix { inherit lib; })
         // (import ./settings/workbench.nix { inherit lib pkgs; })
-        // (import ./settings/window.nix)
+        // (import ./settings/window.nix { inherit pkgs; })
         // (import ./settings/misc.nix { inherit lib pkgs; })
         // (import ./settings/lsp.nix { inherit lib pkgs; });
     in
@@ -50,8 +50,4 @@ with lib;
         userSettings
         ;
     };
-
-  stylix = mkIf isLinux {
-    targets.vscode.enable = false;
-  };
 }

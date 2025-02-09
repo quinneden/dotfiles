@@ -43,16 +43,6 @@ let
         runHook postInstall
       '';
     });
-
-    ghostty = prev.ghostty.overrideAttrs (old: {
-      meta.broken = "";
-      patches = (old.patches or [ ]) ++ [
-        (prev.fetchpatch {
-          url = "https://patch-diff.githubusercontent.com/raw/ghostty-org/ghostty/pull/5370.patch";
-          hash = "sha256-GRrkpw+Lxgf45Vpl6dUp0MD4UADVNSvqO5+A7FyqUjo=";
-        })
-      ];
-    });
   };
 in
 {

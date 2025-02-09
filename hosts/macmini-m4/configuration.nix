@@ -50,7 +50,6 @@
   nix-rosetta-builder = {
     enable = true;
     enableRosetta = true;
-    debug = true;
 
     cores = 8;
     memory = "6GiB";

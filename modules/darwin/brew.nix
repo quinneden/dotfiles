@@ -26,6 +26,7 @@
       "ghostty@tip"
       "iterm2"
       "macfuse"
+      "obsidian"
       "pearcleaner"
       "podman-desktop"
       "utm"
@@ -35,6 +36,7 @@
 
     brews = [
       "act"
+      "age"
       "aria2"
       "awscli"
       "bat"

@@ -3,16 +3,12 @@
   pkgs,
   ...
 }:
-let
-  github-dark-css = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/sindresorhus/github-markdown-css/refs/heads/main/github-markdown-dark.css";
-    hash = "sha256-oUe3spdT73jIB9O3kh3i65+RZcWbFts4SCNqVZn1Dxs=";
-  };
-in
 {
   "extensions.ignoreRecommendations" = true;
 
   "breadcrums.enabled" = false;
+
+  "chat.commandCenter.enabled" = false;
 
   "explorer.compactFolders" = false;
 

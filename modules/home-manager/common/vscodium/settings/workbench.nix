@@ -2,10 +2,6 @@
   lib,
   pkgs,
 }:
-let
-  inherit (pkgs.stdenv) isDarwin;
-in
-with lib;
 {
   "workbench.activityBar.location" = "bottom";
 
@@ -17,7 +13,7 @@ with lib;
 
   "workbench.layoutControl.enabled" = true;
 
-  "workbench.tree.indent" = 10;
+  "workbench.tree.indent" = 17;
 
   "workbench.view.showQuietly" = {
     "workbench.panel.output" = true;
