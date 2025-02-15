@@ -76,7 +76,7 @@
   "window.zoomLevel" = if pkgs.stdenv.isDarwin then 0.3 else 0.4;
 
   "workbench.activityBar.location" = "bottom";
-  "workbench.colorTheme" = "Panda Syntax";
+  "workbench.colorTheme" = "oh-lucy";
   "workbench.editor.closeOnFileDelete" = true;
   "workbench.editor.editorActionsLocation" = "titleBar";
   "workbench.editor.labelFormat" = "short";

@@ -32,6 +32,7 @@
       "utm"
       "vagrant"
       "vscodium"
+      "zed@preview"
     ];
 
     brews = [
@@ -99,6 +100,7 @@
       "pv"
       "qemu"
       "rclone"
+      "rich"
       "ripgrep"
       "rsync"
       "rustup"

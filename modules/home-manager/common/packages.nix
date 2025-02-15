@@ -21,6 +21,7 @@
       swatch
     ])
     ++ (with pkgs; [
+      nix-fast-build
       nix-prefetch-git
       nix-prefetch-github
     ]);

@@ -10,7 +10,6 @@
     ../../modules/darwin/fonts.nix
     ../../modules/darwin/nh-darwin.nix
     ../../modules/darwin/overlays.nix
-    # ../../modules/overlays
     ./system.nix
   ];
 
@@ -18,6 +17,13 @@
     description = "Quinn Edenfield";
     home = "/Users/quinn";
     shell = pkgs.zsh;
+  };
+
+  programs.nh = {
+    enable = true;
+    flake = "/Users/quinn/.dotfiles";
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 3d";
   };
 
   home-manager = {
@@ -36,7 +42,7 @@
         ../../modules/home-manager/common/micro
         ../../modules/home-manager/common/packages.nix
         ../../modules/home-manager/common/vscodium
-        ../../modules/home-manager/common/zed-editor
+        # ../../modules/home-manager/common/zed-editor
         ../../modules/home-manager/common/zsh
         ../../modules/home-manager/darwin/packages.nix
         ../../modules/home-manager/darwin/programs.nix
@@ -44,8 +50,6 @@
       ];
     };
   };
-
-  services.nix-daemon.enable = true;
 
   nix-rosetta-builder = {
     enable = true;
@@ -73,14 +77,13 @@
   };
 
   nix = {
+    enable = true;
     channel.enable = false;
-    configureBuildUsers = true;
     daemonProcessType = "Adaptive";
     distributedBuilds = true;
     nixPath = [ "nixpkgs=flake:nixpkgs" ];
 
     optimise = {
-      user = "root";
       automatic = true;
       interval = [
         {
@@ -94,27 +97,27 @@
     settings = {
       accept-flake-config = true;
       access-tokens = [ "github=${secrets.github.token}" ];
+      always-allow-substitutes = true;
       builders-use-substitutes = true;
       experimental-features = [
         "nix-command"
         "flakes"
+        "repl-flake"
       ];
 
       extra-substituters = [
         "https://cache.lix.systems"
         "https://quinneden.cachix.org"
-        "http://picache.qeden.me"
         "https://nix-community.cachix.org"
       ];
 
       extra-trusted-public-keys = [
         "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
         "quinneden.cachix.org-1:1iSAVU2R8SYzxTv3Qq8j6ssSPf0Hz+26gfgXkvlcbuA="
-        "picache.qeden.me:YbzItsTq/D/ns+o9/KzrPraH2hrnmNk/D5aclZZx+YA="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
 
-      secret-key-files = [ "${../../.secrets/keys/cache-private-key.pem}" ];
+      # secret-key-files = [ "${../../.secrets/keys/cache-private-key.pem}" ];
 
       trusted-users = [
         "quinn"

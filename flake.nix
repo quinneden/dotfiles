@@ -35,9 +35,7 @@
       darwinConfigurations = {
         macmini-m4 = nix-darwin.lib.darwinSystem {
           system = "aarch64-darwin";
-          specialArgs = {
-            inherit inputs secrets self;
-          };
+          specialArgs = { inherit inputs secrets self; };
           modules = [
             ./hosts/macmini-m4/configuration.nix
             home-manager.darwinModules.default
@@ -51,9 +49,7 @@
       nixosConfigurations = {
         macmini-m1 = nixpkgs.lib.nixosSystem {
           system = "aarch64-linux";
-          specialArgs = {
-            inherit inputs secrets;
-          };
+          specialArgs = { inherit inputs secrets; };
           modules = [
             ./hosts/macmini-m1/configuration.nix
             home-manager.nixosModules.home-manager

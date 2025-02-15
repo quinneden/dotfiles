@@ -2,6 +2,7 @@
 {
   programs.git = {
     enable = true;
+    signing.format = "ssh";
     extraConfig = {
       color.ui = true;
       core.editor = "micro";

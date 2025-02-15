@@ -7,6 +7,7 @@
     gnutar
     ks
     nil
+    nixd
     nix-prefetch-github
     nix-shell-scripts.darwin-switch
     nix-shell-scripts.lsh

@@ -10,7 +10,7 @@ let
   commonAliases = {
     cddf = "cd $dotdir";
     cddl = "cd ~/Downloads";
-    code = "codium";
+    # code = "codium";
     gst = "git status";
     gsur = "git submodule update --init --recursive";
     l = "eza -la --group-directories-first";

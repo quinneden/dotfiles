@@ -10,15 +10,13 @@ let
 in
 with lib;
 {
-  meta.maintainers = [ maintainers.quinneden ];
-
   options.programs.nh = {
     enable = mkEnableOption "nh, yet another Nix CLI helper";
 
     package = mkPackageOption pkgs "nh" { };
 
     flake = mkOption {
-      type = types.nullOr types.path;
+      type = with types; nullOr str;
       default = null;
       description = ''
         The path that will be used for the `NH_FLAKE` environment variable.
@@ -28,22 +26,24 @@ with lib;
     };
 
     clean = {
-      enable = mkEnableOption "periodic garbage collection with nh clean all";
+      enable = mkEnableOption "Periodic garbage collection with `nh clean all`.";
 
-      # dates = mkOption {
-      #   type = types.submodule;
-      #   default = {
-      #     StartCalendarInterval = {
-      #       Weekday = 1;
-      #     };
-      #   };
-      #   description = ''
-      #     How often cleanup is performed. Passed to launchd.
+      dates = mkOption {
+        type = with types; listOf attrs;
+        default = [
+          {
+            Minute = 0;
+            Hour = 0;
+            Weekday = 1;
+          }
+        ];
+        description = ''
+          How often cleanup is performed. Passed to launchd.
 
-      #     The format is described in
-      #     {manpage}`launchd.plist(5)`.
-      #   '';
-      # };
+          The format is described in
+          {manpage}`launchd.plist(5)`.
+        '';
+      };
 
       extraArgs = mkOption {
         type = types.singleLineStr;
@@ -81,30 +81,20 @@ with lib;
 
     environment = mkIf cfg.enable {
       systemPackages = [ cfg.package ];
-      variables.NH_FLAKE =
-        if (cfg.flake != null) then
-          cfg.flake
-        else
-          readFile (runCommand "hostname" { } "printf $(/bin/hostname -s) > $out");
+      variables.NH_FLAKE = optionalString (cfg.flake != null) cfg.flake;
     };
 
     launchd = mkIf cfg.clean.enable {
       daemons = {
         "nh-clean" = {
           command = "${getExe cfg.package} clean all ${cfg.clean.extraArgs}";
-          environment = mkIf (cfg.flake != null) {
-            NH_FLAKE =
-              if (cfg.flake != null) then
-                cfg.flake
-              else
-                readFile (runCommand "hostname" { } "printf $(/bin/hostname -s) > $out");
+
+          environment.NH_FLAKE = optionalString (cfg.flake != null) cfg.flake;
+
+          serviceConfig = {
+            RunAtLoad = false;
+            StartCalendarInterval = cfg.clean.dates;
           };
-          serviceConfig.RunAtLoad = false;
-          serviceConfig.StartCalendarInterval = [
-            {
-              Weekday = 1;
-            }
-          ];
         };
       };
     };
